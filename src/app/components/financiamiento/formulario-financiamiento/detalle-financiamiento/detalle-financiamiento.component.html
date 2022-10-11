@@ -1,0 +1,332 @@
+<button mat-icon-button class="close-button" (click)="onCancel()">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+  <br><br>
+<div>
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/evaluacion-cliente"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a evaluación de cliente</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTopDetalle">
+                <div class="row mt-3">
+                    <form [formGroup]="formDatosFinanciamiento" autocomplete="off" class="formDisabled">
+                        <div class="col-12">
+                            <mat-horizontal-stepper [linear]="isLinear"  labelPosition="bottom" #stepper id="grafico_elevacion" class="bgStipper" >
+    
+                                <mat-step class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <div class="form-row mb-5">
+                                        <div class="col-md-6 col-12">
+                                            <span class="txt16w600 colBlue pl-2">Datos del titular del vehículo</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                            <label class="txt14w500 col-12">Nombres</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="nombres">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Apellidos</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="apellidos">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">DNI</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="numeroDocumento">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Fecha de nacimiento</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="fechaNacimiento">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Estado civil</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="estadoCivil">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Correo electrónico</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="correoElectronico">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Celular</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="celular">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Nivel de estudios</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="idNivelEstudios">
+                                            </mat-form-field>
+                                        </div>
+                                        
+        
+                                    </div>
+                                </mat-step>
+        
+                                <mat-step  class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <div class="form-row mb-5">
+                                        <div class="col-md-6 col-12">
+                                            <span class="txt16w600 colBlue pl-2">Información sobre su empleo</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                            <label class="txt14w500 col-12">Ocupación</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="ocupacion">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Contrato</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="tipoContrato">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Tiempo en el actual empleo</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="mesAnio">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Tiempo en el empleo</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="tiempoEmpleoCliente">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+        
+                                <mat-step class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <div class="form-row mb-5">
+                                        <div class="col-md-6 col-12">
+                                            <span class="txt16w600 colBlue pl-2">Información sobre su dirección</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                            <label class="txt14w500 col-12">Tipo de calle</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="tipoCalle">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Dirección</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="direccion">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Nº de interior</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="numeroInterior">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Mz / Lt</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="mzLt">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Distrito</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="distrito">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Referencias</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="referenciaDomicilio">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Tipo de vivienda</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="tipoVivienda">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Tiempo en la vivienda</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="tiempoAnoVivienda">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Vencimiento Contrato</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="tiempoMesesVivienda">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Gas Natural</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="isGasNatural">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                </mat-step>
+        
+                                <mat-step class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <div class="form-row mb-5">
+                                        <div class="col-md-6 col-12">
+                                            <span class="txt16w600 colBlue pl-2">Información del vehículo</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                            <label class="txt14w500 col-12">Placa</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="numeroPlaca">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Marca de auto</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="marcaAuto">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Modelo del auto</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="modeloAuto">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Año de fabricación</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="fechaFabricacion">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Uso del vehículo</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="tipoUsoVehicular">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Estado del vehículo</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="estadoVehiculo">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Ingresos mensuales</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="ingresoMensual">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Número de hijos</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="numeroHijos">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+        
+                                <mat-step class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <div class="form-row mb-5">
+                                        <div class="col-md-6 col-12">
+                                            <span class="txt16w600 colBlue pl-2">Información del servicio / producto</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+
+                                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Servicio/Producto</label>
+                                            <mat-form-field appearance="outline" class="col-12" >
+                                                <input matInput readonly formControlName="producto">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Proveedor</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="nombreEstablecimiento">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Precio</label>
+                                            <mat-form-field appearance="outline" class="col-12" >
+                                                <input matInput readonly formControlName="precio">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Establecimiento</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="nombreEstablecimiento">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Tipo de financiamiento</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="tipoFinanciamiento">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Tipo de crédito</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="tipoCredito">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Plazo máximo</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="plazoCuotasFinanciamiento">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Observaciones</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="observaciones">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+        
+                                <mat-step class="btnBlue col-12" [completed]="false" [editable]="isEditable" >
+                                    <div class="form-row mb-5">
+                                        <div class="col-md-6 col-12">
+                                            <span class="txt16w600 colBlue pl-2">Taller de su preferencia</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+
+                                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Taller</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input matInput readonly formControlName="idTaller">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+        
+                            </mat-horizontal-stepper>
+                        </div>
+                    </form>
+                    
+                </div>
+            </mat-card>
+        </div>
+
+    </div>
+</div>

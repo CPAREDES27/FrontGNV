@@ -1,0 +1,10 @@
+[
+    { "value": 1, "description": "Administrador" },
+    { "value": 2, "description": "Asesor de Ventas" },
+    { "value": 3, "description": "Persona Cliente" },
+    { "value": 4, "description": "Analista de Crédito" },
+    { "value": 5, "description": "Aliado Comercial" },
+    { "value": 6, "description": "Técnico Calidda" },
+    { "value": 7, "description": "Persona Empresa" },
+    { "value": 8, "description": "Analista Comercial (Pre evaluador)" }
+]

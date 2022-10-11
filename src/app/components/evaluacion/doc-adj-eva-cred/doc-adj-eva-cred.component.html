@@ -1,0 +1,266 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/evaluacion-crediticia" class="pl-4"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a evaluación crediticia</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="pl-2 pr-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <a (click)="verDetalleEvaluacionCreditica();" class="style-button-per mat-stl-1">
+                                    <strong>Detalle</strong>
+                                </a>
+                                <div class="cn-camp-1">
+                                    <hr class="line-101 style-hr-ln">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <a class="style-button-per step-frm-1">
+                                    <strong>Documentos adjuntos</strong></a>
+                                <div class="dv-stl-ln">
+                                    <hr class="line-202 ln-202">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row pt-3 mb-3">
+                        <div class="col-12 ">
+                            <span class="txt16w600 colBlue pl-2">Documentos adjuntos</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-4">
+                        <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">DNI</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf('fileDni')" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">Tarjeta de propiedad</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf()" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <span class="estRechazado"><span class="material-icons mr-2">close</span> Rechazado</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">Permiso de taxi o última boleta de pagos</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf()" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">Licencia de conducir</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf('fileLicenciaConducir')" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">Recibo de servicios públicos</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf()" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">Revisión técnica si corresponde</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf()" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">SOAT vigente</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf('fileSoatVigente')" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">Contrato de financiamiento firmado</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf()" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">Formato de conformidad</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf('fileFormConformidad')" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">Contrato de financiamiento</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf('fileContrFinanciamie')" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12">
+                            <div class="tarjetBottom">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <span class="txt16w600 colBlack">Formato de conformidad</span>
+                                    </div>
+                                    <div class="col-sm-6 col-12 text-right">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <a href="javascript:void(0)" (click)="openDialogPdf()" class="btnModalPDF"><i class="fa fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12 text-center esp-btn">
+                        <button mat-button class="btn-back ml-2 mr-2 mt-2" routerLink="/gnv/evaluacion-crediticia"><span class="material-icons pr-4">arrow_back</span> Cancelar </button>
+                        <button mat-button class="btnBlue btn-next ml-2 mr-2 mt-2">Guardar <span class="material-icons pl-4">save</span></button>
+                    </div>
+                </div>
+
+            </mat-card>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Registro de información</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <form [formGroup]="formFiltro" autocomplete="off">
+                    <div class="row align-items-center">
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">N° documento</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput placeholder="Placa" formControlName="numPlaca">
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <button mat-raised-button class="btnFilter" (click)="filtrar()">
+                                Filtrar
+                                <img class="iconFilter ml-5" src="./assets/images/icons/filtro.svg" alt="btnFilter"> 
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Registro de información</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row align-items-center">
+                    <div class="col-sm-6 col-12">
+                        <h3 class="textTab1">Detalle de registros</h3>
+                        <p class="textReg">Detalle de usuarios registrados</p>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <button mat-raised-button class="btnNew btnGreens float-md-right" [routerLink]="['/gnv/registro-informacion']">
+                            Registrar
+                            <span class="material-icons-outlined ml-3">person_add</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="table-responsive col-12 mt-3">
+                        <table class="table table-hover tabPrev">
+                            <thead>
+                                <tr>
+                                    <th scope="col">N°</th>
+                                    <th scope="col">Placa</th>
+                                    <th scope="col">Nombres</th>
+                                    <th scope="col">Documento</th>
+                                    <th scope="col">Kilometraje</th>
+                                    <th scope="col">Teléfono</th>
+                                    <th scope="col">Correo electrónico</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>XH-3456</td>
+                                    <td>Percy Antony Grimaldo Sánchez</td>
+                                    <td>65498732</td>
+                                    <td>6000 Km</td>
+                                    <td>983 762 467</td>
+                                    <td>pgrimaldo@gmail.com</td>
+                                    <td><a class="btnActualizar" href="javascript:void(0);">Actualizar <i class="far fa-edit"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>XH-3456</td>
+                                    <td>Percy Antony Grimaldo Sánchez</td>
+                                    <td>65498732</td>
+                                    <td>6000 Km</td>
+                                    <td>983 762 467</td>
+                                    <td>pgrimaldo@gmail.com</td>
+                                    <td><a class="btnActualizar" href="javascript:void(0);">Actualizar <i class="far fa-edit"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>XH-3456</td>
+                                    <td>Percy Antony Grimaldo Sánchez</td>
+                                    <td>65498732</td>
+                                    <td>6000 Km</td>
+                                    <td>983 762 467</td>
+                                    <td>pgrimaldo@gmail.com</td>
+                                    <td><a class="btnActualizar" href="javascript:void(0);">Actualizar <i class="far fa-edit"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

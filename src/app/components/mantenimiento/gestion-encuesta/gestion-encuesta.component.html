@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Mantenimiento de encuesta</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row align-items-center mt-4">
+                    <div class="col-sm-6 col-12">
+                        <h3 class="textTab1">Información de preguntas de satisfacción</h3>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <button mat-raised-button class="btnNew btnGreens float-md-right" [routerLink]="['/gnv/registrar-encuesta']">
+                            Agregar Nueva Pregunta
+                            <span class="material-icons-outlined ml-3">add_circle_outline</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="table-responsive col-12 mt-3">
+                        <table class="table table-hover tabPrev">
+                            <thead>
+                                <tr>
+                                    <th scope="col">N°</th>
+                                    <th scope="col">Pregunta</th>
+                                    <th scope="col">Texto de ayuda</th>
+                                    <th scope="col">Tipo de Pregunta</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of listPreguntas let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{row.pregunta}}</td>
+                                    <td>{{row.textAyuda}}</td>
+                                    <td>{{row.tipoDato}}</td>
+                                    <td><a class="btnActualizar" href="javascript:void(0);" [routerLink]="['/gnv/editar-encuesta/',row.id]">Actualizar <i class="far fa-edit"></i></a></td>
+                                    <td><a class="btnEliminar" href="javascript:void(0);" (click)="eliminarRegistro(row.id)">Dar de baja <i class="far fa-trash-alt"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

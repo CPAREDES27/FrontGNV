@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Registro de solicitud de financiamiento</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row mt-3">
+                    <div class="col-md-10 offset-md-1 col-12">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <button class="col-md-6 col-12 btnBlue" mat-mini-fab>1</button>
+                                <span class="pl-2 col-md-6 col-12 colBlue">Ingreso de solicitud</span>
+                            </div>
+                            <div class="col-4">
+                                <button class="col-md-6 col-12 btnLead" mat-mini-fab>2</button>
+                                <span class="pl-2 col-md-6 col-12 colLead">Evaluación</span>
+                            </div>
+                            <div class="col-4">
+                                <button class="col-md-6 col-12 btnLead" mat-mini-fab>3</button>
+                                <span class="pl-2 col-md-6 col-12 colLead">Resultado</span>
+                            </div>
+                        </div>
+
+                        <mat-card class="card cardInterna mt-5">
+                            <div class="row align-items-center ">
+                                <div class="col-xl-8 col-lg-8 col-sm-8 col-sm-8 col-12">
+                                    <span class="txt14w500">Ingresa la solicitud de financiamiento, llenando el siguiente formulario:</span>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-sm-4 col-sm-4 col-12">
+                                    <button mat-raised-button class="btnBlue" [routerLink]="['/gnv/formulario-financiamiento']">Llenar formulario</button>
+                                </div>
+                            </div>
+                        </mat-card>
+
+                        <div class="row mt-2 mb-4">
+                            <div class="col-12">
+                                <span class="txt16w600 colBlue">Ten a la mano los siguientes documentos</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="table-responsive col-12">
+                                <table class="table table-hover">
+                                    <thead class="rowTable">
+                                        <tr class="rowTab">
+                                            <th class="campTab" width="5">Id</th>
+                                            <th class="campTab">Nombre de documento</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>DNI</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Tarjeta de propiedad</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Licencia de conducir</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>SOAT vigente</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </mat-card>
+        </div>
+
+    </div>
+</div>

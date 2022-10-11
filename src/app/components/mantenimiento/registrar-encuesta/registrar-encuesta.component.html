@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/gestion-encuesta"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a mantenimiento de encuesta</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <form [formGroup]="questionFormGroup" autocomplete="off" class="formDisabled">
+                            <div class="form-row mb-3">
+                                <div class="col-12">
+                                    <h3 class="txt16w600 colBlue pl-2">Añadir nueva pregunta</h3>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label class="txt14w500 col-12">Pregunta</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input matInput formControlName="pregunta" placeholder="Ingresa la pregunta">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label class="txt14w500 col-12">Texto de ayuda</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input matInput formControlName="textoAyuda" placeholder="Ingresa el texto de ayuda">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <label class="txt14w500 col-12">Tipo de pregunta</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select placeholder="Seleccione" formControlName="tipoPregunta" (selectionChange)="tipoPregunta($event.value)">
+                                            <mat-option value="campo">Campos de texto</mat-option>
+                                            <mat-option value="radio">Radios (Opciones)</mat-option>
+                                            <!-- <mat-option value="checkbox">Checkbox (Opciones)</mat-option> -->
+                                            <mat-option value="combo">Combos de selección (Opciones)</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="row">
+                                        <!-- si es campo de texto -->
+                                        <div class="col-12" *ngIf="isCampoTexto">
+                                            <label class="txt14w500 col-12">Campo de texto</label>
+                                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                                <input matInput placeholder="Ingresa tu respuesta">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <!-- si es con opciones -->
+                                        <div class="col-12" *ngIf="isOpciones">
+                                            <label class="txt14w500 col-12">Ingrese las opciones</label>
+                                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                                <input matInput formControlName="inputOpciones" placeholder="Ingresa nombre de la opción">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <!-- En caso es para registrar -->
+                                        <div class="col-12">
+                                            <div class="divOpciones" *ngIf="listOpciones.length>0">
+                                                <div class="row align-items-center mt-1 mb-1 pl-3" *ngFor="let item of listOpciones">
+                                                    <div class="col-8 bgOpt">
+                                                        <span>{{item.descripcionDetalle}}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <a (click)="sliceOpciones(item.descripcionDetalle)"><span class="material-icons-outlined colRed" style="cursor: pointer;">delete_forever</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- En caso es para registrar -->
+                                    <div class="row justify-content-md-center mt-4">
+                                        <div class="col-10" *ngIf="isOpciones">
+                                            <mat-card class="line-card cardBtn" (click)="addOpciones()">
+                                                <div class="form-group">
+                                                    <div class="bgActualizarb row align-items-center justify-content-center">
+                                                        <span class="material-icons-outlined colBlue pr-3">add_circle_outline</span>
+                                                        <span class="colBlue txt14w500 txtBold">Añadir Opción</span>
+                                                    </div>
+                                                </div>
+                                            </mat-card>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-5">
+                                <div class="col-12 text-center esp-btn">
+                                    <button mat-button class="btn-back ml-2 mr-2 mt-2" routerLink="/gnv/gestion-encuesta"><span class="material-icons pr-4">arrow_back</span> Cancelar </button>
+                                     <!-- En caso es para registrar -->
+                                    <button mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="prepararRegistro()" *ngIf="idPregunta == 0">Registrar <span class="material-icons pl-4">arrow_forward</span></button>
+                                     <!-- En caso es para modificar -->
+                                    <button mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="prepararUpdate()" *ngIf="idPregunta > 0">Actualizar<span class="material-icons pl-4">arrow_forward</span></button>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

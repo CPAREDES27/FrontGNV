@@ -1,0 +1,63 @@
+<section [ngClass]="{nonavopen: estado, navopen: !estado}">
+    <app-portal-gnv-menu></app-portal-gnv-menu>
+
+    <div class="main-contents" id="panel">
+        <nav class="navbar navbar-top navbar-expand navbar-dark bg-cald border-bottom">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-bottom: 70px !important;">
+
+                    <ul class="navbar-nav align-items-center  ml-md-auto ">
+                        <li class="nav-item d-xl-none">
+
+                            <div class="pr-3 sidenav-toggler sidenav-toggler-dark" (click)="toggleClass()">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link pr-0" href="javascript:void(0);" [matMenuTriggerFor]="menu">
+                                <div class="media align-items-center">
+                                    <span class="avatar avatar-sm rounded-circle">
+                                    <span class="fa fa-user"></span>
+                                    </span>
+                                    <div class="media-body  ml-2  d-none d-lg-block">
+                                        <span class="mb-0 text-sm  font-weight-bold">{{datosUserLogin.usuario}}</span>
+                                        <br>
+                                        <small class="textmen" *ngIf="datosUserLogin.rol == '1'">Administrador</small>
+                                        <small class="textmen" *ngIf="datosUserLogin.rol == '2'">Asesor de Ventas</small>
+                                        <small class="textmen" *ngIf="datosUserLogin.rol == '3'">Persona Cliente</small>
+                                        <small class="textmen" *ngIf="datosUserLogin.rol == '4'">Analista de Crédito</small>
+                                        <small class="textmen" *ngIf="datosUserLogin.rol == '5'">Aliado Comercial</small>
+                                        <small class="textmen" *ngIf="datosUserLogin.rol == '6'">Técnico Calidda</small>
+                                        <small class="textmen" *ngIf="datosUserLogin.rol == '7'">Persona Empresa</small>
+                                        <small class="textmen" *ngIf="datosUserLogin.rol == '8'">Analista Comercial (Pre evaluador)</small>
+                                        <small class="textmen" *ngIf="datosUserLogin.rol == ''">Invitado</small>
+                                    </div>
+                                    <span class="material-icons">expand_more</span>
+                                </div>
+                            </a>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>
+                                  <mat-icon>person</mat-icon>
+                                  <span>Mi cuenta</span>
+                                </button>
+                                <button mat-menu-item (click)="cerrarSesion()">
+                                  <mat-icon>logout</mat-icon>
+                                  <span>Cerrar Sesión</span>
+                                </button>
+                            </mat-menu>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <router-outlet style="z-index: 1 !important;"></router-outlet>
+    </div>
+</section>

@@ -1,0 +1,68 @@
+<div mat-dialog-content class="matDialogM">
+    <div class="row">
+        <div class="col-12">
+            <!-- <mat-card class="card-bg">
+                
+            </mat-card> -->
+        </div>
+    </div>
+
+    <div class="form-row mt-2" >
+        <div class="col-12 mt-3">
+            <p class="txt16w600 colBlack pl-2">
+                Solicitar documento consentimiento informado.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="form-row mt-3" *ngIf="data.rol==8">
+        <div class="col-8 mt-3">
+            <p class="txt16w600 colBlack pl-2">
+                Enviar alerta al asesor de ventas por correo. 
+            </p>
+        </div>
+        <div class="col-4">
+            <!-- <button mat-button class="btnBlue btn-next ml-1 mr-1 mt-2" (click)="enviarAlertaAsesorVentas();">Enviar<span class="material-icons pl-2">send</span></button> -->
+            <button mat-button class="btnBlue colWhite btn-next mt-2" style="width: 100%;" (click)="enviarAlertaAsesorVentas()">
+                Enviar
+                <span class="material-icons pl-4">send</span>
+            </button>
+        </div>
+    </div>
+    
+
+    <div class="form-row mt-1" *ngIf="data.rol!=8">
+        <div class="col-12">
+            <p class="txt16w600 colBlack pl-2">
+                Ahora ajunta los siguientes documentos
+                <span class="material-icons-outlined pl-4 iconQuestion" matTooltip="Adjunta documentos con las siguientes extenciones: PDF, DOCX, PNG, JPG." matTooltipPosition="right">
+                    help_outline
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="form-row mt-4" *ngIf="data.rol!=8">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+            <mat-card class="card-bg line-card">
+
+                <form [formGroup]="FormularioConformidad" autocomplete="off">
+                    <div class="form-group">
+                        <div class="bgActualizar">
+                            <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                            <input type="file" class="inputUpload" formControlName="fileFormConformidad" (change)="uploadFileFormDatos($event,'fileFormConformidad')">
+                            <span class="colBlue txt14w500 txtBold">{{nombFileConformidad}}</span>
+                        </div>
+                    </div>
+                </form>
+                
+            </mat-card>
+        </div>
+    </div>
+
+</div>
+<mat-dialog-actions class="mt-5 cardFooter">
+    <button mat-button mat-dialog-close class="btn-back ml-1 mr-1 mt-2"><span class="material-icons pr-2">close</span> Cancelar </button>
+    <button *ngIf="data.rol==2" mat-button class="btnBlue btn-next ml-1 mr-1 mt-2" (click)="guardarDocumentoSF();">Guardar <span class="material-icons pl-2">save</span></button>
+</mat-dialog-actions>

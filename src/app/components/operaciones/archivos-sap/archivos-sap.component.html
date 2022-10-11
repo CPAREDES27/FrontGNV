@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Archivos SAP</a>
+            </div>
+        </div>
+        <div class="col-12">
+
+        </div>
+    </div>
+
+    <div class="row mt-4">
+
+
+        <div class="col-12 mt-4">
+            <mat-card class="cardTop">
+             
+                <div class="row">
+                    <div class="col-md-8 text-center">
+                       
+                        <!-- <div class="form-row col-12"> -->
+
+                            <form [formGroup]="formFiltroFechas" autocomplete="off" class="col-12">
+
+                                <div class="row col-12 text-center">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
+                                        <label class="txt14w500 col-12">Fecha Inicio</label>
+                                        <mat-form-field appearance="outline" class="col-12">
+                                            <input class="col-12" type="date" matInput formControlName="fechaInicio">
+                                        </mat-form-field>
+                                    </div>
+            
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
+                                        <label class="txt14w500 col-12">Fecha Fin</label>
+                                        <mat-form-field appearance="outline" class="col-12">
+                                            <input class="col-12" type="date" matInput formControlName="fechaFin">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </form>
+ 
+                       <!--  </div> -->
+
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <button mat-raised-button class="btnNew btnGreens float-md-center" (click)="descargarArchivosSAP();">
+                            Descargar
+                            <!-- <span class="material-icons-outlined ml-3">person_add</span> -->
+                            <span class="material-icons-outlined" ml-3>
+                                app_registration
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+             
+            </mat-card>
+
+        </div>
+    </div>
+</div>

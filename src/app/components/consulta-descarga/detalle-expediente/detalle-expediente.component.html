@@ -1,0 +1,361 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/carga-post-atencion"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a carga post atencion</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <form [formGroup]="formDatosUsuario" autocomplete="off" class="formDisabled">
+                            <div class="form-row mb-3">
+                                <div class="form-group col-12">
+                                    <span class="txt16w600 colBlue pl-2">Detalle de expediente Nº {{numeroExpediente}}</span>
+                                </div>
+                            </div>
+        
+                            <div class="form-row">
+
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Producto a Financiar</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input matInput readonly formControlName="productoFinanciado">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Precio</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input matInput readonly formControlName="productoFinanciadoPrecio" [value]="formDatosUsuario.get('productoFinanciadoPrecio').value | currency:'S/ '">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Proveedor</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input matInput readonly formControlName="productoFinanciadoProveedor">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Marca</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input matInput readonly formControlName="productoFinanciadoMarca">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <label class="txt14w500 col-12">N° Placa</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="numeroPlaca">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                    <label class="txt14w500 col-12">Nombres</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="nombreCliente">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                    <label class="txt14w500 col-12">Apellidos</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="apellidoCliente">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">DNI / CE</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="numeroDocumento">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Fecha de nacimiento</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12"  matInput readonly formControlName="fechaNacimiento">
+                                    </mat-form-field>
+                                </div>
+                               
+                                <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Teléfono fijo</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="telefonoFijo">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Celular</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="numeroCelular">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Correo electrónico</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="correoElectronico">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Departamento</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="departamento">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Provincia</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="provincia">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Distrito</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="distrito">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <label class="txt14w500 col-12">Dirección Residencia</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="direccionResidencia">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" >
+                                        <label class="d-flex mb-1"></label>
+                                        <button mat-button class="btnBlue colWhite btn-next mt-2" style="width: 100%;" (click)="verDatosAsesorVentas()">
+                                            Ver datos Asesor de Venta
+                                            <span class="material-icons pl-4">description</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="row col-12 mt-3">
+                                    <div class="col-12">
+                                        <form [formGroup]="formDetalleExpediente" autocomplete="off">
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12">
+                                                    <span class="txt16w600 colBlue pl-2">Documentos adjuntos</span>
+                                                </div>
+                                            </div>
+                
+                                            <div class="form-row" >
+                                                <div class="form-group col-12 pl-3 pr-3">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <p class="txt18w600 colBlack">{{nobFileComPago}}</p>
+                                                            <p class="txt14w500 colBlack">Boleta o factura adjuntada</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar float-md-right">
+                                                                    <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="ocultarBotonGuardar==false;">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileComprobantePago" (change)="uploadFileSustento($event,'fileComprobantePago')" *ngIf="ocultarBotonGuardar==false;">
+                                                                    <span class="colBlue txt16w600 txtBold" *ngIf="ocultarBotonGuardar==false;">{{nombFileComPago}}</span>
+                                                                    <a href="javascript:void(0)" (click)="openDialogPdf('fileComprobantePago')" class="btnModalPDF" *ngIf="ocultarBotonGuardar;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                                                    <span class="material-icons-outlined iconClose pr-2" *ngIf="nombFileComPago != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>                                              
+                                                <div class="form-group col-12 pl-3 pr-3" *ngIf="idTipoProducto==2"> 
+                                                    <div class="row align-items-center">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <p class="txt18w600 colBlack">{{nobFileGuiaRemision}}</p>
+                                                            <p class="txt14w500 colBlack">Adjuntado por el taller</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar float-md-right">
+                                                                    <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="ocultarBotonGuardar==false;">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileGuiaRemision" (change)="uploadFileSustento($event,'fileGuiaRemision')" *ngIf="ocultarBotonGuardar==false;">
+                                                                    <span class="colBlue txt16w600 txtBold" *ngIf="ocultarBotonGuardar==false;">{{nombFileGuiaRemision}}</span>
+                                                                    <a href="javascript:void(0)" (click)="openDialogPdf('fileGuiaRemision')"  class="btnModalPDF" *ngIf="ocultarBotonGuardar;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                                                    <span class="material-icons-outlined iconClose pr-2" *ngIf="nombFileGuiaRemision != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                <div class="form-group col-12 pl-3 pr-3" *ngIf="idTipoProducto==1 || idTipoProducto==2 || idTipoProducto==3;">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <p class="txt18w600 colBlack">{{nobFileDeclaracionConformidad}}</p>
+                                                            <p class="txt14w500 colBlack">Adjuntado por el taller</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar float-md-right">
+                                                                    <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="ocultarBotonGuardar==false;">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileDeclaracionConformidad" (change)="uploadFileSustento($event,'fileDeclaracionConformidad')" *ngIf="ocultarBotonGuardar==false;">
+                                                                    <span class="colBlue txt16w600 txtBold" *ngIf="ocultarBotonGuardar==false;">{{nombFileDeclaracionConformidad}}</span>
+                                                                    <a href="javascript:void(0)" (click)="openDialogPdf('fileDeclaracionConformidad')"  class="btnModalPDF" *ngIf="ocultarBotonGuardar;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                                                    <span class="material-icons-outlined iconClose pr-2" *ngIf="nombFileDeclaracionConformidad != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                <!-- Se comentara ese documento por que el asesor de venta es el que lo adjunta -->
+                                                <!-- <div class="form-group col-12 pl-3 pr-3" >
+                                                    <div class="row align-items-center">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <p class="txt18w600 colBlack">{{nobFileContratoFinanciamiento}}</p>
+                                                            <p class="txt14w500 colBlack">Firmada por el cliente</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar float-md-right">
+                                                                    <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="ocultarBotonGuardar==false;">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileContratoFinanciamiento" (change)="uploadFileSustento($event,'fileContratoFinanciamiento')" *ngIf="ocultarBotonGuardar==false;">
+                                                                    <span class="colBlue txt16w600 txtBold" *ngIf="ocultarBotonGuardar==false;">{{nombFileContratoFinanciamiento}}</span>
+                                                                    <a href="javascript:void(0)" (click)="openDialogPdf('fileContratoFinanciamiento')"  class="btnModalPDF" *ngIf="ocultarBotonGuardar;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                                                    <span class="material-icons-outlined iconClose pr-2" *ngIf="nombFileContratoFinanciamiento != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div> -->
+                                                <!-- Se comentara este documento por que el asesor de venta es el que lo adjunta -->
+                                                <!-- <div class="form-group col-12 pl-3 pr-3">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <p class="txt18w600 colBlack">{{nobFileDNI}}</p>
+                                                            <p class="txt14w500 colBlack">Firmada por el cliente</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar float-md-right">
+                                                                    <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="ocultarBotonGuardar==false;">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileDNI" (change)="uploadFileSustento($event,'fileDNI')" *ngIf="ocultarBotonGuardar==false;">
+                                                                    <span class="colBlue txt16w600 txtBold" *ngIf="ocultarBotonGuardar==false;">{{nombFileDNI}}</span>
+                                                                    <a href="javascript:void(0)" (click)="openDialogPdf('fileDNI')" class="btnModalPDF" *ngIf="ocultarBotonGuardar;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                                                    <span class="material-icons-outlined iconClose pr-2" *ngIf="nombFileDNI != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div> -->
+                                                <div class="form-group col-12 pl-3 pr-3" *ngIf="idTipoProducto==1 || idTipoProducto==3">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <p class="txt18w600 colBlack">{{nobFileCertificado}}</p>
+                                                            <p class="txt14w500 colBlack">Inicial, anual o de inspección de cilindro según corresponda</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar float-md-right">
+                                                                    <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="ocultarBotonGuardar==false;">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileCertificado" (change)="uploadFileSustento($event,'fileCertificado')" *ngIf="ocultarBotonGuardar==false;"> 
+                                                                    <span class="colBlue txt16w600 txtBold" *ngIf="ocultarBotonGuardar==false;">{{nombFileCertificado}}</span>
+                                                                    <a href="javascript:void(0)" (click)="openDialogPdf('fileCertificado')" class="btnModalPDF" *ngIf="ocultarBotonGuardar;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                                                    <span class="material-icons-outlined iconClose pr-2" *ngIf="nombFileCertificado != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                <!-- <div class="form-group col-12 pl-3 pr-3">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <p class="txt18w600 colBlack">{{nobFileDiagnosticoVehiculo}}</p>
+                                                            <p class="txt14w500 colBlack">Despues del servicio</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar float-md-right">
+                                                                    <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="ocultarBotonGuardar==false;">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileDiagnosticoVehiculo" (change)="uploadFileSustento($event,'fileDiagnosticoVehiculo')" *ngIf="ocultarBotonGuardar==false;">
+                                                                    <span class="colBlue txt16w600 txtBold" *ngIf="ocultarBotonGuardar==false;">{{nombFileDiagnosticoVehiculo}}</span>
+                                                                    <a href="javascript:void(0)" (click)="openDialogPdf('fileDiagnosticoVehiculo')" class="btnModalPDF" *ngIf="ocultarBotonGuardar;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                                                    <span class="material-icons-outlined iconClose pr-2" *ngIf="nombFileDiagnosticoVehiculo != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div> -->
+                                                <div class="form-group col-12 pl-3 pr-3" *ngIf="idTipoProducto==1 || idTipoProducto==2 || idTipoProducto==3">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <p class="txt18w600 colBlack">{{nobFileRegistroProducto}}</p>
+                                                            <p class="txt14w500 colBlack">Despues del servicio</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar float-md-right">
+                                                                    <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="ocultarBotonGuardar==false;">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileRegistroProducto" (change)="uploadFileSustento($event,'fileRegistroProducto')" *ngIf="ocultarBotonGuardar==false;">
+                                                                    <span class="colBlue txt16w600 txtBold" *ngIf="ocultarBotonGuardar==false;">{{nombFileRegistroProducto}}</span>
+                                                                    <a href="javascript:void(0)" (click)="openDialogPdf('fileRegistroProducto')" class="btnModalPDF" *ngIf="ocultarBotonGuardar;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                                                    <span class="material-icons-outlined iconClose pr-2" *ngIf="nombFileRegistroProducto != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                
+                                              
+                
+                                            </div>
+                
+                                        </form>
+                                    </div>
+                                </div>
+
+    
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Estado</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select placeholder="Todas las evaluaciones" formControlName="estado">
+                                            <mat-option *ngFor="let doc of listaEstados" [value]="doc.idEstado">{{doc.estado}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Observaciones</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput  formControlName="observaciones">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Fecha de despacho</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input type="date" class="col-12" matInput formControlName="fechaDespacho">
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                          
+                        </form>
+                    </div>
+                </div>
+
+                                                            
+                
+                <div class="row mt-2" *ngIf="ocultarBotonGuardar==false;">
+                    <div class="col text-center">
+                        <button mat-raised-button class="mt-2 btnBlue" (click)="validarMontoMinimoMaximo();">
+                            Registrar
+                            <span class="material-icons ml-5">save</span>
+                        </button>
+                    </div>
+                </div>
+
+                
+
+            </mat-card>
+        </div>
+
+    </div>
+</div>

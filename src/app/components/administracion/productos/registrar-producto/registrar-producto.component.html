@@ -1,0 +1,121 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/productos"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar producto</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <form [formGroup]="productFormGroup" autocomplete="off" class="formDisabled">
+                            <div class="form-row mb-3">
+                                <div class="col-12">
+                                    <h3 class="txt16w600 colBlue pl-2" *ngIf="idProducto == 0">Añadir nuevo producto</h3>
+                                    <h3 class="txt16w600 colBlue pl-2" *ngIf="idProducto > 0">Actualizar producto</h3>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Tipo de Producto</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <!-- <input type="text" matInput formControlName="nivelEstudios" placeholder="Nivel de estudios"> -->
+                                        <!-- <mat-select formControlName="nivelEstudios" placeholder="Seleccione" (selectionChange)="opcionSeleccionado('1',$event.value)"> -->
+                                        <mat-select formControlName="tipoProducto" placeholder="Seleccione" >
+                                            <mat-option *ngFor="let item of tipoProducto" [value]="item.idTipoProducto">{{item.tipoDescripcion}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Marca</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <!-- <input type="text" matInput formControlName="nivelEstudios" placeholder="Nivel de estudios"> -->
+                                        <!-- <mat-select formControlName="nivelEstudios" placeholder="Seleccione" (selectionChange)="opcionSeleccionado('1',$event.value)"> -->
+                                        <mat-select formControlName="marca" placeholder="Seleccione" >
+                                            <mat-option *ngFor="let item of datosMarca" [value]="item.idMarca">{{item.descripcion}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Aliado Comercial</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <!-- <input type="text" matInput formControlName="nivelEstudios" placeholder="Nivel de estudios"> -->
+                                        <!-- <mat-select formControlName="nivelEstudios" placeholder="Seleccione" (selectionChange)="opcionSeleccionado('1',$event.value)"> -->
+                                        <mat-select formControlName="proveedor" placeholder="Seleccione" >
+                                            <mat-option *ngFor="let item of datosProveedor" [value]="item.idProveedor">{{item.razonSocial}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label class="txt14w500 col-12">Codigo</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input matInput formControlName="codigo" placeholder="Codigo del producto">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-8">
+                                    <label class="txt14w500 col-12">Descripción</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input matInput formControlName="descripcion" placeholder="Descripción del producto">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Precio (Incl. IGV)</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input matInput formControlName="precio" placeholder="Precio del producto en soles">
+                                    </mat-form-field>
+                                </div>
+                                <!-- <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Imagen</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input matInput formControlName="imagen" placeholder="Nombre del ícono con formato sgv">
+                                    </mat-form-field>
+                                </div> -->
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">N° orden</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input matInput formControlName="orden" placeholder="Ingrese número de orden">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Estado producto</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <!-- <input type="text" matInput formControlName="nivelEstudios" placeholder="Nivel de estudios"> -->
+                                        <!-- <mat-select formControlName="nivelEstudios" placeholder="Seleccione" (selectionChange)="opcionSeleccionado('1',$event.value)"> -->
+                                        <mat-select formControlName="estado" placeholder="Seleccione" >
+                                            <mat-option [value]="true">Activo</mat-option>
+                                            <mat-option [value]="false">Inactivo</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mt-3" >
+                                    <mat-card class="card-bg line-card">
+                                        <div class="form-group">
+                                            <div class="bgActualizar">
+                                                <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                <input type="file" class="inputUpload" formControlName="fileImagenProducto" (change)="uploadImagenProducto($event)">
+                                                <span class="colBlue txt14w500 txtBold">{{nobFileProducto}}</span>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-12 text-center esp-btn">
+                                    <button mat-button class="btn-back ml-2 mr-2 mt-2" routerLink="/gnv/productos"><span class="material-icons pr-4">arrow_back</span> Cancelar </button>
+                                     <!-- En caso es para registrar -->
+                                    <button mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" *ngIf="idProducto == 0" (click)="prepararRegistro()">Registrar <span class="material-icons pl-4">arrow_forward</span></button>
+                                    <button mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" *ngIf="idProducto > 0" (click)="prepararActualizar()">Actualizar <span class="material-icons pl-4">arrow_forward</span></button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

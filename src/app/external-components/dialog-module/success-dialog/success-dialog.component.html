@@ -1,0 +1,15 @@
+<div class="row mt-4">
+    <div class="col-12 text-center mb-4">
+        <img src="/assets/images/icons/success.svg" alt="exclamation">
+    </div>
+    <div class="col-12 px-4">
+        <ul *ngIf="listMessage.length > 0" class="list-options pl-4">
+            <li *ngFor="let success of listMessage" class="text-color-secondary mb-2"><span>{{listMessage}}</span></li>
+        </ul>
+    </div>
+    <div class="col-12 text-center my-3">
+        <button mat-dialog-close mat-flat-button class="style-button-1 mt-2 w-30  mat-elevation-z3" (click)="redirectRoot(redireccionRuta)">
+            <span>Aceptar</span>
+        </button>
+    </div>
+</div>

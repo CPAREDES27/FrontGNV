@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Gestión de usuarios</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <form [formGroup]="formFiltro" autocomplete="off">
+                    <div class="row align-items-center">
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <label class="txt14w500 col-12">Tipos de usuario</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <mat-select formControlName="tiposUsuarios">
+                                    <mat-option  [value]="0">Seleccione</mat-option>
+                                    <mat-option *ngFor="let item of listPerfil" [value]="item.id">{{item.description}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <label class="txt14w500 col-12">N° documento</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input (keydown)="valNumeros($event)" matInput placeholder="N° documento" formControlName="numeroDocumento">
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+                            <button mat-raised-button class="btnFilter" (click)="filtrar()">
+                                Filtrar
+                                <img class="iconFilter ml-5" src="./assets/images/icons/filtro.svg" alt="btnFilter"> 
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row align-items-center">
+                    <div class="col-sm-6 col-12">
+                        <h3 class="textTab1">Detalle de registros</h3>
+                        <p class="textReg">Detalle de usuarios registrados</p>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <button mat-raised-button class="btnNew btnGreens float-md-right" [routerLink]="['/gnv/registrar-usuario']">
+                            Crear usuario
+                            <span class="material-icons-outlined ml-3">person_add</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+
+                        <div class="table-responsive">
+                            <table class="table table-hover tabPrev  text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">N°</th>
+                                        <!-- <th scope="col">Id</th> -->
+                                        <th scope="col">Usuario</th>
+                                        <th scope="col">N° documento</th>
+                                        <th scope="col">Nombres y Apellidos / Razón Social</th>
+                                        <th scope="col">Tipo de usuario</th>
+                                        <th scope="col">Estado de usuario</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let row of datos let i = index">
+                                        <td>{{i+1}}</td>
+                                        <!-- <td>{{row.idUsuario}}</td> -->
+                                        <td>{{row.usuarioEmail}}</td>
+
+                                        <td *ngIf="row.rolId != 7">{{row.numeroDocumento}}</td>
+                                        <td *ngIf="row.rolId == 7">{{row.ruc}}</td>
+                                        
+                                        <td *ngIf="row.rolId != 7">{{row.nomCliente}} {{row.apeCliente}}</td>
+                                        <td *ngIf="row.rolId == 7">{{row.razonSocial}}</td>
+                                        
+                                        <td>{{row.descRol}}</td>
+                                        <td><mat-chip-list aria-label="Estado de usuario">
+                                            <mat-chip *ngIf="row.idEstado" class="btnGreens" selected>{{row.estado}}</mat-chip>
+                                            <mat-chip *ngIf="row.idEstado==false" color="warn" selected>Inactivo</mat-chip>
+                                          </mat-chip-list></td>
+                                        <td><a class="btnActualizar" href="javascript:void(0);" [routerLink]="['/gnv/editar-usuario/',row.idUsuario]">Actualizar <i class="fas fa-user-edit"></i></a></td>
+                                        <td><a class="btnEliminar" href="javascript:void(0);" (click)="eliminarRegistro(row.idUsuario)">Dar de baja <i class="fas fa-user-times"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row align-items-center mt-2" *ngIf="barraPaginado">
+                            <div class="col">
+                                <h3 class="textReg">Total registros: {{totalDatos}}</h3>
+                            </div>
+                            <div class="col">
+                                <ul class="pagination" style="float: right !important;">
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="back()">
+                                            <span class="fa fa-angle-left" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" *ngFor="let p of totalPages; let i = index">
+                                        <a class="page-link pagNumber" (click)="setPage(i)" [ngClass]="{'textActive': i + 1 === page }">{{ i+1 }}</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+                                            <span class="fa fa-angle-right" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

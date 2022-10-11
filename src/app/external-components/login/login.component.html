@@ -1,0 +1,110 @@
+<div class="page-content">
+    <div class="pages-container-img"></div>
+    <div class="mat-toolbar-wl">
+        <mat-toolbar class="pt-2 pb-6 pb-md-2">
+            <mat-toolbar-row>
+                <div class="container-fluid mx-0 mx-md-auto">
+                    <div class="row">
+                        <div class="col-md-12 d-flex align-content-center justify-content-end px-0 px-md-1">
+                            <div class="d-flex align-items-center justify-content-end pr-0 pr-md-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
+
+    <div class="container" style="margin-top: -60px;">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <div class="img-lg-gnv mt-5">
+                    <span class="font-pw-lg">Bienvenido</span><br>
+                    <span class="font-pw-lg">al Portal GNV</span><br>
+                    <hr class="font-pw-ln float-left">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-12">
+                <div class="contCard">
+                    <div class="card card-bg">
+                        <div class="card-body">
+                            <div class="espForm">
+                                <div class="secAtrasHeaderLogin">
+                                    <a routerLink="/home"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> 
+                                    Regresar a la página principal 
+                                    </a>
+                                </div>
+                                <form [formGroup]="formloginGroup" autocomplete="off" #miForm="ngForm" (ngSubmit)="singIn(miForm)" >
+                                    <div class="form-row">
+                                        <div class="col-12 mb-3 mat-bt-center">
+                                            <img class="img-absolute-lg" src="/assets/images/login/login.png" alt="" >
+                                        </div>
+                                        <div style="top: 7.5%;
+                                        position: absolute;" id="divLogin"></div>
+
+                                        <div class="form-group col-12" >
+                                            <label class="txt14w500 col-12">Usuario</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input formControlName="username" matInput placeholder="Ingresa tu correo electrónico" name="username" type="email">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <label class="txt14w500 col-12">Contraseña</label>
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <input formControlName="password" matInput placeholder="Ingresa tu contraseña" name="password" type="password">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-12 mb-4 d-flex justify-content-center">
+                                            <button mat-flat-button class="style-button-1 mt-2 w-60">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <span>Iniciar Sesión</span>
+                                                    <div style="cursor: pointer; margin-left:auto;">
+                                                        <img src="./assets/images/icons/enterokay.png" alt="enterokay">
+                                                    </div> 
+                                                </div> 
+                                            </button>
+                                        </div>
+                                        <!-- <div class="col-12 mb-4 d-flex justify-content-center">
+                                            <div class="d-flex align-items-center mb-1">
+                                                <a [routerLink]="['/password-recuperar']" style="text-decoration: none;">
+                                                    <span class="text-color-secondary mr-1 lnk-btn">¿Olvidaste tu contraseña?</span></a>
+                                            </div>
+                                        </div> -->
+                                        <div class="col-12 mb-4 d-flex justify-content-center mat-mg-ln">
+                                            <hr class="line-sc-pl">
+                                        </div>
+                                        <div class="col-12 mb-4 d-flex justify-content-center mat-mg-bt">
+                                            <button mat-flat-button class="style-button-sc-1 mt-2 w-60" type="submit" (click)="registrarUsuario()">
+                                            <div class="d-flex align-items-center mb-1">
+                                                <span>Registrarme</span>
+                                                <div style="cursor: pointer; margin-left:auto;">
+                                                    <img src="./assets/images/icons/register-user.png" alt="register-user">
+                                                </div>
+                                            </div> 
+                                        </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <a class="textWhite col-md-6 col-12" target="_blank" href="../../../assets/recursos-mantenimiento/documentos-politicas/Política de privacidad.pdf">Política de privacidad</a>
+                        <a class="textWhite col-md-6 col-12" target="_blank" href="../../../assets/recursos-mantenimiento/documentos-politicas/Términos de uso.pdf">Términos de uso</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mat-toolbar-wl responsive" style="margin-top:-50px;">
+                <mat-toolbar class="pt-2 pb-6 pb-md-2">
+                    <div class="row mat-mg-top">
+                        <footer class="page-footer font-cl text-center">
+                            <span>Cálidda 2021. Todos los derechos reservados.</span>
+                        </footer>
+                    </div>
+                </mat-toolbar>
+            </div>
+        </div>
+    </div>
+</div>

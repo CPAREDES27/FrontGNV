@@ -1,0 +1,77 @@
+<button mat-icon-button class="close-button" (click)="onCancel()">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<br><br>
+<div>
+    <div class="row">
+        <!-- <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Registro de solicitud de financiamiento</a>
+            </div>
+        </div> -->
+        <div class="col-12">
+            <mat-card class="cardTopCard">
+                <div class="row mt-3">
+                    <div class="col-md-12 col-12">
+                        <mat-card class="cardTopCard btnGreens">
+                            <div class="row">
+                                <span class="pl-4 col-md-12 col-12 colWhite" style="font-weight: 800;">{{listaPasos[0]?.descripcionPaso}}</span>
+                                <span class="pl-4 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 colWhite">N° Preevaluacion:</span>
+                                <span class="pl-4 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-12 colWhite">{{listaPasos[0]?.idPreevaluacion}}</span>
+
+                                <span class="pl-4 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 colWhite">Producto:</span>
+                                <span class="pl-4 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-12 colWhite">{{listaPasos[0]?.producto}}</span>
+
+                                <span class="pl-4 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 colWhite">Estado:</span>
+                                <span class="pl-4 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-12 colWhite">{{listaPasos[0]?.estado}}</span>
+
+                                <span class="pl-4 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 colWhite">Observacion:</span>
+                                <span class="pl-4 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-12 colWhite">{{listaPasos[0]?.observaciones}}</span>
+                            </div>
+                            <!-- <div class="col-4 colWhite">N° Preevaluacion:</div><div>1</div> -->
+                        </mat-card>
+                    </div>
+                    <!-- <div class="col-md-10 offset-md-1 col-12"> -->
+                    <div class="col-md-12 col-12 pt-4">
+                        <div class="row text-center">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 "  *ngFor="let item of listaPasos | slice:1;">
+                                <button class="col-md-6 col-12 btnBlue" *ngIf="item.estado=='Pendiente'" mat-mini-fab>{{item.nroPaso}}</button>
+                                <br *ngIf="item.estado=='Pendiente'">
+                                <span class="pl-2 col-md-6 col-12 colBlue text-center" *ngIf="item.estado=='Pendiente'" style="font-weight: 800;">{{item.descripcionPaso}}</span>
+
+                                <button class="col-md-6 col-12 btnGreens" *ngIf="item.estado=='Aceptado' || item.estado=='Completado'" mat-mini-fab>{{item.nroPaso}}</button>
+                                <br *ngIf="item.estado=='Aceptado' || item.estado=='Completado'">
+                                <span class="pl-2 col-md-6 col-12 colGreen text-center" *ngIf="item.estado=='Aceptado' || item.estado=='Completado'" style="font-weight: 800;">{{item.descripcionPaso}}</span>
+
+                                <button class="col-md-6 col-12 btnRed" *ngIf="item.estado=='Rechazado'" mat-mini-fab>{{item.nroPaso}}</button>
+                                <br *ngIf="item.estado=='Rechazado'">
+                                <span class="pl-2 col-md-6 col-12 colred text-center" *ngIf="item.estado=='Rechazado'" style="font-weight: 800;">{{item.descripcionPaso}}</span>
+
+                            </div>
+
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 pt-4" *ngFor="let item of listaPasos | slice:1;">
+                                <mat-card class="cardTopCard">
+                                    <div class="colGreen col-12">Fecha de Registro:</div><div class="col-12">{{item.fechaRegistro}}</div>
+                                    <div class="colGreen col-12">Estado:</div><div class="col-12">{{item.estado}}</div>
+                                    <div class="colGreen col-12">Observacion:</div><div class="col-12">{{item.observaciones}}</div>
+                                </mat-card>
+                            </div>
+                            <!-- <div class="col-4">
+                                <button class="col-md-6 col-12 btnLead" mat-mini-fab>2</button>
+                                <span class="pl-2 col-md-6 col-12 colLead">Evaluación</span>
+                            </div>
+                            <div class="col-4">
+                                <button class="col-md-6 col-12 btnLead" mat-mini-fab>3</button>
+                                <span class="pl-2 col-md-6 col-12 colLead">Resultado</span>
+                            </div> -->
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </mat-card>
+        </div>
+
+    </div>
+</div>

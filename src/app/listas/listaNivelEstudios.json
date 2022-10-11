@@ -1,0 +1,8 @@
+[
+    { "value": 1, "description": "Primaria" },
+    { "value": 2, "description": "Secundaria" },
+    { "value": 3, "description": "Instituto" },
+    { "value": 4, "description": "Universidad" },
+    { "value": 5, "description": "Máster" },
+    { "value": 6, "description": "No especificado" }
+]

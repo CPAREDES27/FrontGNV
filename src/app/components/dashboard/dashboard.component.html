@@ -1,0 +1,427 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Dashboard</a>
+            </div>
+        </div>
+        <div class="col-12">
+
+        </div>
+    </div>
+    <div class="row mt-4" *ngIf="rolId==2">
+        <div class="col-12">
+            
+            <mat-card class="cardTop">
+             
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        
+                        <div class="row col-12 text-center">
+                            <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 contBanner mt-4">
+                               
+                                <i class="fas fa-chart-line fa-4x" style="color: #868685;"></i>
+                                <p class="textBanner">N° Financiamientos</p>
+                            </div> -->
+    
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+
+
+                                <div align="center">
+
+                                        <ngx-charts-number-card
+                                        [view]="viewAsesorVenta"
+                                        [scheme]="colorScheme"
+                                        [update$]="update$"
+                                        [results]="datosTotalFinanciamiento"
+                                        [cardColor]="cardColor"
+                                        >
+                                        </ngx-charts-number-card>
+
+                                </div>
+
+                            </div>
+                            
+                        </div>
+
+  
+                    </div>
+                    
+                    <div class="col-md-4 text-center">
+                        <div class="row col-12 text-center">
+                            <!-- <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 contBanner mt-3">
+                                <i class="fas fa-chart-line fa-4x" style="color: #868685;"></i>
+                                <p class="textBanner">Porcentaje de ventas</p>
+                            </div>
+    
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-center mt-5">
+                                <p class="textNumero" style="font-size: 50px;">67%</p>
+                            </div> -->
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+
+
+                                <div align="center">
+
+                                        <ngx-charts-number-card
+                                        [view]="viewAsesorVenta"
+                                        [scheme]="colorScheme"
+                                        [update$]="update$"
+                                        [results]="financiamientoAprobados"
+                                        [cardColor]="cardColor"
+                                        >
+                                        </ngx-charts-number-card>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <div class="row col-12 text-center">
+                            <!-- <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 contBanner mt-3">
+                                <i class="fas fa-chart-line fa-4x" style="color: #868685;"></i>
+                                <p class="textBanner">Porcentaje de ventas</p>
+                            </div>
+    
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-center mt-5">
+                                <p class="textNumero" style="font-size: 50px;">67%</p>
+                            </div> -->
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+
+
+                                <div align="center">
+
+                                        <ngx-charts-number-card
+                                        [view]="viewAsesorVenta"
+                                        [scheme]="colorScheme"
+                                        [update$]="update$"
+                                        [results]="datosPorcentajeVentas"
+                                        [cardColor]="cardColor"
+                                        >
+                                        </ngx-charts-number-card>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+             
+            </mat-card>        
+        </div>
+
+        <div class="col-12 mt-4">
+            <mat-card class="cardTop">
+             
+                <div class="row">
+                    <div class="col-md-7 text-center">
+                       
+                        <!-- <div class="form-row col-12"> -->
+
+                            <form [formGroup]="formFiltroFechas" autocomplete="off" class="col-12">
+
+                                <div class="row col-12 text-center">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
+                                        <label class="txt14w500 col-12">Fecha Inicio</label>
+                                        <mat-form-field appearance="outline" class="col-12">
+                                            <input class="col-12" type="date" matInput formControlName="fechaInicio">
+                                        </mat-form-field>
+                                    </div>
+            
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
+                                        <label class="txt14w500 col-12">Fecha Fin</label>
+                                        <mat-form-field appearance="outline" class="col-12">
+                                            <input class="col-12" type="date" matInput formControlName="fechaFin">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </form>
+ 
+                       <!--  </div> -->
+
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <button mat-raised-button class="btnNew btnGreens float-md-center" (click)="dashboardAsesor();">
+                            Actualizar
+                            <!-- <span class="material-icons-outlined ml-3">person_add</span> -->
+                            <span class="material-icons-outlined" ml-3>
+                                update
+                            </span>
+                        </button>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <button mat-raised-button class="btnNew btnGreens float-md-center" (click)="dashboardDetalleAsesor();">
+                            Descargar reporte
+                            <!-- <span class="material-icons-outlined ml-3">person_add</span> -->
+                            <span class="material-icons-outlined" ml-3>
+                                app_registration
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+             
+            </mat-card>
+
+        <!--     <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-success">
+                            <div class="ct-chart" id="dailySalesChart"></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Daily Sales</h4>
+                            <p class="card-category">
+                                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> updated 4 minutes ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-warning">
+                            <div class="ct-chart" id="websiteViewsChart"></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Email Subscriptions</h4>
+                            <p class="card-category">Last Campaign Performance</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-danger">
+                            <div class="ct-chart" id="completedTasksChart"></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Completed Tasks</h4>
+                            <p class="card-category">Last Campaign Performance</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-chart">
+                        
+                        <ngx-charts-bar-vertical
+                        [view]="view"
+                        [scheme]="colorScheme"
+                        [results]="single"
+                        [gradient]="gradient"
+                        [xAxis]="showXAxis"
+                        [yAxis]="showYAxis"
+                        [legend]="showLegend"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        (select)="onSelect($event)">
+                        </ngx-charts-bar-vertical>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-chart">
+                        
+                        <ngx-charts-pie-chart
+                            [view]="view"
+                            [scheme]="colorScheme"
+                            [results]="single"
+                            [gradient]="gradient"
+                            [legend]="showLegend"
+                            [legendPosition]="legendPosition"
+                            [labels]="showLabels"
+                            [doughnut]="isDoughnut"
+                            (select)="onSelect($event)"
+                            >
+                            </ngx-charts-pie-chart>
+                    </div>
+                </div>
+            </div> -->
+         
+            
+        </div>
+    </div>
+
+    <div class="row mt-4" *ngIf="rolId==8">
+        <div class="col-12">
+            
+            <mat-card class="cardTop">
+             
+                <div class="row">
+                    <div class="col-md-3 text-center separador">
+                        
+                        <div class="row col-12 text-center">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 contBanner mt-3">
+                                <!-- <img class="iconBanner" src="assets/images/home/comprarGnv.svg" alt="Calidda" width="100%"> -->
+                                <i class="fas fa-chart-line fa-4x" style="color: #868685;"></i>
+                                <p class="textBanner">Productos vendidos</p>
+                            </div>
+    
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+                                <p class="textNumero" style="font-size: 50px;">{{dataDashboardGeneral.productos_vendidos}}</p>
+                            </div>
+                        </div>
+
+  
+                    </div>
+                    <div class="col-md-3 text-center separador">
+                        <div class="row col-12 text-center">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 contBanner mt-3">
+                                <!-- <img class="iconBanner" src="assets/images/home/comprarGnv.svg" alt="Calidda" width="100%"> -->
+                                <i class="fas fa-chart-line fa-4x" style="color: #868685;"></i>
+                                <p class="textBanner">N° Financiamientos</p>
+                            </div>
+    
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+                                <p class="textNumero" style="font-size: 50px;">{{dataDashboardGeneral.cantidadTotal_Financiamiento}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center separador">
+                        <div class="row col-12 text-center">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 contBanner mt-3">
+                                <!-- <img class="iconBanner" src="assets/images/home/comprarGnv.svg" alt="Calidda" width="100%"> -->
+                                <i class="fas fa-chart-line fa-4x" style="color: #868685;"></i>
+                                <p class="textBanner">Monto Financiado</p>
+                            </div>
+    
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+                                <p class="textNumero" style="font-size: 40px;">S/ {{dataDashboardGeneral.montoTotal_Financiado}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="row col-12 text-center">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 contBanner mt-3">
+                                <!-- <img class="iconBanner" src="assets/images/home/comprarGnv.svg" alt="Calidda" width="100%"> -->
+                                <i class="fas fa-chart-line fa-4x" style="color: #868685;"></i>
+                                <p class="textBanner">Porcentaje de ventas</p>
+                            </div>
+    
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+                                <p class="textNumero" style="font-size: 50px;">{{dataDashboardGeneral.porcentaje_Ventas}}%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+             
+            </mat-card>        
+        </div>
+
+        <div class="col-12 mt-4">
+            <mat-card class="cardTop">
+             
+                <div class="row">
+                    <div class="col-md-7 text-center">
+                       
+                        <!-- <div class="form-row col-12"> -->
+
+                            <form [formGroup]="formFiltroFechas" autocomplete="off" class="col-12">
+
+                                <div class="row col-12 text-center">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
+                                        <label class="txt14w500 col-12">Fecha Inicio</label>
+                                        <mat-form-field appearance="outline" class="col-12">
+                                            <input class="col-12" type="date" matInput formControlName="fechaInicio">
+                                        </mat-form-field>
+                                    </div>
+            
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
+                                        <label class="txt14w500 col-12">Fecha Fin</label>
+                                        <mat-form-field appearance="outline" class="col-12">
+                                            <input class="col-12" type="date" matInput formControlName="fechaFin">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </form>
+ 
+                       <!--  </div> -->
+
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <button mat-raised-button class="btnNew btnGreens float-md-center" (click)="verGraficoGeneral();">
+                            Actualizar
+                            <!-- <span class="material-icons-outlined ml-3">person_add</span> -->
+                            <span class="material-icons-outlined" ml-3>
+                                update
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="col-md-3 text-center">
+                        <button mat-raised-button class="btnNew btnGreens float-md-center" (click)="dashboardGeneralDetalle();">
+                            Descargar reporte
+                            <!-- <span class="material-icons-outlined ml-3">person_add</span> -->
+                            <span class="material-icons-outlined" ml-3>
+                                app_registration
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+             
+            </mat-card>
+
+     
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-chart">
+                        <ngx-charts-bar-vertical
+                        [view]="view"
+                        [scheme]="colorScheme"
+                        [results]="graficoGeneralAS"
+                        [gradient]="gradient"
+                        [xAxis]="showXAxis"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        (select)="onSelect($event)">
+                        </ngx-charts-bar-vertical>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-chart">
+                        <ngx-charts-pie-chart
+                        [view]="view"
+                        [scheme]="colorScheme"
+                        [results]="graficoGeneralAS"
+                        [gradient]="gradient"
+                        [legend]="showLegend"
+                        [legendPosition]="legendPosition"
+                        [labels]="showLabels"
+                        [doughnut]="true"
+                        (select)="onSelect($event)"
+                        [arcWidth]="0.38"
+
+                        >
+                      </ngx-charts-pie-chart>
+                    </div>
+                </div>
+            </div>
+  
+            
+        </div>
+    </div>
+</div>

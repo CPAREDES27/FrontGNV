@@ -1,0 +1,224 @@
+<section>
+    <div class="pages-container-background"></div>
+    <div class="mat-toolbar-rg"></div>
+
+    <div class="container-fluid mt--10 pb-5 mg-top" id="theHtmlString">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-9">
+                <div class="center-img-bt">
+                    <img src="/assets/images/logo-01 1.svg" width="250px" alt="front-image">
+                </div>
+                <div class="font-cl-img">
+                    <h1 style="color: white;">¡Solicita este crédito dejandonos tus datos!</h1>
+                </div>
+                <br>
+                <div class="bg-white border-rounded-1">
+                    <mat-card class="cardTop mt-3">
+                        <form [formGroup]="formPreevaluation" class="row" autocomplete="off">
+                            <div class="card-body">
+                                <div class="basic-form">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <span class="font-sol-pr">Llena el siguiente formulario y nos contactaremos contigo</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-row">
+
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Tipo de documento</label>
+                                            <mat-form-field appearance="outline" class="col-12" style="width: 100%;">
+                                                <mat-select formControlName="tipoDocumentoCliente" placeholder="Seleccione documento" (selectionChange)="documentTypeChanged($event)">
+                                                    <mat-option *ngFor="let item of listaTipoDocumento" [value]="item.id" >{{item.description}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Número de documento</label>
+                                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                                <input matInput formControlName="numeroDocumentoCliente" placeholder="Número de documento" class="col-12"
+                                                onlyNumber minlength="{{documentNumberMaxlength}}" maxlength="{{documentNumberMaxlength}}" (keyup)="realizarFiltro($event)">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <!-- <div class="form-group col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12"></label>
+                                            <button mat-button class="btnBlue colWhite btn-next mt-2" style="width: 100%;">Consultar <span class="material-icons pl-4">manage_search</span></button>
+                                        </div> -->
+
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Nombres</label>
+                                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                                <input matInput formControlName="nombreCliente" placeholder="Ingresa tus nombres" class="col-12">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Apellidos</label>
+                                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                                <input matInput formControlName="apellidoCliente" placeholder="Ingresa tus apellidos" class="col-12">
+                                            </mat-form-field>
+                                        </div>
+                                        
+
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Número de placa</label>
+                                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                                <input type="text" maxlength="7" matInput formControlName="numeroPlacaCliente" placeholder="AWA-074" mask="AAA-AAA" onkeyup="this.value = this.value.toUpperCase();" class="col-12">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Email</label>
+                                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                                <input matInput formControlName="emailCliente" placeholder="Ingresa tu Email" class="col-12" onkeyup="this.value = this.value.toLowerCase();">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Celular</label>
+                                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                                <input matInput formControlName="celularCliente" placeholder="Ingresa tu celular" class="col-12"
+                                                onlyNumber minlength="9" maxlength="9">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <!-- <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Tipo producto a financiar</label>
+                                            <mat-form-field appearance="outline" class="col-12" style="width: 100%;">
+                                                <mat-select formControlName="tipoDocumentoCliente" placeholder="Seleccione">
+                                                    <mat-option *ngFor="let doc of listaTipFinanciamiento" [value]="doc.value">{{doc.description}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div> -->
+                                        <div class="form-group col-12">
+                                            <label class="txt14w500 col-12">Producto a financiar</label>
+                                           
+                                            <!-- <ng-select class="col-12" 
+                                                [items]="ListaProductos"
+                                                bindLabel="descripcion"
+                                                bindValue="idProducto"
+                                                formControlName="productoFinanciar"
+                                                [(ngModel)]="productoSeleccionado">
+                                            </ng-select> -->
+                                            <ng-select class="col-12" 
+                                                [items]="ListaProductos"
+                                                bindLabel="descripcion"
+                                                [addTag]="addCustomUser"
+                                                formControlName="productoFinanciar"
+                                                [(ngModel)]="productoSeleccionado">
+                                            </ng-select>
+                                            
+                                            <!-- <div>{{ListaProductos[productoSeleccionado-1].precio}}</div> -->
+
+                                            <!-- <mat-form-field appearance="outline" class="col-12" style="width: 100%;">
+                                                <input matInput placeholder="Ingresa tu celular" class="col-12">
+                                            </mat-form-field> -->
+
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Precio</label>
+                                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                                <input matInput placeholder="Precio" value="{{productoSeleccionado.precio | currency:'S/ '}}" class="col-12" readonly >
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row ">
+                                        <div class="form-group col-12 mb-3 pl-3 pr-3">
+                                            <span class="font-sol-pr">¿Eres un referido de algún Asesor?. Si es así, ingresa el nombre de tu asesor.</span>
+                                        </div>
+                                        <!-- <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Ingresa el nombre del asesor</label>
+                                            <mat-form-field appearance="outline" class="col-12" style="width: 100%;">
+                                                <mat-select formControlName="nombreAsesorReferido" placeholder="Seleccione">
+                                                    <mat-option *ngFor="let item of listaAsesores" [value]="item.idUsuario">{{item.nomCliente}} {{item.apeCliente}} </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div> -->
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <label class="txt14w500 col-12">Ingresa el nombre del asesor</label>
+                                            <ng-select class="col-12" 
+                                                [items]="listaAsesores"
+                                                bindValue="idUsuario"
+                                                bindLabel="nomCliente"
+                                                formControlName="nombreAsesorReferido" 
+                                                [(ngModel)]="idAsesorReferido"
+                                                (change)="obtenerAsesor($event)">
+                                                
+                                                <!-- <ng-template ng-label-tmp let-item="item">
+                                                    {{item.nomCliente}} {{item.apeCliente}}
+                                                </ng-template> -->
+                                                <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                                                    <!-- {{item.nomCliente}} {{item.apeCliente}} -->
+                                                    {{item.nomCliente}}
+                                                </ng-template>
+
+                                            </ng-select>
+                                           
+
+                                            <!-- <mat-form-field appearance="outline" class="col-12" style="width: 100%;">
+                                                <mat-select formControlName="nombreAsesorReferido" placeholder="Seleccione">
+                                                    <mat-option *ngFor="let item of listaAsesores" [value]="item.idUsuario">{{item.nomCliente}} {{item.apeCliente}} </mat-option>
+                                                </mat-select>
+                                            </mat-form-field> -->
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row pl-3 pr-3">
+                                        <div class="form-group col-12">
+                                            <mat-checkbox formControlName="tpoliticasCondiciones"></mat-checkbox>
+                                            <span class="pl-3">Acepto
+                                                <a target="_blank" href="../../../assets/recursos-mantenimiento/documentos-politicas/Términos de uso.pdf" class="cl-ter-pol"><b> Términos y condiciones</b></a> y
+                                                <a target="_blank" href="../../../assets/recursos-mantenimiento/documentos-politicas/Política de privacidad.pdf" class="cl-cal-bl"><b> Política y privacidad</b></a>
+                                            </span>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <mat-checkbox formControlName="tpfinesComerciales"></mat-checkbox>
+                                            <span class="pl-3">Acepto el uso de mi información para
+                                                <a target="_blank" href="../../../assets/recursos-mantenimiento/documentos-politicas/Fines comerciales.pdf" class="cl-ter-pol"><strong> fines comerciales </strong></a>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-5">
+                                        <div class="col-12 text-center">
+                                            <button mat-flat-button class="style-button-202 ml-2 mr-2 mb-2" style=" border: 1px solid #00A1DE; border-radius: 6px;background: #FFFFFF; box-shadow: 0px 3px 12px rgba(114, 124, 142, 0.196706);" type="submit" (click)="cancelarSolicitud()">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="lnk-stl-1">
+                                                        <img src="./assets/images/icons/back.svg" alt="enterokay">
+                                                    </div>
+                                                    <span class="cl-cal-bl">Cancelar</span>
+                                                </div>
+                                            </button>
+                                            <button mat-flat-button class="style-button-101 ml-2 mr-2 mb-2" (click)="validarMontos()">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <span>Solicitar</span>
+                                                    <div class="lnk-stl-2">
+                                                        <img src="./assets/images/icons/solicitar.svg"
+                                                            alt="enterokay">
+                                                    </div>
+                                                </div>
+                                            </button>
+
+                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                        </form>
+
+                    </mat-card>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

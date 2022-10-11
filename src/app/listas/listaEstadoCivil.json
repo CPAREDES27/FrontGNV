@@ -1,0 +1,7 @@
+[
+    { "value": 1, "description": "Soltero" },
+    { "value": 2, "description": "Casado" },
+    { "value": 3, "description": "Viudo" },
+    { "value": 4, "description": "Divorciado" },
+    { "value": 5, "description": "Unión libre" }
+]

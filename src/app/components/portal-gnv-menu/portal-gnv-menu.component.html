@@ -1,0 +1,35 @@
+<!-- Sidenav -->
+<nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="scrollbar-inner">
+
+        <div class="sidenav-header  align-items-center mb-5">
+            <a class="navbar-brand" routerLink="/gnv/dashboard">
+                <img src="assets/images/login/login.png" class="navbar-brand-img" alt="LogoCalidda" style="max-width:100%; max-height:4rem;">
+            </a>
+        </div>
+        <div class="navbar-inner" style="padding-top: 30px;">
+            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                <ul class="navbar-nav vertical-nav">
+                    <li class="nav-item text-center bgMenu" *ngFor="let menuItem of menuOptions">
+                        <a class="mouse">
+                            <img class="iconMenu" src="assets/images/menu/{{menuItem.urlImagen}}" width="100%">
+                            <span class="textMenPadre">{{ menuItem.descMenu }}</span>
+                        </a>
+                        <div class="hover-menu">
+                            <ul>
+                                <li *ngFor="let menuItemHijo of menuItem.menusHijos">
+                                    <a [routerLink]="[menuItemHijo.url]">{{menuItemHijo.descMenu}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="divClose text-center mt-5">
+                <button class="btn btn-link btn-toggle" (click)="toggleMenu()">
+                    <i class="fa fa-arrow-left pl-1 pr-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>

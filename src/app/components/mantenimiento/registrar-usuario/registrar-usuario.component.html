@@ -1,0 +1,227 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/gestion-usuario"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a gestión de usuarios</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <form [formGroup]="userFormGroup" autocomplete="off" class="formDisabled">
+                            <div class="form-row mb-4">
+                                <div class="col-md-6 col-12">
+                                    <h3 class="txt16w600 colBlue pl-2" *ngIf="idUsuario == 0">Crear usuarios</h3>
+                                    <h3 class="txt16w600 colBlue pl-2" *ngIf="idUsuario > 0">Editar usuarios</h3>
+                                    <p class="txt14w500 colBlack pl-2">Datos del titular del vehículo</p>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Perfil*</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="perfilUsuario" placeholder="Seleccione" (selectionChange)="perfilChanged($event.value)">
+                                            <mat-option *ngFor="let item of listPerfil" [value]="item.id">{{item.description}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Si es persona natural -->
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12" [hidden]="!formularioUsuario">
+                                    <label class="txt14w500 col-12">Nombres*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="nombres" placeholder="Ingresa el nombre del titular">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-5 col-lg-5 col-md-4 col-sm-6 col-12" [hidden]="!formularioUsuario">
+                                    <label class="txt14w500 col-12">Apellidos*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="apellidos" placeholder="Apellidos del titular">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12" [hidden]="!formularioUsuario">
+                                    <label class="txt14w500 col-12">Tipo de documento*</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="tipoDocumento" placeholder="Seleccione documento" (selectionChange)="documentTypeChanged($event)">
+                                            <mat-option *ngFor="let doc of listaTipoDocumento" [value]="doc.id">{{doc.description}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12" [hidden]="!formularioUsuario">
+                                    <label class="txt14w500 col-12">Número documento*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="numDocumento" ngModel (keyup)="valida($event)"  placeholder="Número de Dni"   maxlength="{{ documentNumberMaxlength }}">
+                                        
+                                    </mat-form-field><mat-error *ngIf="validaz">Ingrese Documento Correcto</mat-error>
+                                    
+                                </div>
+
+                                <!-- <div class="form-group col-xl-1 col-lg-1 col-md-2 col-sm-4 col-12" [hidden]="!formularioUsuario">
+                                    <label class="txt14w500 col-12"></label>
+                                    <button mat-button class="btnBlue colWhite btn-next mt-2" style="width: 100%;">
+                                        <span class="material-icons md-30">manage_search</span>
+                                    </button>
+                                </div> -->
+
+                                <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" [hidden]="!formularioUsuario">
+                                    <label class="txt14w500 col-12">Fecha de nacimiento*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="date" matInput formControlName="fechNacimiento">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-5 col-12" [hidden]="!formularioUsuario">
+                                    <label class="txt14w500 col-12">Estado civil*</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="estadoCivil" placeholder="Seleccione">
+                                            <mat-option *ngFor="let item of listEstadoCivil" [value]="item.id">{{item.description}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Si es empresa -->
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" [hidden]="formularioUsuario">
+                                    <label class="txt14w500 col-12">RUC*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="number" matInput formControlName="ruc" placeholder="Ingrese RUC de la empresa">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" [hidden]="formularioUsuario">
+                                    <label class="txt14w500 col-12">Razón social*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="razonSocial" placeholder="Ingrese Razón Social de la empresa">
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Para ambos -->
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <label class="txt14w500 col-12">Teléfono fijo*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="number" matInput formControlName="telefonoFijo" placeholder="Teléfono fijo">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <label class="txt14w500 col-12">Teléfono móvil*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="number" matInput formControlName="telefonoMovil" placeholder="Teléfono móvil">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Email*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="email" matInput formControlName="email" placeholder="Email">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <label class="txt14w500 col-12">Tipo de calle</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="tipoCalle" placeholder="Seleccione">
+                                            <mat-option *ngFor="let item of listTipoCalle" [value]="item.id">{{item.description}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Estado Usuario*</label>
+                                    <mat-slide-toggle class="col-12 mt-2"
+                                    formControlName="estadoUsuario" (change)="onChange($event)">{{textoActivo}}</mat-slide-toggle>
+                                </div>
+                                <div class="form-group col-xl-5 col-lg-5 col-md-5 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Dirección de residencia</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="direccionResidencia">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-3 col-6">
+                                    <label class="txt14w500 col-12">Nº int / dpto</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="number" matInput formControlName="numInterior">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-3 col-6">
+                                    <label class="txt14w500 col-12">Mz / Lt</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="mzLt">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Referencia</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="referencia">
+                                    </mat-form-field>
+                                </div>
+                                
+                                <div class="col-12 mb-3" *ngIf="idUsuario > 0">
+                                    <span class="textAlert pl-3">* Selecciona departamento, provincia y distrito en caso desea modificarlo</span>
+                                </div>
+
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Departamento*</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="departamento" placeholder="Seleccione" (selectionChange)="obtenerProvincia($event)">
+                                            <mat-option *ngFor="let item of listaDepartamento" [value]="item.idDepartamento">{{item.departamento}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Provincia*</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="provincia" placeholder="Seleccione" (selectionChange)="obtenerDistrito($event)">
+                                            <mat-option *ngFor="let item of listaProvincia" [value]="item.idProvinicia">{{item.provincia}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Distrito*</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="distrito" placeholder="Seleccione">
+                                            <mat-option *ngFor="let item of listaDistrito" [value]="item.idDistrito">{{item.distrito}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-12 mb-3"  *ngIf="idUsuario > 0">
+                                    <span class="textAlert pl-3">* Ingresa contraseña en caso desea modificarlo</span>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="password" matInput formControlName="contrasenia" placeholder="Ingrese una contraseña">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl- col-lg- col-md- col-sm-6 col-12" *ngIf="idUsuario == 0">
+                                    <label class="txt14w500 col-12">Contraseña*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="password" matInput formControlName="contrasenia" placeholder="Ingrese una contraseña">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl- col-lg- col-md- col-sm-6 col-12" *ngIf="idUsuario == 0">
+                                    <label class="txt14w500 col-12">Confirmar contraseña*</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="password" matInput formControlName="confirmContrasenia" placeholder="Repita la contraseña">
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-5">
+                                <div class="col-12 text-center esp-btn">
+                                    <button mat-button class="btn-back ml-2 mr-2 mt-2" routerLink="/gnv/gestion-usuario"><span class="material-icons pr-4">arrow_back</span> Cancelar </button>
+                                    <button mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="prepararRegistro()" *ngIf="idUsuario == 0">Registrar <span class="material-icons pl-4">arrow_forward</span></button>
+                                    <button mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="prepararUpdate()" *ngIf="idUsuario > 0">Actualizar <span class="material-icons pl-4">arrow_forward</span></button>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

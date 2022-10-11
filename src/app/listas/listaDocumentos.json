@@ -1,0 +1,5 @@
+[
+    { "value": 1, "description": "DNI" },
+    { "value": 2, "description": "CE" },
+    { "value": 3, "description": "Pasaporte" }
+]

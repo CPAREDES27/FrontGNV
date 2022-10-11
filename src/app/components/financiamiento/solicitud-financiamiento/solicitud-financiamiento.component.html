@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Registro de solicitud de financiamiento</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row mt-3">
+                    <div class="col-md-10 offset-md-1 col-12">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <button class="col-md-6 col-12 btnGreens" mat-mini-fab>1</button>
+                                <span class="pl-2 col-md-6 col-12 colGreen">Ingreso de solicitud</span>
+                            </div>
+                            <div class="col-4">
+                                <button class="col-md-6 col-12 btnBlue" mat-mini-fab>2</button>
+                                <span class="pl-2 col-md-6 col-12 colBlue">Evaluación</span>
+                            </div>
+                            <div class="col-4">
+                                <button class="col-md-6 col-12 btnLead" mat-mini-fab>3</button>
+                                <span class="pl-2 col-md-6 col-12 colLead">Resultado</span>
+                            </div>
+                        </div>
+
+                        <mat-card class="card cardInterna mt-5">
+                            <div class="row align-items-center ">
+                                <div class="col-xl-4 col-lg-4 col-sm-4 col-sm-4 col-12">
+                                    <span class="txt14w500">Estado de la evaluación</span>
+                                    <div class="ptop">
+                                        <span class="material-icons icPend">error_outline</span>
+                                        <small class="textPend pl-2">Pendiente</small>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-sm-4 col-sm-4 col-12">
+                                    <span class="txt14w500">Score de la solicitud</span>
+                                    <div class="ptop">
+                                        <small class="txt16w600 colBlack">0</small>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-sm-4 col-sm-4 col-12">
+                                    <button mat-raised-button class="btnBlue">Actualizar formulario</button>
+                                </div>
+                            </div>
+                        </mat-card>
+
+                        <div class="row mt-2 mb-4">
+                            <div class="col-12">
+                                <span class="txt16w600 colBlue">Estado de los documentos adjuntos</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="table-responsive col-12">
+                                <table class="table table-hover text-center">
+                                    <thead class="rowTable">
+                                        <tr class="rowTab">
+                                            <th class="campTab">Id</th>
+                                            <th class="campTab">Nombre de documento</th>
+                                            <th class="campTab">Estado</th>
+                                            <th class="campTab"> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <tr>
+                                            <td>1</td>
+                                            <td>prueba 1</td>
+                                            <td class="bg-ok"><span class="material-icons icn-ok">done</span> Aceptado</td>
+                                            <td class="campTab" style="color:#00a1de"> <a href="javascript:void(0);" (click)="openDialog()"><strong>Ver detalle  <span class="material-icons icn-view">visibility</span></strong></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>prueba 3</td>
+                                            <td class="bg-err"><span class="material-icons icn-err">clear</span> Rechazado</td>
+                                            <td class="campTab"> <a href="javascript:void(0);" (click)="openDialog()"><strong>Ver detalle  <span class="material-icons icn-view">visibility</span></strong></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>prueba 1</td>
+                                            <td class="bg-ok"><span class="material-icons icn-ok">done</span> Aceptado</td>
+                                            <td class="campTab"> <a href="javascript:void(0);" (click)="openDialog()"><strong>Ver detalle  <span class="material-icons icn-view">visibility</span></strong></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>prueba 1</td>
+                                            <td class="bg-ok"><span class="material-icons icn-ok">done</span> Aceptado</td>
+                                            <td class="campTab"> <a href="javascript:void(0);" (click)="openDialog()"><strong>Ver detalle  <span class="material-icons icn-view">visibility</span></strong></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>prueba 1</td>
+                                            <td class="bg-ok"><span class="material-icons icn-ok">done</span> Aceptado</td>
+                                            <td class="campTab"> <a href="javascript:void(0);" (click)="openDialog()"><strong>Ver detalle  <span class="material-icons icn-view">visibility</span></strong></a></td>
+                                        </tr> -->
+                                        <div class="mt-5 mb-5">
+                                            <span>No se encontrarón resultados</span>
+                                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

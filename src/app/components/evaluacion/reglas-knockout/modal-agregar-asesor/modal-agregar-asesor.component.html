@@ -1,0 +1,43 @@
+<div mat-dialog-content class="matDialogM">
+    <div class="row">
+        <div class="col-12">
+            <!-- <mat-card class="card-bg">
+                
+            </mat-card> -->
+        </div>
+    </div>
+
+
+    <div class="form-row mt-2" >
+        <div class="col-12 mt-3">
+            <p class="txt16w600 colBlack pl-2">
+                Agregar asesor referido 
+            </p>
+        </div>
+    </div>
+    
+
+    <div class="form-row mt-2">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                <form [formGroup]="FormularioAsesor" autocomplete="off">
+                    <div class="form-group">
+                        <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <label class="txt14w500 col-12" >Lista de Asesores</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <!-- <input type="text" matInput formControlName="estadoCivil" placeholder="Estado civil"> -->
+                                <mat-select formControlName="asesorVentas" placeholder="Seleccione">
+                                    <mat-option *ngFor="let item of listaAsesores" [value]="item.idUsuario">{{item.nomCliente}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+
+</div>
+<mat-dialog-actions class="mt-2 cardFooter">
+    <button mat-button mat-dialog-close class="btn-back ml-1 mr-1 mt-2"><span class="material-icons pr-2">close</span> Cancelar </button>
+    <button mat-button class="btnBlue btn-next ml-1 mr-1 mt-2" [disabled]="!FormularioAsesor.valid" (click)="aceptarAsesor();">Guardar <span class="material-icons pl-2">save</span></button>
+</mat-dialog-actions>

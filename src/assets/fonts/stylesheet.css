@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-Thin.eot');
+    src: local('Isidora Sans Thin'), local('IsidoraSans-Thin'),
+        url('IsidoraSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-Thin.woff2') format('woff2'),
+        url('IsidoraSans-Thin.woff') format('woff'),
+        url('IsidoraSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-MediumItalic.eot');
+    src: local('Isidora Sans Medium Italic'), local('IsidoraSans-MediumItalic'),
+        url('IsidoraSans-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-MediumItalic.woff2') format('woff2'),
+        url('IsidoraSans-MediumItalic.woff') format('woff'),
+        url('IsidoraSans-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-BoldItalic.eot');
+    src: local('Isidora Sans Bold Italic'), local('IsidoraSans-BoldItalic'),
+        url('IsidoraSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-BoldItalic.woff2') format('woff2'),
+        url('IsidoraSans-BoldItalic.woff') format('woff'),
+        url('IsidoraSans-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-Regular.eot');
+    src: local('Isidora Sans Regular'), local('IsidoraSans-Regular'),
+        url('IsidoraSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-Regular.woff2') format('woff2'),
+        url('IsidoraSans-Regular.woff') format('woff'),
+        url('IsidoraSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-SemiBoldItalic.eot');
+    src: local('Isidora Sans SemiBold Italic'), local('IsidoraSans-SemiBoldItalic'),
+        url('IsidoraSans-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-SemiBoldItalic.woff2') format('woff2'),
+        url('IsidoraSans-SemiBoldItalic.woff') format('woff'),
+        url('IsidoraSans-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-SemiBold.eot');
+    src: local('Isidora Sans SemiBold'), local('IsidoraSans-SemiBold'),
+        url('IsidoraSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-SemiBold.woff2') format('woff2'),
+        url('IsidoraSans-SemiBold.woff') format('woff'),
+        url('IsidoraSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-ThinItalic.eot');
+    src: local('Isidora Sans Thin Italic'), local('IsidoraSans-ThinItalic'),
+        url('IsidoraSans-ThinItalic.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-ThinItalic.woff2') format('woff2'),
+        url('IsidoraSans-ThinItalic.woff') format('woff'),
+        url('IsidoraSans-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-Light.eot');
+    src: local('Isidora Sans Light'), local('IsidoraSans-Light'),
+        url('IsidoraSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-Light.woff2') format('woff2'),
+        url('IsidoraSans-Light.woff') format('woff'),
+        url('IsidoraSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-RegularItalic.eot');
+    src: local('Isidora Sans Regular Italic'), local('IsidoraSans-RegularItalic'),
+        url('IsidoraSans-RegularItalic.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-RegularItalic.woff2') format('woff2'),
+        url('IsidoraSans-RegularItalic.woff') format('woff'),
+        url('IsidoraSans-RegularItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-Bold.eot');
+    src: local('Isidora Sans Bold'), local('IsidoraSans-Bold'),
+        url('IsidoraSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-Bold.woff2') format('woff2'),
+        url('IsidoraSans-Bold.woff') format('woff'),
+        url('IsidoraSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-Black.eot');
+    src: local('Isidora Sans Black'), local('IsidoraSans-Black'),
+        url('IsidoraSans-Black.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-Black.woff2') format('woff2'),
+        url('IsidoraSans-Black.woff') format('woff'),
+        url('IsidoraSans-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-BlackItalic.eot');
+    src: local('Isidora Sans Black Italic'), local('IsidoraSans-BlackItalic'),
+        url('IsidoraSans-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-BlackItalic.woff2') format('woff2'),
+        url('IsidoraSans-BlackItalic.woff') format('woff'),
+        url('IsidoraSans-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-LightItalic.eot');
+    src: local('Isidora Sans Light Italic'), local('IsidoraSans-LightItalic'),
+        url('IsidoraSans-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-LightItalic.woff2') format('woff2'),
+        url('IsidoraSans-LightItalic.woff') format('woff'),
+        url('IsidoraSans-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isidora Sans';
+    src: url('IsidoraSans-Medium.eot');
+    src: local('Isidora Sans Medium'), local('IsidoraSans-Medium'),
+        url('IsidoraSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('IsidoraSans-Medium.woff2') format('woff2'),
+        url('IsidoraSans-Medium.woff') format('woff'),
+        url('IsidoraSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+

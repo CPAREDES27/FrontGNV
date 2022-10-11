@@ -1,0 +1,426 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/evaluacion-cliente"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a evaluación de cliente</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <form [formGroup]="formDatosUsuario" autocomplete="off" class="formDisabled">
+                            <div class="form-row mb-3">
+                                <div class="form-group col-12">
+                                    <span class="txt16w600 colBlue pl-2">Detalle de expediente Nº {{numExpediente}}</span>
+                                </div>
+                            </div>
+        
+                            <div class="form-row">
+
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Producto a Financiar</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input matInput readonly formControlName="productoFinanciado">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Precio</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input matInput readonly formControlName="productoFinanciadoPrecio" [value]="formDatosUsuario.get('productoFinanciadoPrecio').value | currency:'S/ '">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Proveedor</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input matInput readonly formControlName="productoFinanciadoProveedor">
+                                    </mat-form-field>
+                                </div>
+                                
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <label class="txt14w500 col-12">Placa</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="productoFinanciadoPlaca">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Nombres</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="nombreCliente">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Apellidos</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="apellidoCliente">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">DNI / CE</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="numeroDocumento">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Fecha de nacimiento</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" type="date" matInput readonly formControlName="fechaNacimiento">
+                                    </mat-form-field>
+                                </div>
+                               
+                                <div class="form-group col-xl-3 col-lg-3 col-md-5 col-sm-5 col-12">
+                                    <label class="txt14w500 col-12">Teléfono fijo</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="telefonoFijo">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-3 col-lg-3 col-md-5 col-sm-5 col-12">
+                                    <label class="txt14w500 col-12">Celular</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="numeroCelular">
+                                    </mat-form-field>
+                                </div>
+
+
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" >
+                                    <label class="txt14w500 col-12">Correo electrónico</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="correoElectronico">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12" >
+                                    <label class="txt14w500 col-12">Dirección</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="direccion">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12" >
+                                    <label class="txt14w500 col-12">Distrito</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="distrito">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12" >
+                                    <label class="txt14w500 col-12">Marca del vehículo </label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="marca">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12" >
+                                    <label class="txt14w500 col-12">Modelo del vehículo </label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input class="col-12" matInput readonly formControlName="modelo">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" >
+                                    <label class="d-flex mb-1"></label>
+                                    <button mat-button class="btnBlue colWhite btn-next mt-2" style="width: 100%;" (click)="verDatosAsesorVentas()">
+                                        Ver información agregada por el Asesor de Venta
+                                        <span class="material-icons pl-4">description</span>
+                                    </button>
+                                </div>
+
+                            </div>
+                          
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <form [formGroup]="formDetalleExpediente" autocomplete="off">
+                            <div class="form-row mb-3">
+                                <div class="form-group col-12">
+                                    <span class="txt16w600 colBlue pl-2">Documentos adjuntos</span>
+                                </div>
+                            </div>
+        
+                            <div class="form-row mt-4">
+                                <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">Contrato de Financiamiento Firmado</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('adjContratoFinan')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">DNI cara frontal</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('adjDniFrontal')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">DNI cara posterior</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('adjDniPosterior')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">Tarjeta de Propiedad cara frontal</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('adjTarjetaFrontal')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">Tarjeta de Propiedad cara posterior</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('adjTarjetaPosterior')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">Foto del Consentimiento Informado </span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('adjConInf')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">Foto del dueño del vehículo con el Consentimiento Informado</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('adjDueñoVehiculo')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <!-- <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">DNI</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('fileDniRegistradoRen')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">Tarjeta de propiedad</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('fileTitularContratoP')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">Permiso de taxi o última boleta de pagos</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf()" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <span class="estAceptado"><span class="material-icons mr-2">check</span> Aceptado</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">Licencia de conducir</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('fileLicenciaConducir')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="col-12">
+                                    <div class="tarjetBottom">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <span class="txt16w600 colBlack">SOAT vigente</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 text-right">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <a href="javascript:void(0)" (click)="openDialogPdf('fileSoatVigente')" class="btnModalPDF"><i class="far fa-file-pdf pr-3" aria-hidden="true"></i> Ver documento adjunto</a>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                            </div>
+        
+                            <!-- <div class="row mt-4">
+                                <div class="col text-center">
+                                    <button mat-raised-button class="mt-4 btnBlue">
+                                        Registrar
+                                        <span class="material-icons ml-5">save</span>
+                                    </button>
+                                </div>
+                            </div> -->
+                        </form>
+                    </div>
+                </div>
+
+                <form [formGroup]="formDatosEstado" autocomplete="off" >
+
+                    <div class="form-row mt-4">
+
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Estado</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <mat-select placeholder="Todas las evaluaciones" formControlName="estado">
+                                    <mat-option *ngFor="let doc of listaEstados" [value]="doc.idEstado">{{doc.estado}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Observaciones</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input class="col-12" matInput  formControlName="observaciones">
+                            </mat-form-field>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row mt-2" *ngIf="ocultarBotonGuardar==false;">
+                        <div class="col text-center">
+                            <button mat-raised-button color="primary" class="mt-4 btnSave" (click)="actualizarEvaluacionCliente()" [disabled]='!formDatosEstado.valid'>
+                                Guardar
+                                <span class="material-icons ml-5">save</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </form>
+
+                
+
+                
+
+
+            </mat-card>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,245 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/validacion-documentos"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a validacion de datos</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <form [formGroup]="formDatosUsuario" autocomplete="off" class="formDisabled">
+                    <h3 class="textTitle mb-3">Detalle</h3>
+                    <div class="row">
+                        <div class="col">
+                            <label class="d-flex mb-1">Nombre del asesor de ventas</label>
+                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="vw6 inputDisabled">
+                                <input class="col-12" matInput readonly formControlName="nombreAnalistaMovilidad">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                            <label class="d-flex mb-1">Producto a Financiar</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="productoFinanciado">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                            <label class="d-flex ">Precio</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="productoFinanciadoPrecio" [value]="formDatosUsuario.get('productoFinanciadoPrecio').value | currency:'S/ '">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                            <label class="d-flex ">Proveedor</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="productoFinanciadoProveedor">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="d-flex mb-1">Nombres</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="nombreCliente">
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <label class="d-flex mb-1">Apellidos</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="apellidoCliente">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="d-flex mb-1">DNI / CE</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="numeroDocumento">
+                            </mat-form-field>
+                        </div>
+                        <!-- <div class="col">
+                            <label class="d-flex mb-1">Nacionalidad*</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="nacionalidadCliente">
+                            </mat-form-field>
+                        </div> -->
+                        <div class="col">
+                            <label class="d-flex mb-1">Placa</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="numeroPlacaCliente">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="d-flex mb-1">Celular</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="numeroCelular">
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <label class="d-flex mb-1">Correo electrónico</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="correoElectronicoCliente">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </form>
+
+                <!-- INICO ADJUNTAR DOCUMENTOS ASESOR DE VENTAS-->
+                <form autocomplete="off" class="mb-4" *ngIf="mostrarDocumentosAsesorVenta">
+                    <h3 class="textTitle">Ver documentos adjuntados por el asesor de ventas</h3>
+                    <div class="row mt-3" *ngFor="let item of listaDocumentosAsesorVenta;let indice=index">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='adjContratoFinan'">Contrato de Financiamiento Firmado</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='adjDniFrontal'">DNI cara frontal </h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='adjDniPosterior'">DNI cara posterior</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='adjTarjetaFrontal'">Tarjeta de Propiedad cara frontal</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='adjTarjetaPosterior'">Tarjeta de Propiedad cara posterior</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='adjConInf'">Foto del Consentimiento Informado</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='adjDueñoVehiculo'">Foto del dueño del vehículo con el Consentimiento Informado</h3>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <a href="javascript:void(0)" (click)="openDialogPdf(item)" class="btnModalPDF"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <mat-chip-list aria-label="Estado Documentos">
+                                        <mat-chip *ngIf="item.idEstado==19">Aceptado</mat-chip>
+                                        <mat-chip *ngIf="item.idEstado==20">Observado</mat-chip>
+                                        <mat-chip *ngIf="item.idEstado==21">Pendiente</mat-chip>
+                                    </mat-chip-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- FIN ADJUNTAR DOCUMENTOS ASESOR DE VENTAS -->
+
+                <!-- INICO ADJUNTAR DOCUMENTOS REGLAS KNOCKOUT-->
+                <form autocomplete="off" class="mb-4" *ngIf="mostrarDocumentosReglaKnockout">
+                    <h3 class="textTitle">Ver documentos adjuntados por el analista comercial( Reglas de Knockout )</h3>
+                    <div class="row mt-3" *ngFor="let item of listaDocumentosReglaKnockout;let indice=index">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileVehiculoGNV'">El vehículo funciona con GNV</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileLicenciaConducirVigente'">La licencia de conducir está en estado VIGENTE</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileTitularContratoPropietario'">El conductor es propietario del vehículo</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileSoatVigente'">El SOAT está vigente</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileTitularContrato'">El titular del contrato NO tiene Multas de tránsito “muy graves” pendientes de pago</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileVehiculoCaptura'">El vehículo NO tiene Orden de captura</h3>
+
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileSustento'">El vehículo tiene una antiguedad menos a 10 años</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileClienteTitular'">El titular tiene entre 20 a 65 años</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileDniRegistradoReniec'">El DNI está registrado en Reniec</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileDniTitularContrato'">El DNI corresponde al titular del contrato</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileVehiculoMultas'">El vehículo NO tiene Multas de tránsito “graves” y “muy graves” pendientes de pago</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileLicenciaConducir'">La licencia de conducir está en estado VIGENTE</h3>
+                                    <!-- <h3 class="textCard mt-3" >{{item.nombreDocumento}}</h3> -->
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <a href="javascript:void(0)" (click)="openDialogPdf(item)" class="btnModalPDF"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <mat-chip-list aria-label="Estado Documentos">
+                                        <mat-chip *ngIf="item.idEstado==19">Aceptado</mat-chip>
+                                        <mat-chip *ngIf="item.idEstado==20">Observado</mat-chip>
+                                        <mat-chip *ngIf="item.idEstado==21">Pendiente</mat-chip>
+                                    </mat-chip-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- FIN ADJUNTAR DOCUMENTOS REGLAS KNOCKOUT-->
+
+                <!-- INICO ADJUNTAR DOCUMENTOS SOLICITUD FINANCIAMIENTO-->
+                <form autocomplete="off" class="mb-4" *ngIf="mostrarDocumentosSolicitudFinanciamiento">
+                    <h3 class="textTitle">Ver documentos adjuntados por el cliente ( 40 preguntas)</h3>
+                    <div class="row mt-3" *ngFor="let item of listaDocumentosSolicitudFinanciamiento;let indice=index">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileFormDatos'">DNI Agregado</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileContrFinanciamiento'">Contrato de financiamiento</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileFormConformidad'">Consentimiento Informado</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileSoat'">El SOAT está vigente</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileDni'">DNI del dueño del vehículo</h3>
+                                     
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <a href="javascript:void(0)" (click)="openDialogPdf(item)" class="btnModalPDF"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <mat-chip-list aria-label="Estado Documentos">
+                                        <mat-chip *ngIf="item.idEstado==19">Aceptado</mat-chip>
+                                        <mat-chip *ngIf="item.idEstado==20">Observado</mat-chip>
+                                        <mat-chip *ngIf="item.idEstado==21">Pendiente</mat-chip>
+                                    </mat-chip-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- FIN ADJUNTAR DOCUMENTOS SOLICITUD FINANCIAMIENTO-->
+
+                <!-- INICO ADJUNTAR DOCUMENTOS POST ATENCION-->
+                <form autocomplete="off" class="mb-4" *ngIf="mostrarDocumentosPostAtencion">
+                    <h3 class="textTitle">Ver documentos adjuntados por el aliado comercial( Post atención )</h3>
+                    <div class="row mt-3" *ngFor="let item of listaDocumentosPostAtencion;let indice=index">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileComprobantePago'">Comprobante de pago</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileGuiaRemision'">Guía remisión</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileDeclaracionConformidad'">Declaración de conformidad</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileContratoFinanciamiento'">Contrato financiamiento</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileDNI'">DNI</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileCertificado'">Certificado</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileDiagnosticoVehiculo'">Diagnóstico del Vehículo / Analisis de gases</h3>
+                                    <h3 class="textCard mt-3" *ngIf="item.nombreDocumento=='fileRegistroProducto'">Registro producto / Servicio </h3>
+                                     
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <a href="javascript:void(0)" (click)="openDialogPdf(item)" class="btnModalPDF"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <mat-chip-list aria-label="Estado Documentos">
+                                        <mat-chip *ngIf="item.idEstado==19">Aceptado</mat-chip>
+                                        <mat-chip *ngIf="item.idEstado==20">Observado</mat-chip>
+                                        <mat-chip *ngIf="item.idEstado==21">Pendiente</mat-chip>
+                                    </mat-chip-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- FIN ADJUNTAR DOCUMENTOS SOLICITUD FINANCIAMIENTO-->
+              
+
+            </mat-card>
+        </div>
+
+    </div>
+</div>

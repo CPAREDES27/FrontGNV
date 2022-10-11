@@ -1,0 +1,727 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/preevaluacion"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a consulta de datos</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <form [formGroup]="formDatosUsuario" autocomplete="off" class="formDisabled">
+                    <h3 class="textTitle mb-3">Detalle</h3>
+                    <div class="row">
+                        <div class="col">
+                            <label class="d-flex mb-1">Nombre del asesor de ventas</label>
+                            <mat-form-field appearance="outline" [style.fontSize.px]=14 class="vw6 inputDisabled">
+                                <input class="col-12" matInput readonly formControlName="nombreAnalistaMovilidad">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                            <label class="d-flex mb-1">Producto a Financiar</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="productoFinanciado">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                            <label class="d-flex ">Precio</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="productoFinanciadoPrecio" [value]="formDatosUsuario.get('productoFinanciadoPrecio').value | currency:'S/ '">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                            <label class="d-flex ">Proveedor</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="productoFinanciadoProveedor">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="d-flex mb-1">Nombres</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="nombreCliente">
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <label class="d-flex mb-1">Apellidos</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="apellidoCliente">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="d-flex mb-1">DNI / CE</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="numeroDocumento">
+                            </mat-form-field>
+                        </div>
+                        <!-- <div class="col">
+                            <label class="d-flex mb-1">Nacionalidad*</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="nacionalidadCliente">
+                            </mat-form-field>
+                        </div> -->
+                        <div class="col">
+                            <label class="d-flex mb-1">Placa</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="numeroPlacaCliente">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="d-flex mb-1">Celular</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="numeroCelular">
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <label class="d-flex mb-1">Correo electrónico</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <input class="col-12" matInput readonly formControlName="correoElectronicoCliente">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 mb-3" *ngIf="rolId==2 && ocultarAdjuntarConformidad==false">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <h3 class="textCard">El conductor no es propietario del vehículo, adjuntar el documento de conformidad
+                                <i class="fas fa-question-circle" (click)="RedireccionarURl('PROPIETARIO_VEHICULO')" matTooltipPosition="right"></i>
+                            </h3>
+                            <!-- <mat-radio-group  aria-label="Select an option">
+                                <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                <mat-radio-button [value]="false" (click)="validarAdjuntoConformidad();">No </mat-radio-button>
+                            </mat-radio-group> -->
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <div class="bgActualizar float-md-right">
+                                    <span class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                    <input class="inputUpload" (click)="validarAdjuntoConformidad();">
+                                    <span class="colBlue txt14w500 txtBold">{{nombFileTitularContratoPropietario}}</span>
+                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileTitularContratoPropietario != 'Adjuntar sustento'">close</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Descomentar -->
+                    <div class="row">
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" *ngIf="deshabilitarBotonAgregar==false">
+                            <label class="d-flex mb-1"></label>
+                            <button mat-button class="btnBlue colWhite btn-next mt-2" style="width: 100%;" (click)="createUser()">
+                                Crear usuario
+                                <span class="material-icons pl-4">person_add</span>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" *ngIf="deshabilitarBotonAgregar==true">
+                            <label class="d-flex mb-1"></label>
+                            <button mat-button class="btnBlue colWhite btn-next mt-2" style="width: 100%;" (click)="completarDatosCliente()">
+                                Siguiente
+                                <span class="material-icons pl-4">description</span>
+                            </button>
+                        </div>
+
+                       <!--  <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" *ngIf="rolId==2">
+                            <label class="d-flex mb-1"></label>
+                            <button mat-button class="btnBlue colWhite btn-next mt-2" style="width: 100%;" (click)="completarDatosCliente()">
+                                Adjuntar Documentos
+                                <span class="material-icons pl-4">folder</span>
+                                
+                            </button>
+                        </div> -->
+
+                    </div>
+
+
+                    
+
+
+                    <!-- <div class="row" *ngIf="ocultarBotonRegistarUsuario">
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="d-flex mb-1"></label>
+                            <button mat-button class="btnBlue colWhite btn-next mt-2" style="width: 100%;" (click)="createUser()" >
+                                Crear usuario
+                                <span class="material-icons pl-4">person_add</span>
+                            </button>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="row">
+                        <div class="col">
+                            <label class="d-flex mb-1">Observación</label>
+                            <mat-form-field appearance="outline" class="vw6">
+                                <textarea class="col-12" matInput formControlName="detalleObservacion" rows="6"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div> -->
+                </form>
+
+                <!-- INICO ADJUNTAR DOCUMENTOS ASESOR DE VENTAS *ngIf="rolId==2 && idTipoProducto==4-->
+                <form [formGroup]="formAdjuntarDocAsesorVentas" autocomplete="off" *ngIf="rolId==2 && documentosAdjuntosLleno || rolId==2 && documentosAdjuntosLleno==false  || rolId==5 && documentosAdjuntosLleno|| rolId==8 && documentosAdjuntosLleno" class="mb-4">
+                    <h3 class="textTitle" *ngIf="documentosAdjuntosLleno==false;">Adjuntar documentos</h3>
+                    <h3 class="textTitle" *ngIf="documentosAdjuntosLleno;">Ver documentos adjuntados por el asesor de ventas</h3>
+                    <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" >{{nobContratoFinanciamiento}}</h3>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="documentosAdjuntosLleno==false;">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="adjContratoFinanciamiento" (change)="uploadFileAdjuntarDocs($event,'adjContratoFinan')" *ngIf="documentosAdjuntosLleno==false;">
+                                            <span class="colBlue txt14w500 txtBold" *ngIf="documentosAdjuntosLleno==false;">{{nomAdjContratoFinanciamiento}}</span>
+                                            <a href="javascript:void(0)" (click)="openDialogPdf('adjContratoFinan')" class="btnModalPDF" *ngIf="documentosAdjuntosLleno;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nomAdjContratoFinanciamiento != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <button mat-button class="btnGreens colWhite btn-next mt-2" style="width: 100%;"
+                                    (click)="descargarDocumento('CONTRATO_FINANCIAMIENTO')">
+                                        <span class="material-icons">download</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" >{{nobDniFrontal}}</h3>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="documentosAdjuntosLleno==false;">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="adjDniFrontal" (change)="uploadFileAdjuntarDocs($event,'adjDniFrontal')" *ngIf="documentosAdjuntosLleno==false;">
+                                            <span class="colBlue txt14w500 txtBold" *ngIf="documentosAdjuntosLleno==false;">{{nomAdjDniFrontal}}</span>
+                                            <a href="javascript:void(0)" (click)="openDialogPdf('adjDniFrontal')" class="btnModalPDF" *ngIf="documentosAdjuntosLleno;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nomAdjDniFrontal != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" >{{nobDniPosterior}} </h3>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="documentosAdjuntosLleno==false;">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="adjDniPosterior" (change)="uploadFileAdjuntarDocs($event,'adjDniPosterior')" *ngIf="documentosAdjuntosLleno==false;">
+                                            <span class="colBlue txt14w500 txtBold" *ngIf="documentosAdjuntosLleno==false;">{{nomAdjDniPosterior}}</span>
+                                            <a href="javascript:void(0)" (click)="openDialogPdf('adjDniPosterior')" class="btnModalPDF" *ngIf="documentosAdjuntosLleno;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nomAdjDniPosterior != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-3" *ngIf="idTipoProducto==1 || idTipoProducto==3 || idTipoProducto==4;">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" > {{nobTarjetaFrontal}} </h3>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="documentosAdjuntosLleno==false;">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="adjTarjetaFrontal" (change)="uploadFileAdjuntarDocs($event,'adjTarjetaFrontal')" *ngIf="documentosAdjuntosLleno==false;">
+                                            <span class="colBlue txt14w500 txtBold" *ngIf="documentosAdjuntosLleno==false;">{{nomAdjTarjetaFrontal}}</span>
+                                            <a href="javascript:void(0)" (click)="openDialogPdf('adjTarjetaFrontal')" class="btnModalPDF" *ngIf="documentosAdjuntosLleno;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nomAdjTarjetaFrontal != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3" *ngIf="idTipoProducto==1 || idTipoProducto==3 || idTipoProducto==4;">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" >{{nobTarjetaPosterior}} </h3>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="documentosAdjuntosLleno==false;">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="adjTarjetaPosterior" (change)="uploadFileAdjuntarDocs($event,'adjTarjetaPosterior')" *ngIf="documentosAdjuntosLleno==false;">
+                                            <span class="colBlue txt14w500 txtBold" *ngIf="documentosAdjuntosLleno==false;">{{nomAdjTarjetaPosterior}}</span>
+                                            <a href="javascript:void(0)" (click)="openDialogPdf('adjTarjetaPosterior')" class="btnModalPDF" *ngIf="documentosAdjuntosLleno;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nomAdjTarjetaPosterior != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3" *ngIf="rolId==2 && ocultarAdjuntarConformidad==false"> 
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" > {{nobConsentimientoInformado}} </h3>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="documentosAdjuntosLleno==false;">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="adjConsentimientoInformado" (change)="uploadFileAdjuntarDocs($event,'adjConInf')" *ngIf="documentosAdjuntosLleno==false;">
+                                            <span class="colBlue txt14w500 txtBold" *ngIf="documentosAdjuntosLleno==false;">{{nomAdjConsentimientoInformado}}</span>
+                                            <a href="javascript:void(0)" (click)="openDialogPdf('adjConInf')" class="btnModalPDF" *ngIf="documentosAdjuntosLleno;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nomAdjConsentimientoInformado != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                    <button mat-button class="btnGreens colWhite btn-next mt-2" style="width: 100%;"
+                                    (click)="descargarDocumento('FORMATO_CONFORMIDAD')">
+                                        <span class="material-icons">download</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3" *ngIf="rolId==2 && ocultarAdjuntarConformidad==false">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <h3 class="textCard mt-3" > {{nobDueioVehiculo}} </h3>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g" *ngIf="documentosAdjuntosLleno==false;">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="adjDueñoVehiculo" (change)="uploadFileAdjuntarDocs($event,'adjDueñoVehiculo')" *ngIf="documentosAdjuntosLleno==false;">
+                                            <span class="colBlue txt14w500 txtBold" *ngIf="documentosAdjuntosLleno==false;">{{nomAdjDueioVehiculo}}</span>
+                                            <a href="javascript:void(0)" (click)="openDialogPdf('adjDueñoVehiculo')" class="btnModalPDF" *ngIf="documentosAdjuntosLleno;"><i class="far fa-file-pdf pr-3"></i> Ver documento adjunto</a>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nomAdjDueioVehiculo != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4" *ngIf="documentosAdjuntosLleno==false && ocultarBotonRegistarUsuario==false;">
+                        <div class="col text-center">
+                            <button mat-raised-button color="primary" (click)="validacionesDocumentosAdjuntarAV()" class="mt-4 btnSave">
+                                Guardar Documentos
+                                <span class="material-icons ml-5">save</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- FIN ADJUNTAR DOCUMENTOS ASESOR DE VENTAS -->
+
+                <form [formGroup]="formReglasKnockout" autocomplete="off" *ngIf="rolId==8 ">
+                    <h3 class="textTitle">Reglas de knockout</h3>
+
+                    <div class="row">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-2">
+                                    <!-- <h3 class="textCard">¿El vehículo funciona con GNV?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('VEHICULO_GNV')" matTooltipPosition="right"></i>
+                                    </h3> -->
+
+                                    <h3 class="textCard">¿El vehículo funciona con GNV?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('VEHICULO_GNV')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrVehiculoGN" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false">No </mat-radio-button>
+                                    </mat-radio-group>
+
+                              
+
+                                </div>
+                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span *ngIf="dataREglaKnockout?.fileVehiculoGNV==undefined || dataREglaKnockout?.fileVehiculoGNV==''" class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <a *ngIf="dataREglaKnockout?.fileVehiculoGNV!='' && dataREglaKnockout?.fileVehiculoGNV!=undefined" href="javascript:void(0)" (click)="descargarDocumentoUrl(dataREglaKnockout?.fileVehiculoGNV)" class="btnModalPDF"><i class="far fa-eye pr-2" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            
+                                            <input type="file" *ngIf="dataREglaKnockout?.fileVehiculoGNV==undefined || dataREglaKnockout?.fileVehiculoGNV==''"  class="inputUpload" formControlName="fileVehiculoGNV" (change)="uploadFileSustento($event,'fileVehiculoGNV')">
+                                            <span *ngIf="dataREglaKnockout?.fileVehiculoGNV==undefined || dataREglaKnockout?.fileVehiculoGNV==''" class="colBlue txt14w500 txtBold">{{nombFileVehiculoGNV}}</span>
+                                            <span class="material-icons-outlined iconClose" (click)="verPrevisualizacion('fileVehiculoGNV')" *ngIf="nombFileVehiculoGNV != 'Adjuntar sustento'">visibility</span>
+                                            <span class="material-icons-outlined iconClose mx-4" *ngIf="nombFileVehiculoGNV != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label class="d-flex mb-1">Vencimiento revisión anual</label>
+                                    <mat-form-field appearance="outline" class="vw6">
+                                        <input type="date" class="col-12" matInput formControlName="fechaVencimientoRevisionAnual">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <label class="d-flex mb-1">Vencimiento cilindro</label>
+                                    <mat-form-field appearance="outline" class="vw6">
+                                        <input type="date" class="col-12" matInput formControlName="fechaVencimientoCilindro">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label class="d-flex mb-2">¿Tiene crédito activo?</label>
+                                    <mat-radio-group formControlName="vrCreditoActivo" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false" >No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="d-flex mb-2">¿Habilitado para consumir?</label>
+                                    <mat-radio-group formControlName="vrHabilitadoConsumo" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿El vehículo tiene una antiguedad menos a 10 años?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('TARJETA_PROPIEDAD')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrVehiculoAntiguedad" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="fileSustento" (change)="uploadFileSustento($event,'fileSustento')">
+                                            <span class="colBlue txt14w500 txtBold">{{nombFileSustento}}</span>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nombFileSustento != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿El titular tiene entre 20 a 65 años?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('DNI')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrClienteTitular" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="fileClienteTitular" (change)="uploadFileSustento($event,'fileClienteTitular')">
+                                            <span class="colBlue txt14w500 txtBold">{{nombFileClienteTitular}}</span>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nombFileClienteTitular != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                   <!--  <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿El DNI está registrado en Reniec?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('DNI_RENIEC')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrDniRegistradoReniec" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="fileDniRegistradoReniec" (change)="uploadFileSustento($event,'fileDniRegistradoReniec')">
+                                            <span class="colBlue txt14w500 txtBold">{{nombFileDniRegistradoReniec}}</span>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nombFileDniRegistradoReniec != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿El DNI corresponde al titular del contrato?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('DNI_CONTRATO')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrDniTitularContrato" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="fileDniTitularContrato" (change)="uploadFileSustento($event,'fileDniTitularContrato')">
+                                            <span class="colBlue txt14w500 txtBold">{{nombFileDniTitularContrato}}</span>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nombFileDniTitularContrato != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿La licencia de conducir está en estado VIGENTE?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('LICENCIA_VIGENTE')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrLicenciaConducirVigente" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span *ngIf="dataREglaKnockout?.fileLicenciaVigente==undefined || dataREglaKnockout?.fileLicenciaVigente==''" class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <a *ngIf="dataREglaKnockout?.fileLicenciaVigente!='' && dataREglaKnockout?.fileLicenciaVigente!=undefined " href="javascript:void(0)" (click)="descargarDocumentoUrl(dataREglaKnockout?.fileLicenciaVigente)" class="btnModalPDF"><i class="far fa-eye pr-2" aria-hidden="true"></i> Ver documento adjunto</a>
+                                            
+                                            <input type="file" *ngIf="dataREglaKnockout?.fileLicenciaVigente==undefined || dataREglaKnockout?.fileLicenciaVigente==''" class="inputUpload" formControlName="fileLicenciaConducirVigente" (change)="uploadFileSustento($event,'fileLicenciaConducirVigente')">
+                                            <span *ngIf="dataREglaKnockout?.fileLicenciaVigente==undefined || dataREglaKnockout?.fileLicenciaVigente==''" class="colBlue txt14w500 txtBold">{{nombFileLicenciaConducirVigente}}</span>
+                                            <span class="material-icons-outlined iconClose" (click)="verPrevisualizacion('fileLicenciaConducirVigente')" *ngIf="nombFileLicenciaConducirVigente != 'Adjuntar sustento'">visibility</span>
+                                            <span class="material-icons-outlined iconClose mx-4" *ngIf="nombFileLicenciaConducirVigente != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿El conductor es propietario del vehículo?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('PROPIETARIO_VEHICULO')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrTitularContratoPropietario" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false" (click)="validarAdjuntoConformidad();">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span *ngIf="dataREglaKnockout?.filePropietarioVehiculo==undefined || dataREglaKnockout?.filePropietarioVehiculo==''" class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <a *ngIf="dataREglaKnockout?.filePropietarioVehiculo!='' && dataREglaKnockout?.filePropietarioVehiculo!=undefined" href="javascript:void(0)" (click)="descargarDocumentoUrl(dataREglaKnockout?.filePropietarioVehiculo)" class="btnModalPDF"><i class="far fa-eye pr-2" aria-hidden="true"></i> Ver documento adjunto</a>
+
+                                            <input *ngIf="dataREglaKnockout?.filePropietarioVehiculo==undefined || dataREglaKnockout?.filePropietarioVehiculo==''" type="file" class="inputUpload" formControlName="fileTitularContratoPropietario" (change)="uploadFileSustento($event,'fileTitularContratoPropietario')">
+                                            <span *ngIf="dataREglaKnockout?.filePropietarioVehiculo==undefined || dataREglaKnockout?.filePropietarioVehiculo==''" class="colBlue txt14w500 txtBold">{{nombFileTitularContratoPropietario}}</span>
+                                            <span class="material-icons-outlined iconClose" (click)="verPrevisualizacion('fileTitularContratoPropietario')" *ngIf="nombFileTitularContratoPropietario != 'Adjuntar sustento'">visibility</span>
+                                            <span class="material-icons-outlined iconClose mx-4" *ngIf="nombFileTitularContratoPropietario != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿El SOAT está vigente?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('SOAT_VIGENTE')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrSoatVigente" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true" (click)="mostrarVencimientoSoat(true)">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false" (click)="mostrarVencimientoSoat(false)">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span *ngIf="dataREglaKnockout?.fileSoatVigente==undefined || dataREglaKnockout?.fileSoatVigente==''" class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <a *ngIf="dataREglaKnockout?.fileSoatVigente!='' && dataREglaKnockout?.fileSoatVigente!=undefined" href="javascript:void(0)" (click)="descargarDocumentoUrl(dataREglaKnockout?.fileSoatVigente)" class="btnModalPDF"><i class="far fa-eye pr-2" aria-hidden="true"></i> Ver documento adjunto</a>
+
+                                            <input type="file" *ngIf="dataREglaKnockout?.fileSoatVigente==undefined || dataREglaKnockout?.fileSoatVigente==''" class="inputUpload" formControlName="fileSoatVigente" (change)="uploadFileSustento($event,'fileSoatVigente')">
+                                            <span *ngIf="dataREglaKnockout?.fileSoatVigente==undefined || dataREglaKnockout?.fileSoatVigente==''" class="colBlue txt14w500 txtBold">{{nombFileSoatVigente}}</span>
+                                            <span class="material-icons-outlined iconClose" (click)="verPrevisualizacion('fileSoatVigente')" *ngIf="nombFileSoatVigente != 'Adjuntar sustento'">visibility</span>
+                                            <span class="material-icons-outlined iconClose mx-4" *ngIf="nombFileSoatVigente != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3" *ngIf="ocultarVencimientoSoat">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">Vencimiento de SOAT
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('SOAT_VENCIMIENTO')" matTooltipPosition="right"></i>
+                                    </h3>
+    
+                                    <mat-form-field appearance="outline" class="vw6">
+                                        <input type="date" class="col-12" matInput formControlName="fechaVencimientoSoat">
+                                    </mat-form-field>
+                                </div>
+ 
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿El vehículo NO tiene Multas de tránsito “graves” y “muy graves” pendientes de pago?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('VEHICULO_MULTAS')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrVehiculoMultas" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true" (click)="mostrarAlertaRechazo('vehiculoMultas')">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <input type="file" class="inputUpload" formControlName="fileVehiculoMultas" (change)="uploadFileSustento($event,'fileVehiculoMultas')">
+                                            <span class="colBlue txt14w500 txtBold">{{nombFileVehiculoMultas}}</span>
+                                            <span class="material-icons-outlined iconClose" *ngIf="nombFileVehiculoMultas != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿El titular del contrato NO tiene Multas de tránsito “muy graves” pendientes de pago?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('TITULAR_MULTAS')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrTitularContrato" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true">Si </mat-radio-button>
+                                        <mat-radio-button [value]="false" (click)="mostrarAlertaRechazo('titularMultas')">No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span *ngIf="dataREglaKnockout?.fileMultastransito==undefined || dataREglaKnockout?.fileMultastransito==''" class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <a *ngIf="dataREglaKnockout?.fileMultastransito!='' && dataREglaKnockout?.fileMultastransito!=undefined" href="javascript:void(0)" (click)="descargarDocumentoUrl(dataREglaKnockout?.fileMultastransito)" class="btnModalPDF"><i class="far fa-eye pr-2" aria-hidden="true"></i> Ver documento adjunto</a>
+
+                                            <input type="file" *ngIf="dataREglaKnockout?.fileMultastransito==undefined || dataREglaKnockout?.fileMultastransito==''" class="inputUpload" formControlName="fileTitularContrato" (change)="uploadFileSustento($event,'fileTitularContrato')">
+                                            <span *ngIf="dataREglaKnockout?.fileMultastransito==undefined || dataREglaKnockout?.fileMultastransito==''" class="colBlue txt14w500 txtBold">{{nombFileTitularContrato}}</span>
+                                            <span class="material-icons-outlined iconClose" (click)="verPrevisualizacion('fileTitularContrato')" *ngIf="nombFileTitularContrato != 'Adjuntar sustento'">visibility</span>
+                                            <span class="material-icons-outlined iconClose mx-4" *ngIf="nombFileTitularContrato != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="cardForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <h3 class="textCard">¿El vehículo NO tiene Orden de captura?
+                                        <i class="fas fa-question-circle" (click)="RedireccionarURl('VEHICULO_CAPTURA')" matTooltipPosition="right"></i>
+                                    </h3>
+                                    <mat-radio-group formControlName="vrVehiculoCaptura" aria-label="Select an option">
+                                        <mat-radio-button class="pr-2" [value]="true" >Si </mat-radio-button>
+                                        <mat-radio-button [value]="false" (click)="mostrarAlertaRechazo('ordenCaptura')"> No </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                    <div class="form-group">
+                                        <div class="bgActualizar float-md-right">
+                                            <span *ngIf="dataREglaKnockout?.fileOrdenCaptura==undefined || dataREglaKnockout?.fileOrdenCaptura==''" class="material-icons-outlined pl-md-3 colBlue rotate45g">attach_file</span>
+                                            <a *ngIf="dataREglaKnockout?.fileOrdenCaptura!='' && dataREglaKnockout?.fileOrdenCaptura!=undefined" href="javascript:void(0)" (click)="descargarDocumentoUrl(dataREglaKnockout?.fileOrdenCaptura)" class="btnModalPDF"><i class="far fa-eye pr-2" aria-hidden="true"></i> Ver documento adjunto</a>
+
+                                            <input *ngIf="dataREglaKnockout?.fileOrdenCaptura==undefined || dataREglaKnockout?.fileOrdenCaptura==''" type="file" class="inputUpload" formControlName="fileVehiculoCaptura" (change)="uploadFileSustento($event,'fileVehiculoCaptura')" >
+                                            <span *ngIf="dataREglaKnockout?.fileOrdenCaptura==undefined || dataREglaKnockout?.fileOrdenCaptura==''" class="colBlue txt14w500 txtBold">{{nombFileVehiculoCaptura}}</span>
+                                            <span class="material-icons-outlined iconClose" (click)="verPrevisualizacion('fileVehiculoCaptura')" *ngIf="nombFileVehiculoCaptura != 'Adjuntar sustento'">visibility</span>
+                                            <span class="material-icons-outlined iconClose mx-4" *ngIf="nombFileVehiculoCaptura != 'Adjuntar sustento'">close</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 ml-5">
+                        <div class="col">
+                            <label class="textOpt">Estado de las Reglas de Knockout</label>
+                            <mat-form-field appearance="outline" class="ml-5" >
+                                <mat-select formControlName="estadoEvaluacion" placeholder="Seleccione el estado de Evaluación" (selectionChange)="estadoFinalFinanciamiento($event)" >
+                                    <mat-option *ngFor="let doc of tipoEstados" [value]="doc.idEstado">{{doc.estado}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col text-center">
+                            <button mat-raised-button color="primary" class="mt-4 btnSave" (click)="validacionesDocumentos()" disabled='{{deshabilitarDatos}}'>
+                            <!-- <button mat-raised-button color="primary" class="mt-4 btnSave" (click)="validacionesDocumentos()" disabled='{{deshabilitarDatos}}'> -->
+                                Guardar
+                                <span class="material-icons ml-5">save</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </mat-card>
+        </div>
+
+    </div>
+</div>

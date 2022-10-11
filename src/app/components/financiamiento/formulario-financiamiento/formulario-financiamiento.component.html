@@ -1,0 +1,1344 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Registro de solicitud de financiamiento</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row align-items-center" *ngIf="!flagPreevaluacion" >
+                    <div class="col-sm-7 col-12">
+                        <h3 class="textTab1">Detalle de registros</h3>
+                        <p class="textReg">Listado de financiamientos </p>
+                    </div>
+                    <div class="col-sm-5 col-12">
+                        <button mat-raised-button class="btnNew btnGreens float-md-right ml-3" (click)="SolicitudPreevaluacion();">
+                            Realizar nueva preevaluacion
+                            <!-- <span class="material-icons-outlined ml-3">person_add</span> -->
+                            <span class="material-icons-outlined" >
+                                create
+                            </span>
+                        </button>
+                        <button mat-raised-button class="btnNew btnBlue float-md-right" (click)="cambiarVista(1);">
+                            Llenar Formulario
+                            <!-- <span class="material-icons-outlined ml-3">person_add</span> -->
+                            <span class="material-icons-outlined" ml-3>
+                                app_registration
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            
+
+                <div *ngIf="flagPreevaluacion; else mensajePreevaluacion" class="row mt-3">
+                    <div class="col-12">
+                        <div class="stipperHorizontal">
+                            <!-- poner linear para que valide -->
+                            <div class="form-row">
+
+                                <!-- <button mat-button (click)="prueba()">Continuar</button> -->
+
+                                <div class="form-group col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
+                                    <label class="txt14w500 col-12">Servicio/Producto</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <!-- <input type="text" matInput formControlName="nivelEstudios" placeholder="Nivel de estudios"> -->
+                                        <mat-select placeholder="Seleccione" [(ngModel)]="productoSeleccionado" (selectionChange)="obtenerDatosProducto($event.value)" [disabled]="disabledProductoCombo">
+                                            <mat-option *ngFor="let item of listProductoPorCliente" [value]="item">{{item.producto}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                    <label class="txt14w500 col-12">Proveedor</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input type="text" matInput placeholder="Proveedor" value="{{fifthFormGroup.get('nombProveedor').value}}" readonly>
+                                    </mat-form-field>
+                                </div>   
+
+                                <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                    <label class="txt14w500 col-12">Precio</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <input type="text" matInput placeholder="Precio" value="{{fifthFormGroup.get('nombPrecio').value}}" readonly>
+                                    </mat-form-field>
+                                </div>  
+
+                            </div>
+                            
+                            <mat-horizontal-stepper [linear]="isLinear" labelPosition="bottom" #stepper id="grafico_elevacion" class="bgStipper" >
+
+                                <mat-step [stepControl]="firstFormGroup" class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <form [formGroup]="firstFormGroup" autocomplete="off">
+                                        <div class="form-row mb-5">
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt16w600 colBlue pl-2">Datos del titular del vehículo</span>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Nombres*</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="nombres" placeholder="Ingresa el nombre del titular">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Apellidos*</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="apellidos" placeholder="Apellidos del titular">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 d-none d-sm-none d-md-block">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        <img class="imgCircle rounded-circle" src="assets/images/icons/img_dni.svg" alt="Dni" width="75%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                                <div class="row">
+                                                    <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                        <label class="txt14w500 col-12">DNI*</label>
+                                                        <mat-form-field appearance="outline" class="col-12">
+                                                            <input type="text" matInput formControlName="dni" placeholder="Número de Dni" 
+                                                            onlyNumber minlength="8" maxlength="8">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <!-- <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                        <label class="txt14w500 col-12">Fecha de emisión*</label>
+                                                        <mat-form-field appearance="outline" class="col-12">
+                                                            <input type="date" matInput formControlName="fechaEmision">
+                                                        </mat-form-field>
+                                                    </div> -->
+                                                    <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                        <label class="txt14w500 col-12">Fecha de nacimiento*</label>
+                                                        <mat-form-field appearance="outline" class="col-12">
+                                                            <input type="date" matInput formControlName="fechaNacimiento">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                        <label class="txt14w500 col-12">Estado civil*</label>
+                                                        <mat-form-field appearance="outline" class="col-12">
+                                                            <!-- <input type="text" matInput formControlName="estadoCivil" placeholder="Estado civil"> -->
+                                                            <mat-select formControlName="estadoCivil" placeholder="Seleccione" (selectionChange)="opcionSeleccionado('3',$event.value)">
+                                                                <mat-option *ngFor="let item of listEstadoCivil" [value]="item">{{item.estado}}</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <label class="txt14w500 col-12">Correo electrónico*</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="email" matInput formControlName="correo" placeholder="Correo electrónico">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Celular*</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="celular" placeholder="Celular"
+                                                    onlyNumber minlength="9" maxlength="9">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Nivel de estudios*</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <!-- <input type="text" matInput formControlName="nivelEstudios" placeholder="Nivel de estudios"> -->
+                                                    <mat-select formControlName="nivelEstudios" placeholder="Seleccione" (selectionChange)="opcionSeleccionado('1',$event.value)">
+                                                        <mat-option *ngFor="let item of listNivelEstudios" [value]="item">{{item.estado}}</mat-option>
+                                                    </mat-select>
+                                                    
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row mt-5">
+                                            <div class="col-12 text-center">
+                                                <!-- <button mat-button matStepperNext class="btnBlue colWhite btn-next mt-2" (click)="validateFirstFormGroup()">Continuar <span class="material-icons pl-4">arrow_forward</span></button>
+                                                <button mat-button *ngIf="!flagTemporal" class="btnGreen colWhite btn-next ml-2 mr-2 mt-2" matTooltip="Guardar Borrador" matTooltipPosition="right"
+                                                (click)="guardarBorrador()"><span class="material-icons">task</span></button> -->
+
+                                                <button mat-button (click)="cambiarVista('0')" class="btn-back ml-2 mr-2 mt-2"><span class="material-icons pr-4">arrow_back</span> Atrás </button>
+                                                <button mat-button class="btnGreen colWhite btn-next ml-2 mr-2 mt-2" matTooltip="Guardar Borrador" matTooltipPosition="right"
+                                                (click)="guardarBorrador()"><span class="material-icons">task</span></button>
+                                                <button mat-button matStepperNext class="btnBlue btn-next text-white ml-2 mr-2 mt-2" (click)="validateFirstFormGroup()">Continuar <span class="material-icons pl-4">arrow_forward</span></button>
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
+                                </mat-step>
+
+                                <mat-step [stepControl]="secondFormGroup" class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <form [formGroup]="secondFormGroup" autocomplete="off">
+                                        <div class="form-row mb-5">
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt16w600 colBlue pl-2">Información sobre su empleo</span>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-12">
+                                                <label class="txt14w500 col-12">Ocupación</label>
+                                                <mat-radio-group aria-label="Select an option" formControlName="radOcupacion">
+                                                    <mat-radio-button class="pr-2 pl-2" value="Dependiente">Dependiente</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="Independiente">Independiente</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="Jubilado">Jubilado</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label class="txt14w500 col-12">¿Tiene contrato temporal o indeterminado?</label>
+                                                <mat-radio-group aria-label="Select an option" formControlName="radContrato">
+                                                    <mat-radio-button class="pr-2 pl-2" value="Temporal">Temporal</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="Indeterminado">Indeterminado</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="No aplica ( es independiente)">No aplica ( es independiente)</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <h3 class="txt14w500 colBlack pl-2">Según la respuesta anterior indique cuando tiempo lleva como dependiente o independiente</h3>
+                                            </div>
+
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">¿Cuánto tiempo lleva en su actual empleo?*</label>
+                                                <mat-radio-group aria-label="Select an option" formControlName="radTiempo">
+                                                    <mat-radio-button class="pr-2 pl-2" value="Meses">Meses</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="Años">Años</mat-radio-button>
+                                                </mat-radio-group>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="tiempoEmpleo" onlyNumber>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="col-12">
+                                                    <span class="txt16w600 col-12">Información adicional</span>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                                    <label class="txt14w500 col-12">Ingresos mensuales (promedio)*</label>
+                                                    <mat-form-field appearance="outline" class="col-12">
+                                                        <input type="text" matInput formControlName="ingMensuales" placeholder="Ingresos mensuales"
+                                                        onlyNumber>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                                    <label class="txt14w500 col-12">Número de hijos</label>
+                                                    <mat-form-field appearance="outline" class="col-12">
+                                                        <input type="text" matInput formControlName="numHijos" placeholder="Número de hijos"
+                                                        onlyNumber>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mt-5">
+                                            <div class="col-12 text-center esp-btn">
+                                                <button mat-button matStepperPrevious class="btn-back ml-2 mr-2 mt-2"><span class="material-icons pr-4">arrow_back</span> Atrás </button>
+                                                <button mat-button class="btnGreen colWhite btn-next ml-2 mr-2 mt-2" matTooltip="Guardar Borrador" matTooltipPosition="right"
+                                                (click)="guardarBorrador()"><span class="material-icons">task</span></button>
+                                                <button mat-button matStepperNext class="btnBlue btn-next text-white ml-2 mr-2 mt-2" (click)="validateSecondFormGroup()">Continuar <span class="material-icons pl-4">arrow_forward</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </mat-step>
+
+                                <mat-step [stepControl]="thirdFormGroup" class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <form [formGroup]="thirdFormGroup" autocomplete="off">
+                                        <div class="form-row mb-5">
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt16w600 colBlue pl-2">Información sobre su dirección</span>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-4">
+                                                <label class="txt14w500 col-12 mb-4">Tipo de calle</label>
+                                                <mat-radio-group aria-label="Select an option" formControlName="radTipoCalle" class="ml-2">
+                                                    <mat-radio-button *ngFor="let item of listTipoCalle" [value]="item.descripcion" class="pr-2 pl-2">{{item.descripcion}}</mat-radio-button>
+                                                </mat-radio-group>
+                                                
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label class="txt14w500 col-12">Otros</label>
+                                                <mat-form-field appearance="outline">
+                                                    <input type="text" matInput formControlName="otraCalle">
+                                                </mat-form-field>
+                                            </div>
+    
+                                        </div>
+                                        
+                                        <div class="form-row">
+                                            <div class="form-group col-xl-8 col-lg-8 col-md-8 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Dirección</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="direccion" placeholder="Direccion">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-3 col-12">
+                                                <label class="txt14w500 col-12">Nº de interior</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="numInterior" placeholder="Nº de interior"
+                                                    onlyNumber>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-3 col-12">
+                                                <label class="txt14w500 col-12">Mz / Lt</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="mzLt" placeholder="Mz / Lt">
+                                                </mat-form-field>
+                                            </div>
+                                            
+                                            
+                                            <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Distrito*</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <mat-select formControlName="distrito" placeholder="Seleccione"  (selectionChange)="obtener($event)">
+                                                        <mat-option *ngFor="let item of listaDistrito" [value]="item" >{{item.distrito}}</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            
+                                           
+
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Referencias</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="referencias" placeholder="Referencias">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Tipo de vivienda</label>
+                                                <mat-radio-group aria-label="Select an option" formControlName="radTipoVivienda" class="ml-2">
+                                                    <mat-radio-button class="pr-2 pl-2" value="Alquilado" (click)="ValidarCampos('TipoVivienda',1);">Alquilada</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="Propio" (click)="ValidarCampos('TipoVivienda',0);">Propia</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="Vivienda familiar" (click)="ValidarCampos('TipoVivienda',0);">Vivienda familiar</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+
+
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12"><b>¿Cuánto tiempo lleva viviendo en la vivienda?</b> (número de años)</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="aniosVivienda" placeholder="Referencias"
+                                                    onlyNumber>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500"><b>En caso sea alquilado, ¿En cuantos meses vence su contrato?</b> (número de meses)</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="mesesContrato" placeholder="Referencias"
+                                                    onlyNumber>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">¿Cuenta con gas natural?</label>
+                                                <mat-radio-group aria-label="Select an option" formControlName="radTieneGas" class="ml-2">
+                                                    <mat-radio-button class="pr-2 pl-2" value="true">Si</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="false">No</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-5">
+                                            <div class="col-12 text-center esp-btn">
+                                                <button mat-button matStepperPrevious class="btn-back ml-2 mr-2 mt-2"><span class="material-icons pr-4">arrow_back</span> Atrás </button>
+                                                <button mat-button class="btnGreen colWhite btn-next ml-2 mr-2 mt-2" matTooltip="Guardar Borrador" matTooltipPosition="right"
+                                                (click)="guardarBorrador()"><span class="material-icons">task</span></button>
+                                                <button mat-button matStepperNext class="btnBlue btn-next text-white ml-2 mr-2 mt-2" (click)="validateThirdFormGroup()">Continuar <span class="material-icons pl-4">arrow_forward</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </mat-step>
+
+                                <mat-step [stepControl]="fourthFormGroup" class="btnBlue col-12" [completed]="false" [editable]="isEditable" *ngIf="ocultarTaller==false">
+                                    <form [formGroup]="fourthFormGroup" autocomplete="off">
+                                        <div class="form-row mb-5">
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt16w600 colBlue pl-2">Información del vehículo</span>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Placa</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="placa" maxlength="7" mask="AAA-00*" onkeyup="this.value = this.value.toUpperCase();" placeholder="Nº de placa">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Marca de auto</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="marcAuto" placeholder="Marca de auto">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Modelo del auto</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="modeloAuto" placeholder="Modelo del auto">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Año de fabricación</label>
+                                                <!-- <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="date" matInput formControlName="anioFabricacion">
+                                                </mat-form-field> -->
+
+                                                
+                                                <!-- <mat-form-field appearance="outline" class="col-12">
+                                                    <input matInput [matDatepicker]="picker" formControlName="anioFabricacion">                                                    
+                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                </mat-form-field> -->
+
+                                                <mat-form-field (click)="picker?.open()" style="cursor: pointer" appearance="outline" class="col-12">
+                                                    <input
+                                                      matInput
+                                                      value="{{fourthFormGroup.get('anioFabricacion').value}}"
+                                                      [min]="fromMinDate"
+                                                      [max]="curDate"
+                                                      placeholder="YYYY"
+                                                      name="dateFieldView"
+                                                      style="cursor: pointer"
+                                                      (focus)="picker?.open()"
+                                                      readonly
+                                                    />
+                                                    <input
+                                                      matInput
+                                                      [matDatepicker]="picker"
+                                                      formControlName="anioFabricacion"
+                                                      name="dateField"
+                                                      #dateField
+                                                      required
+                                                      hidden
+                                                    />
+                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker
+                                                    startView="multi-year"
+                                                    (yearSelected)="chosenYearHandler($event,picker)"></mat-datepicker>
+                                                  </mat-form-field>                                       
+
+                                    
+                                                <!-- <mat-form-field>
+                                                    <input
+                                                    matInput
+                                                    [matDatepicker]="dp"
+                                                    placeholder="Month and Year"
+                                                    formControlName="anioFabricacion"
+                                                    />
+                                                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                                    <mat-datepicker
+                                                    #dp
+                                                    startView="multi-year"
+                                                    (yearSelected)="chosenYearHandler($event,dp)"
+                                                    (monthSelected)="chosenMonthHandler($event, dp)"
+                                                    panelClass="example-month-picker"
+                                                    >
+                                                    </mat-datepicker>
+                                                </mat-form-field> -->
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form row">
+                                            <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 d-none d-sm-none d-md-block">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        <img class="imgCircle rounded-circle" src="assets/images/icons/tarjPropiedad.svg" alt="Tarjeta" width="75%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
+                                                <div class="row">
+                                                    <!-- <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                        <label class="txt14w500 col-12">Nº tarjeta de propiedad</label>
+                                                        <mat-form-field appearance="outline" class="col-12">
+                                                            <input type="number" matInput formControlName="tarjetaProp" placeholder="Nº tarjeta de propiedad">
+                                                        </mat-form-field>
+                                                    </div> -->
+                                                    <!-- <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                        <label class="txt14w500 col-12">Tipo de cilindrada del motor</label>
+                                                        <mat-form-field appearance="outline" class="col-12">
+                                                            <input type="text" matInput formControlName="cilindraMotor">
+                                                        </mat-form-field>
+                                                    </div> -->
+                                                    <div class="form-group col-12">
+                                                        <label class="txt14w500 col-12">¿Cómo usa su vehículo?</label>
+                                                        <mat-radio-group aria-label="Select an option" formControlName="radUsoVehiculo">
+                                                            <mat-radio-button class="pr-1 pl-1" value="true">Uso particular</mat-radio-button>
+                                                            <mat-radio-button class="pr-1 pl-1" value="false">Uso público</mat-radio-button>
+                                                        </mat-radio-group>
+                                                    </div>
+                                                    <div class="form-group col-12">
+                                                        <label class="txt14w500 col-12">¿Estado del vehículo?</label>
+                                                        <mat-radio-group aria-label="Select an option" formControlName="radEstadoVehiculo" (change)="opcionSeleccionado('4',$event)">
+                                                            <mat-radio-button *ngFor="let item of listEstadoVehicular" [value]="item" class="pr-2 pl-2" >{{item.estado}}</mat-radio-button>
+                                                        </mat-radio-group>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="form-row">
+                                            <div class="col-12">
+                                                <span class="txt16w600 col-12">Información adicional</span>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Ingresos mensuales (promedio)*</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="ingMensuales" placeholder="Ingresos mensuales"
+                                                    onlyNumber>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                                <label class="txt14w500 col-12">Número de hijos</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="numHijos" placeholder="Número de hijos"
+                                                    onlyNumber>
+                                                </mat-form-field>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="row mt-5">
+                                            <div class="col-12 text-center esp-btn">
+                                                <button mat-button matStepperPrevious class="btn-back ml-2 mr-2 mt-2" (click)="backValidarTipoProducto(4)"><span class="material-icons pr-4">arrow_back</span> Atrás </button>
+                                                <button mat-button  class="btnGreen colWhite btn-next ml-2 mr-2 mt-2" matTooltip="Guardar Borrador" matTooltipPosition="right"
+                                                (click)="guardarBorrador()"><span class="material-icons">task</span></button>
+                                                <button mat-button matStepperNext class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="validateFourthFormGroup()">Continuar <span class="material-icons pl-4">arrow_forward</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </mat-step>
+
+                                <mat-step [stepControl]="fifthFormGroup" class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <form [formGroup]="fifthFormGroup" autocomplete="off">
+                                        <div class="form-row mb-5">
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt16w600 colBlue pl-2">Información del servicio / producto</span>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+
+                                            <div class="form-group col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
+                                                <label class="txt14w500 col-12">Servicio/Producto</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <!-- <input type="text" matInput formControlName="nivelEstudios" placeholder="Nivel de estudios"> -->
+                                                    <mat-select placeholder="Seleccione" formControlName="nombProducto" (selectionChange)="obtenerDatosProducto($event.value)">
+                                                        <mat-option *ngFor="let item of listProductoPorCliente" [value]="item">{{item.producto}}</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                                <label class="txt14w500 col-12">Proveedor</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput placeholder="Proveedor" formControlName="nombProveedor" readonly>
+                                                </mat-form-field>
+                                            </div>   
+
+                                            <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                <label class="txt14w500 col-12">Precio</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput placeholder="Precio" formControlName="nombPrecio" readonly>
+                                                </mat-form-field>
+                                            </div>  
+
+
+                                            <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <label class="txt14w500 col-12">Nombre del establecimiento</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="nombEstablecimiento" placeholder="Nombre del establecimiento">
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div class="form-group col-12">
+                                                <label class="txt14w500 col-12">Requiere el financiamiento de</label>
+                                                <mat-radio-group aria-label="Select an option" formControlName="radReqFinanciamiento">
+                                                    <mat-radio-button *ngFor="let item of listTipoFinanciamiento" [value]="item.id" class="pr-2 pl-2" value=1>{{item.descripcion}}</mat-radio-button>
+                                                    
+                                                    <!-- <mat-radio-button class="pr-2 pl-2" value=1>Conversión vehicular a GNV</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value=2>Financiamiento menor a S/ 500</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="Otras">Otras</mat-radio-button> -->
+                                                </mat-radio-group>
+                                                <mat-form-field appearance="outline">
+                                                    <input matInput formControlName="inputOtras">
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div class="form-group col-12">
+                                                <label class="txt14w500 col-12">Tipo de crédito</label>
+                                                <mat-radio-group aria-label="Select an option" formControlName="radTipoCredito">
+                                                    <mat-radio-button *ngFor="let item of listTipoCreditoFinanciamiento" [value]="item.id" class="pr-2 pl-2">{{item.tipoCredito}}</mat-radio-button>
+                                                    <!-- <mat-radio-button class="pr-2 pl-2" value="2">02 Uso particular</mat-radio-button> -->
+                                                </mat-radio-group>
+                                            </div>
+
+                                            <div class="form-group col-12">
+                                                <label class="txt14w500 col-12">Plazo máximo en el que pagará el financiamiento</label>
+                                                <mat-radio-group aria-label="Select an option" formControlName="radPlazoMaximo">
+                                                    <mat-radio-button class="pr-2 pl-2" value="03">03</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="06">06</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="09">09</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="12">12</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="18">18</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="24">24</mat-radio-button>
+                                                    <mat-radio-button class="pr-2 pl-2" value="36">36</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+
+                                            <!--<div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                                <label class="txt14w500 col-12">Monto a financiar</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="montFinanciar" placeholder="Valor en números" maxlength="cantidadDigitos" (ngModelChange)="ValidarCampos('montFinanciar',0)"                                                     onlyNumber>
+                                                </mat-form-field>
+                                            </div>-->
+                                            
+                                            <div class="form-group col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
+                                                <label class="txt14w500 col-12">Observaciones</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput formControlName="observacion" placeholder="Ingresa cualquier observación adicional">
+                                                </mat-form-field>
+                                                <small class="textHintInput col">Ojo: si el conductor del vehículo es diferente al dueño, aquí debe incluirse su DNI</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-5">
+                                            <div class="col-12 text-center esp-btn">
+                                                <button mat-button matStepperPrevious class="btn-back ml-2 mr-2 mt-2" (click)="backValidarTipoProducto(5)"><span class="material-icons pr-4">arrow_back</span> Atrás </button>
+                                                <button mat-button class="btnGreen colWhite btn-next ml-2 mr-2 mt-2" matTooltip="Guardar Borrador" matTooltipPosition="right"
+                                                (click)="guardarBorrador()"><span class="material-icons">task</span></button>
+                                                <button mat-button matStepperNext class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="validateFifthFormGroup()">Continuar <span class="material-icons pl-4">arrow_forward</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </mat-step>
+
+                                <mat-step [stepControl]="sixthFormGroup" class="btnBlue col-12" [completed]="false" [editable]="isEditable" *ngIf="ocultarTaller==false">
+                                    <form [formGroup]="sixthFormGroup" autocomplete="off">
+                                        <div class="form-row mb-5">
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt16w600 colBlue pl-2">Busque el taller de su preferencia</span>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row align-items-center">
+                                            <div class="col-12 ">
+                                                <mat-form-field appearance="outline" class="col-8">
+                                                    <mat-icon matPrefix>search</mat-icon>
+                                                    <input matInput type="search" placeholder="Buscar taller por distrito o nombre" formControlName="inputFilter">
+                                                </mat-form-field>
+                                                <button mat-button class="btnBlue btn-search col-2" (click)="filtrar()">Buscar</button>
+                                            </div>
+                                        </div>
+
+                                        <mat-radio-group aria-label="Select an option" formControlName="radTaller">
+                                            <div class="form-row">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-2 mb-2" *ngFor="let item of listTalleres">
+                                                    <mat-card class="card-bg">
+                                                        <mat-radio-button class="pr-2 pl-2" value="{{item.idTaller}}">{{item.nombre}}</mat-radio-button>
+                                                        <p class="hintTextCard col-12">{{item.direccion}}</p>
+                                                    </mat-card>
+                                                </div>
+                                                <div class="col-12 mt-2 mb-2" *ngIf="sinDatos">
+                                                    <mat-card class="card-disabled">
+                                                        <h3>No se encontrarón resultados</h3>
+                                                    </mat-card>
+                                                </div>
+                                            </div>
+                                        </mat-radio-group>
+
+                                        <div class="row mt-5">
+                                            <div class="col-12 text-center esp-btn">
+                                                <button mat-button matStepperPrevious class="btn-back ml-2 mr-2 mt-2"><span class="material-icons pr-4">arrow_back</span> Atrás </button>
+                                                <button mat-button class="btnGreen colWhite btn-next ml-2 mr-2 mt-2" matTooltip="Guardar Borrador" matTooltipPosition="right"
+                                                (click)="guardarBorrador()"><span class="material-icons">task</span></button>
+                                                <button mat-button matStepperNext class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="validateSixthFormGroup()">Continuar <span class="material-icons pl-4">arrow_forward</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </mat-step>
+
+                                <mat-step [stepControl]="seventhFormGroup" class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+                                    <form [formGroup]="seventhFormGroup" autocomplete="off">
+                                        <div class="form-row mb-5">
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt16w600 colBlack pl-2">Revisa los documentos contractuales</span>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row pl-3 pr-3">
+                                            <div class="form-group col-12">
+                                                <mat-checkbox formControlName="tconformidad" (change)="validarPoliticas('1')"></mat-checkbox>
+                                                <span class="pl-3">Acepto el contenido del contrato y doy conformidad sobre el contenido completo del mismo
+                                                </span>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <mat-checkbox formControlName="tpoliticasCondiciones" (change)="validarPoliticas('2')"></mat-checkbox>
+                                                <span class="pl-3">Acepto y doy conformidad sobre el contenido completo de los siguientes 
+                                                    <a target="_blank" href="../../../assets/recursos-mantenimiento/documentos-politicas/Términos de uso.pdf" class="cl-ter-pol"><b> Términos y condiciones</b></a>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                                <label class="txt14w500 col-12">Tipo de Documento</label>
+                                                <mat-form-field appearance="outline" class="col-12" *ngIf="datosUsuario?.idTipoDocumento==1"> 
+                                                    <input type="text" matInput placeholder="Tipo de Documento"
+                                                    value="DNI" readonly>
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline" class="col-12" *ngIf="datosUsuario?.idTipoDocumento==2" >
+                                                    <input type="text" matInput placeholder="Tipo de Documento"
+                                                    value="CE" readonly>
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline" class="col-12" *ngIf="datosUsuario?.idTipoDocumento==3">
+                                                    <input type="text" matInput *ngIf="datosUsuario?.idTipoDocumento==3" placeholder="Tipo de Documento"
+                                                    value="Pasaporte" readonly>
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline" class="col-12" *ngIf="datosUsuario?.idTipoDocumento==4">
+                                                    <input type="text" matInput placeholder="Tipo de Documento"
+                                                    value="RUC" readonly>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                                <label class="txt14w500 col-12">Número de Documento</label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput placeholder="Número de Documento" 
+                                                    value={{datosUsuario?.numeroDocumento}} readonly>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                                <label class="txt14w500 col-12">Digito verificador </label>
+                                                <mat-form-field appearance="outline" class="col-12">
+                                                    <input type="text" matInput placeholder="Digito verificador" mask="-0" formControlName="digitoVerificador">
+                                                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                                                    <i class="fas fa-question-circle" matSuffix (click)="ayudaDigitoVerificador()"></i>
+                                                </mat-form-field>
+                                                        
+                                                        
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+                                                <mat-card class="card-bg">
+                                                    <div class="espInteCard">
+                                                        <a href="javascript:void(0)">
+                                                            <span class="colBlue txt14w500 txtBold">Formulario único de datos</span>
+                                                            <span class="material-icons-outlined pl-3">sim_card_download</span>
+                                                        </a>
+                                                    </div>
+                                                </mat-card>
+                                            </div> -->
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+                                                <mat-card class="card-bg">
+                                                    <div class="espInteCard">
+                                                        <a href="javascript:void(0)" (click)="descargarDocumento('CONTRATO_FINANCIAMIENTO')">
+                                                            <span class="colBlue txt14w500 txtBold">Contrato de financiamiento</span>
+                                                            <span class="material-icons-outlined pl-3">sim_card_download</span>
+                                                        </a>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                            <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+                                                <mat-card class="card-bg">
+                                                    <div class="espInteCard">
+                                                        <a href="javascript:void(0)" (click)="descargarDocumento('FORMATO_CONFORMIDAD')">
+                                                            <span class="colBlue txt14w500 txtBold">Consentimiento Informado</span>
+                                                            <span class="material-icons-outlined pl-3">sim_card_download</span>
+                                                            <br>    
+                                                            <i class="fas fa-question-circle" matTooltip="Siempre y cuando el interesado no sea dueño del vehículo" matTooltipPosition="right"></i>
+                                                        </a>
+                                                    </div>
+                                                </mat-card>
+                                            </div> -->
+                                        </div>
+
+                                        <!-- <div class="form-row mt-4">
+                                            <div class="col-12">
+                                                <p class="txt16w600 colBlack pl-2">
+                                                    Ahora ajunta los siguientes documentos
+                                                    <span class="material-icons-outlined pl-4 iconQuestion" matTooltip="Adjunta documentos con las siguientes extenciones: PDF, DOCX, PNG, JPG." matTooltipPosition="right">
+                                                            help_outline
+                                                        </span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row mt-4">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 text-center">
+                                                <mat-card class="card-bg line-card">
+                                                    <div class="form-group">
+                                                        <div class="bgActualizar">
+                                                            <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                            <input type="file" class="inputUpload" formControlName="fileFormDatos" (change)="uploadFileFormDatos($event,'fileFormDatos')">
+                                                            <span class="colBlue txt14w500 txtBold">{{nobFileFormDatos}}</span>                                                           
+                                                        </div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row mt-4">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 text-center">
+                                                <mat-card class="card-bg line-card">
+                                                    <div class="form-group">
+                                                        <div class="bgActualizar">
+                                                            <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                            <input type="file" class="inputUpload" formControlName="fileContrFinanciamiento" (change)="uploadFileFormDatos($event,'fileContrFinanciamiento')">
+                                                            <span class="colBlue txt14w500 txtBold">{{nobFileContFinan}}</span>
+                                                        </div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                            <div class="mt-4">
+                                                <mat-checkbox formControlName="checkContrFinanciamiento" matTooltip="Al marcar se esta aceptando y firmado electrónicamente el documento.">Firma electrónica.</mat-checkbox>
+                                            </div>
+                                        </div> -->
+                                        
+                                        <div class="col-12 text-center esp-btn">
+                                            <mat-checkbox formControlName="checkDNI" matTooltip="Al marcar se esta aceptando el documento DNI.">Firmar DNI</mat-checkbox><br>
+                                            <mat-checkbox formControlName="checkContrFinanciamiento" matTooltip="Al marcar se esta aceptando el documento Contrato Financiamiento.">Firmar Contrato Financiamiento</mat-checkbox>
+                                        </div>
+                                        <div class="col-12 text-center esp-btn" *ngIf="seventhFormGroup.get('checkDNI').value && seventhFormGroup.get('checkContrFinanciamiento').value">
+                                            <button *ngIf="!flagBotonFirmado" mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="botonFirmado('1')">Acepto y Firmo</button>
+                                            <button *ngIf="flagBotonFirmado" mat-button class="btnGreen btn-next ml-2 mr-2 mt-2" (click)="botonFirmado('0')">Aceptado y Firmado <span class="material-icons pl-4">check</span></button>
+                                        </div>
+                                        
+
+                                        <div class="row mt-5">
+                                            <div class="col-12 text-center esp-btn">
+                                                <button mat-button matStepperPrevious class="btn-back ml-2 mr-2 mt-2"><span class="material-icons pr-4">arrow_back</span> Atrás </button>
+                                                <button *ngIf="flagBotonFirmado" mat-button matStepperNext class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="validateSeventhFormGroup()">Continuar <span class="material-icons pl-4">arrow_forward</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </mat-step>
+
+                                <mat-step [stepControl]="eighthFormGroup" class="btnBlue col-12" [completed]="false" [editable]="isEditable">
+
+                                    <div class="form-row mb-5" *ngIf="flagDuenioVehiculo==0">
+                                        <div class="col-md-6 col-12">
+                                            <span class="txt16w600 colBlack pl-2">Descarga el siguiente documento, el cual debe ser llenado por el propietario del vehículo</span>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row" *ngIf="flagDuenioVehiculo==0">
+
+
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+                                            <mat-card class="card-bg">
+                                                <div class="espInteCard">
+                                                    <a href="javascript:void(0)" >
+                                                        <span class="colBlue txt14w500 txtBold">Consentimiento Informado</span>
+                                                        <span class="material-icons-outlined pl-3" (click)="descargarDocumento('FORMATO_CONFORMIDAD')">sim_card_download</span>
+                                                        <br>    
+                                                        <i class="fas fa-question-circle" matTooltip="Siempre y cuando el interesado no sea dueño del vehículo" matTooltipPosition="right"></i>
+                                                    </a>
+                                                </div>
+                                            </mat-card>
+                                        </div>
+                                    </div>
+                                    
+                                    <form [formGroup]="eighthFormGroup" autocomplete="off">
+                                        <div class="form-row mb-5 mt-5">
+                                            <div class="col-12">
+                                                <span class="txt16w600 colBlue pl-2">Documentos adjuntos</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="form-row mt-4"> -->
+
+
+                                            <div class="form-row mt-4" >
+                                                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 text-center" *ngIf="productoSeleccionado?.idTipoProducto==1 || productoSeleccionado?.idTipoProducto==3">
+                                                    <mat-card class="card-bg line-card">
+                                                        <div class="form-group">
+                                                            <div class="bgActualizar">
+                                                                <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                <input type="file" class="inputUpload" formControlName="fileTPFrontal" (change)="uploadFileFormDatos($event,'fileTPFrontal')">
+                                                                <span class="colBlue txt14w500 txtBold">{{nombFileTPFrontal}} </span>                                                           
+                                                            </div>
+                                                        </div>
+                                                    </mat-card>
+                                                </div>
+                                                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 text-center pt-4" *ngIf="productoSeleccionado?.idTipoProducto==1 || productoSeleccionado?.idTipoProducto==3">
+                                                    <mat-card class="card-bg line-card">
+                                                        <div class="form-group">
+                                                            <div class="bgActualizar">
+                                                                <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                <input type="file" class="inputUpload" formControlName="fileTPPosterior" (change)="uploadFileFormDatos($event,'fileTPPosterior')">
+                                                                <span class="colBlue txt14w500 txtBold">{{nombFileTPPosterior}} </span>                                                           
+                                                            </div>
+                                                        </div>
+                                                    </mat-card>
+                                                </div>
+                                                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 text-center pt-4 " *ngIf="flagDuenioVehiculo==0">
+                                                    <mat-card class="card-bg line-card" matTooltip="La foto debe mostrar el Consentimiento Informado firmado junto con la foto frontal del DNI del propietario del vehículo" matTooltipPosition="right">
+                                                        <div class="form-group">
+                                                            <div class="bgActualizar">
+                                                                <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                <input type="file" class="inputUpload" formControlName="fileCInformado" (change)="uploadFileFormDatos($event,'fileCInformado')">
+                                                                <span class="colBlue txt14w500 txtBold">{{nombFileCInformado}} </span>                                                           
+                                                            </div>
+                                                        </div>
+                                                    </mat-card>
+                                                </div>
+                                                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 text-center pt-4" *ngIf="flagDuenioVehiculo==0"> 
+                                                    <mat-card class="card-bg line-card">
+                                                        <div class="form-group">
+                                                            <div class="bgActualizar">
+                                                                <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                <input type="file" class="inputUpload" formControlName="fileDVCInformado" (change)="uploadFileFormDatos($event,'fileDVCInformado')">
+                                                                <span class="colBlue txt14w500 txtBold">{{nombFileDVCInformado}} </span>                                                           
+                                                            </div>
+                                                        </div>
+                                                    </mat-card>
+                                                </div>
+                                                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 text-center pt-4">
+                                                    <mat-card class="card-bg line-card">
+                                                        <div class="form-group">
+                                                            <div class="bgActualizar">
+                                                                <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                <input type="file" class="inputUpload" formControlName="fileSoat" (change)="uploadFileFormDatos($event,'fileSoat')">
+                                                                <span class="colBlue txt14w500 txtBold">{{nombFileSoat}} </span>                                                           
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </mat-card>
+                                                </div>
+                                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12 text-center pt-5">
+                                                    <i class="fas fa-question-circle colBlue txt14w500 txtBold" matTooltip="Solo en caso tenga AFOCAT" matTooltipPosition="right"></i>
+                                                </div>
+
+                                                <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 text-center mt-4">
+                                                    <mat-checkbox formControlName="checkFormDniVendedor" matTooltip="Al marcar se esta aceptando y firmado electrónicamente el documento." (change)="mostrarDigitoVerificador($event)" >Firma electrónica.</mat-checkbox>
+                                                </div> -->
+
+                                                <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 text-center mt-2" *ngIf="flagDigitoVerificador">
+                                                            <mat-form-field appearance="outline" class="col-12">
+                                                                <input type="text" matInput placeholder="Digito verificador" mask="-0" formControlName="digitoVerificador">
+                                                            </mat-form-field>
+                                                </div> -->
+
+                                                <!-- <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12 text-center mt-4" *ngIf="flagDigitoVerificador">
+                                                    <i class="fas fa-question-circle" (click)="ayudaDigitoVerificador()"></i>
+                                                </div> -->
+
+                                                
+
+                                                <!-- <div class="form-row">
+
+                                                    <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 mt-4">
+                                                        <mat-checkbox formControlName="checkFormConformidad" matTooltip="Al marcar se esta aceptando y firmado electrónicamente el documento.">Firma electrónica.</mat-checkbox>
+                                                    </div>
+
+                                                    <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                                        <label class="txt14w500 col-12">Digito verificador </label>
+                                                            <mat-form-field appearance="outline" class="col-12">
+                                                                <input type="text" matInput placeholder="Digito verificador">
+                                                            </mat-form-field>
+                                                    </div>
+        
+                                                    <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                                        <img class="imgCircle rounded-circle" src="assets/images/icons/dni-digito-verificador.png" alt="Dni" width="75%">
+                                                    </div>   
+                                                </div> -->
+
+                                            </div>
+
+                                            
+
+                                            <!-- <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">DNI del dueño del vehículo </span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileDni" (change)="uploadFileFormDatos($event,'fileDni')">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFileDni}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileDni != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">HUD firmada</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileHud" (change)="uploadFileHud($event)">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFileHud}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileHud != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">Tarjeta de propiedad</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileTarjProp" (change)="uploadFileTarjProp($event)">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFileTarjProp}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileTarjProp != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">Permiso de taxi o última boleta de pago</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="filePermiso" (change)="uploadFilePermiso($event)">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFilePermiso}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFilePermiso != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">Licencia de conducir</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileLicencia" (change)="uploadFileLicencia($event)">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFileLicencia}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileLicencia != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">Recibo de servicios públicos</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileRecibo" (change)="uploadFileRecibo($event)">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFileRecibo}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileRecibo != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">Revisión técnica si corresponde</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileRevTecnica" (change)="uploadFileRevTecnica($event)">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFileRevTecnica}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileRevTecnica != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- <div class="form-row mt-4">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 text-center">
+                                                    <mat-card class="card-bg line-card">
+                                                        <div class="form-group">
+                                                            <div class="bgActualizar">
+                                                                <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                <input type="file" class="inputUpload" formControlName="fileSoat" (change)="uploadFileFormDatos($event,'fileSoat')">
+                                                                <span class="colBlue txt14w500 txtBold">{{nombFileSoat}}</span>                                                           
+                                                            </div>
+                                                        </div>
+                                                    </mat-card>
+                                                </div>
+
+                                            </div> -->
+
+                                           <!--  <div class="form-row mt-4">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 text-center">
+                                                    <mat-card class="card-bg line-card">
+                                                        <div class="form-group">
+                                                            <div class="bgActualizar">
+                                                                <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                <input type="file" class="inputUpload" formControlName="fileFormConformidad" (change)="uploadFileFormDatos($event,'fileFormConformidad')">
+                                                                <span class="colBlue txt14w500 txtBold">{{nobFileFormConfor}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </mat-card>
+                                                </div>
+                                                
+                                            </div> -->
+
+
+                                            <!-- <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">SOAT vigente</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileSoat" (change)="uploadFileFormDatos($event,'fileSoat')">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFileSoat}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileSoat != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">Contrato de financiamiento firmado</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileContratoFinc" (change)="uploadFileContratoFinc($event)">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFileContratoFinc}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileContratoFinc != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- <div class="col-12">
+                                                <div class="tarjetBottom">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12">
+                                                            <span class="txt16w600 colBlack">Formato de conformidad</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 text-center">
+                                                            <div class="form-group">
+                                                                <div class="bgActualizar align-items-center">
+                                                                    <span class="material-icons-outlined pl-3 colBlue rotate45g">attach_file</span>
+                                                                    <input type="file" class="inputUpload" formControlName="fileFormConform" (change)="uploadFileFormConform($event)">
+                                                                    <span class="colBlue txt14w500 txtBold">{{nombFileFormConform}}</span>
+                                                                    <span class="material-icons-outlined iconClose" *ngIf="nombFileFormConform != 'Adjuntar documento'">close</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        <!-- </div> -->
+
+                                        <div class="row mt-5">
+                                            <div class="col-12 text-center esp-btn">
+                                                <button mat-button matStepperPrevious class="btn-back ml-2 mr-2 mt-2"><span class="material-icons pr-4">arrow_back</span> Atrás </button>
+                                                <!-- <button mat-button matStepperNext class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="guardarDatos()">Continuar y guardar <span class="material-icons pl-4">arrow_forward</span></button> -->
+                                                <button mat-button matStepperNext class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="validacionesDocumentos()">Continuar y guardar <span class="material-icons pl-4">arrow_forward</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </mat-step>
+
+                                <!-- <mat-step class="btnBlue col-12" [completed]="false">
+                                    <div class="espTopCheck text-center row">
+                                        <div class="col-12">
+                                            <span class="material-icons-outlined iconCheckSuccess">check_circle</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <span class="text25w600 colBlack">¡Listo!</span>
+                                            <br><br>
+                                            <span class="text25w600 colBlack">El registro se ha realizado satisfactoriamente</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-5">
+                                        <div class="col-12 text-center esp-btn">
+                                            <button mat-button matStepperNext class="btnBlue colWhite btn-next ml-2 mr-2" [routerLink]="['/gnv/solicitud-financiamiento']">Ir al inicio <span class="material-icons pl-4">arrow_forward</span></button>
+                                        </div>
+                                    </div>
+                                </mat-step> -->
+                            </mat-horizontal-stepper>
+                        </div>
+
+                    </div>
+                </div>
+                <ng-template #mensajePreevaluacion>
+                    <div class="col-12">
+                        <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <button mat-dialog-close mat-raised-button class="style-button-101 mt-1 w-30" style="width:238px;" (click)="SolicitudPreevaluacion()"> 
+                                <div class="d-flex align-items-center mb-1">
+                                    <span>Realizar pre evaluación</span>
+                                    <div class="lnk-stl-2">
+                                        <img src="./assets/images/icons/solicitar.svg"
+                                            alt="enterokay">
+                                    </div>
+                                </div>
+                            </button>
+                        </div> -->
+                        <!-- <div class="stipperHorizontal">
+                            <br>
+                            <div class="text-center">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <span class="txt16w600 colBlue pl-2">Sin preevaluaciones</span>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <button mat-dialog-close mat-raised-button class="style-button-101 mt-1 w-30" style="width:238px;" (click)="SolicitudPreevaluacion()"> 
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span>Realizar pre evaluación</span>
+                                            <div class="lnk-stl-2">
+                                                <img src="./assets/images/icons/solicitar.svg"
+                                                    alt="enterokay">
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div> -->
+                        <br>
+                        <div class="table-responsive">
+                            <table class="table table-hover tabPrev">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id SfCliente</th>
+                                        <th scope="col">Placa</th>
+                                        <th scope="col">Marca</th>
+                                        <th scope="col">Modelo</th>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Fecha de Despacho </th>
+                                        <th scope="col">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let row of datosFinanciamiento">
+                                        <th>{{row.idSfCliente}}</th>
+                                        <td>{{row.numeroPlaca}}</td>
+                                        <td>{{row.marcaAuto}}</td>
+                                        <td>{{row.modeloAuto}}</td>
+                                        <td>{{row.producto}}</td>
+                                        <td>{{row.fechaDespacho | date: 'dd/MM/yyyy'}}</td>
+                                        <td>
+                                            <!-- <a class="btnActualizar" (click)="pintarDatosFinanciamiento(row.idsfcliente)"><i class="far fa-eye"></i></a> -->
+                                            <a class="btnActualizar" (click)="pintarDatosFinanciamiento(row)"><i class="far fa-eye"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                
+                        </div>
+                
+                        <div class="row align-items-center mt-2" *ngIf="barraPaginado">
+                            <div class="col">
+                                <h3 class="textReg">Total registros: {{totalDatos}}</h3>
+                            </div>
+                            <div class="col">
+                                <ul class="pagination" style="float: right;">
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="back()">
+                                            <span class="fa fa-angle-left" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" *ngFor="let p of totalPages; let i = index">
+                                        <a class="page-link pagNumber" (click)="setPage(i)" [ngClass]="{'textActive': i + 1 === page }">{{ i+1 }}</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+                                            <span class="fa fa-angle-right" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </ng-template>
+                
+            </mat-card>
+
+            
+        </div>
+    </div>
+
+</div>

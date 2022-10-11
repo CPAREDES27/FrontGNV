@@ -1,0 +1,18 @@
+{
+    "EDAD":80,
+    "ESTADO_CIVIL":"Convivientes",
+    "NIVEL_ESTUDIO":"Post Grado",
+    "TIPO_VIVIENDA":"Propia",
+    "TIEMPO_VIVIENDA":1,
+    "OCUPACION":"Desarrollador",
+    "ANTIGUEDAD_OCUPACION":"Independiente-20-Años",
+    "TIPO_CONTRATO":"Plazo fijo",
+    "OCUPACION_NIVEL_ESTUDIO":"Independiente-Secundaria",
+    "ANTIGUEDAD_VEHICULO":"6-Años",
+    "SERVICIO":"Particular",
+    "INGRESOS_MENSUALES":5,
+    "NUMERO_HIJOS":2,
+    "ESTADO_VEHICULO":"Antiguo",
+    "VIVIENDA_VENC_CONTRATO":"Alquilado-2-Meses",
+    "PROPIEDAD_SERVICIO":"Publico"
+}

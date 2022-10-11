@@ -1,0 +1,168 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a href="javascript:void(0);">Consulta de datos</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <form [formGroup]="formFiltro" autocomplete="off">
+                    <div class="row align-items-center">
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Filtrar por:</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput placeholder="Ingrese nombre" formControlName="inputFilter">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <button mat-raised-button color="primary" class="btnFilter" (click)="filtrar()">
+                                Filtrar
+                                <img class="iconFilter ml-5" src="./assets/images/icons/filtro.svg" alt="btnFilter"> 
+                            </button>
+                        </div>
+<!-- 
+                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                            <button mat-raised-button color="primary" class="btnFilter" (click)="filtrar()">
+                                Realizar nueva preevaluacion.
+                                <img class="iconFilter ml-2" src="./assets/images/icons/filtro.svg" alt="btnFilter"> 
+                            </button>
+
+                        </div> -->
+
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row align-items-center">
+                    <div class="col-sm-6 col-12">
+                        <h3 class="textTab1">Detalle de registros</h3>
+                        <p class="textReg">Listado de pre evaluaciones</p>
+                    </div>
+                    <!-- <div class="col-sm-6 col-12" *ngIf="!refrescar">
+                        <button mat-raised-button class="btnNew btnGreens float-md-right" (click)="SolicitudPreevaluacion();">
+                            Realizar nueva preevaluacion
+                            <span class="material-icons-outlined" ml-3>
+                                app_registration
+                            </span>
+                        </button>
+                    </div> -->
+
+                    <div class="col-sm-5 col-12">
+                        <button mat-raised-button class="btnNew btnGreens float-md-right" (click)="SolicitudPreevaluacion();">
+                            Realizar nueva preevaluacion
+                            <!-- <span class="material-icons-outlined ml-3">person_add</span> -->
+                            <span class="material-icons-outlined" ml-3>
+                                app_registration
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="col-sm-1 col-12">
+                        <button mat-raised-button 
+                        matTooltip="Actualizar"
+                        class="btnNew btnGreens float-md-right" (click)="cargarTabla();">
+                            <span class="material-icons-outlined" ml-3>
+                                refresh
+                            </span>
+                        </button>
+                    </div>
+
+                </div>
+                <br>
+
+                <div class="table-responsive">
+                    <table class="table table-hover tabPrev">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombres</th>
+                                <!-- <th scope="col">Apellidos</th> -->
+                                <th scope="col">Documento</th>
+                                <th scope="col">Placa</th>
+                                <th scope="col">Estado Regla Knockout</th>
+                                <th scope="col">Estado financiamiento</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of datos">
+                                <th>{{row.idPreevaluacion}}</th>
+                                <td>{{row.nombre +" "+ row.apellido}}</td>
+                                <!-- <td>{{row.apellido}}</td> -->
+                                <td>{{row.numDocumento}}</td>
+                                <td>{{row.numPlaca}}</td>
+                                
+                                <td>
+                                    <!-- <span *ngIf="row.idEstadoPreevaluacion == 6 && row.idEstado == 3 || row.idEstado == 6" class="estPendiente"><span class="material-icons mr-2">pending_actions</span> Pendiente</span>
+                                    <span *ngIf="row.idEstadoPreevaluacion == 4" class="estAceptado"><span class="material-icons mr-2">check</span> Aprobado</span>
+                                    <span *ngIf="row.idEstadoPreevaluacion == 5" class="estRechazado"><span class="material-icons mr-2">close</span> Rechazado</span>
+                                    <span *ngIf="row.idEstadoPreevaluacion == 6 && row.idEstado == 5" class="estRechazado"><span class="material-icons mr-2">close</span> Rechazado</span> -->
+                                    <span *ngIf="row.idEstadoPreevaluacion == 6 && row.idEstado == 6" class="estPendiente"><span class="material-icons mr-2">pending_actions</span> Pendiente</span>
+                                    <span *ngIf="row.idEstadoPreevaluacion == 6 && row.idEstado == 3" class="estPendiente"><span class="material-icons mr-2">pending_actions</span> Pendiente</span>
+                                    <span *ngIf="row.idEstadoPreevaluacion == 6 && row.idEstado == 5" class="estRechazado"><span class="material-icons mr-2">close</span> Rechazado</span>
+                                    <span *ngIf="row.idEstadoPreevaluacion == 3" class="estPendiente"><span class="material-icons mr-2">pending_actions</span> Pendiente</span>
+                                    <span *ngIf="row.idEstadoPreevaluacion == 3" class="estRechazado"><span class="material-icons mr-2">close</span> Rechazado</span>
+                                    <span *ngIf="row.idEstadoPreevaluacion == 4" class="estAceptado"><span class="material-icons mr-2">check</span> Aprobado</span>
+                                    <span *ngIf="row.idEstadoPreevaluacion == 5" class="estRechazado"><span class="material-icons mr-2">close</span> Rechazado</span>
+
+                                    <!-- {{row.idEstadoPreevaluacion}} -->
+                                </td>
+
+                                <td>
+                                    <span *ngIf="row.idEstado == 6" class="estPendiente"><span class="material-icons mr-2">pending_actions</span> Pendiente</span>
+                                    <span *ngIf="row.idEstado == 3" class="estPendiente"><span class="material-icons mr-2">pending_actions</span> Pendiente</span>
+                                    <span *ngIf="row.idEstado == 4" class="estAceptado"><span class="material-icons mr-2">check</span> Entregado</span>
+                                    <span *ngIf="row.idEstado == 5" class="estRechazado"><span class="material-icons mr-2">close</span> Rechazado</span>
+
+                                    <!-- {{row.idEstado}} -->
+                                    <!-- <span *ngIf="row.idEstado == 3" class="estAceptado"><span class="material-icons mr-2">check</span> Aprobado</span>  -->
+                                </td>
+                                <!-- <td>
+                                    <button class="btnAccion" mat-raised-button focusable="false" (click)="verDetallePreevaluacion(row.idPreevaluacion)" value="{{row.idPreevaluacion}}" *ngIf="row.idEstado == 3">Evaluar</button>
+                                    <button class="btnDisabled" mat-raised-button focusable="false" *ngIf="row.idEstado != 3">Evaluar</button>
+                                </td> -->
+                                <td>
+                                    <a class="btnActualizar" (click)="verDetallePreevaluacion(row.idPreevaluacion)">
+                                        Ver detalles <i class="far fa-eye"></i>
+                                    </a>
+                                    <a class="btnActualizar ml-4"  (click)="abrirLineaTiempo('RKN',row.idPreevaluacion)" matTooltip="Línea Tiempo" matTooltipPosition="right">
+                                        <i class="far fa-clock" style="color: #00A34B;font-weight: 800;"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="row align-items-center mt-2" *ngIf="barraPaginado">
+                    <div class="col">
+                        <h3 class="textReg">Total registros: {{totalDatos}}</h3>
+                    </div>
+                    <div class="col">
+                        <ul class="pagination" style="float: right;">
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="back()">
+                                    <span class="fa fa-angle-left" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li class="page-item" *ngFor="let p of totalPages; let i = index">
+                                <a class="page-link pagNumber" (click)="setPage(i)" [ngClass]="{'textActive': i + 1 === page }">{{ i+1 }}</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+                                    <span class="fa fa-angle-right" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

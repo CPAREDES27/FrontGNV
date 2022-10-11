@@ -1,0 +1,154 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a (click)="cancelar();"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a gestión de usuarios</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <form [formGroup]="userFormGroup" autocomplete="off" class="formDisabled">
+                            <div class="form-row mb-4">
+                                <div class="col-md-6 col-12">
+                                    <h3 class="txt16w600 colBlue pl-2">Actualizar registro</h3>
+                                    <p class="txt14w500 colBlack pl-2">Datos del titular del vehículo</p>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <span class="txt14w500 colBlack pl-2 float-md-right">* Obligatorio</span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Nombres</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="clienteNombre" placeholder="Nombres" >
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Apellidos</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="clienteApellido" placeholder="Apellidos" >
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Correo</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="clienteCorreo" placeholder="Correo" readonly>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Modelo Vehículo</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="modeloVehiculo" placeholder="Modelo vehículo">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Marca Vehículo</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="marcaVehiculo" placeholder="Ingresa marca">
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <!-- <label class="txt14w500 col-12">Vencimiento revisión anual</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="date" class="col-12" matInput formControlName="fechaFabricacion">
+                                    </mat-form-field> -->
+
+                                    <label class="txt14w500 col-12">Fecha de Nacimiento</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="date" class="col-12" matInput formControlName="fechaNacimiento">
+                                    </mat-form-field>
+
+                                </div>
+                                <!-- <div class="form-group col-xl-6 col-lg-8 col-md-6 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Dirección de entrega del producto</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="direccionEntrega" placeholder="Dirección">
+                                    </mat-form-field>
+                                </div> -->
+                                <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <label class="txt14w500 col-12">Dirección de Residencia</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="direccionResidencia" placeholder="Dirección de Residencia">
+                                    </mat-form-field>
+                                </div>
+<!--                                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Telefono fijo</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="date" class="col-12" matInput formControlName="fechaNacimiento">
+                                    </mat-form-field>
+                                </div> -->
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Departamento</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="departamento" placeholder="Seleccione" (selectionChange)="obtenerProvincia($event)">
+                                            <mat-option *ngFor="let item of listaDepartamento" [value]="item.idDepartamento">{{item.departamento}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Provincia</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="provincia" placeholder="Seleccione" (selectionChange)="obtenerDistrito($event)">
+                                            <mat-option *ngFor="let item of listaProvincia" [value]="item.idProvinicia">{{item.provincia}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <label class="txt14w500 col-12">Distrito</label>
+                                    <mat-form-field appearance="outline" class="col-12">
+                                        <mat-select formControlName="distrito" placeholder="Seleccione">
+                                            <mat-option *ngFor="let item of listaDistrito" [value]="item.idDistrito">{{item.distrito}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="form-row" *ngIf="mostrarProductoTaller">
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Producto</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="productoNombre" placeholder="Producto" readonly>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Precio</label>
+                                    <mat-form-field appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <input type="text" matInput formControlName="productoPrecio" placeholder="Precio" readonly>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <label class="txt14w500 col-12">Lista de talleres</label>
+                                    <mat-form-field  appearance="outline" [style.fontSize.px]=14 class="col-12">
+                                        <!-- <input type="text" matInput formControlName="estadoCivil" placeholder="Estado civil"> -->
+                                        <mat-select formControlName="tallerSeleccionado" placeholder="Seleccione">
+                                            <mat-option *ngFor="let item of listTalleres" [value]="item.idTaller">{{item.nombre+' - '+item.direccion}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-12 text-center esp-btn">
+                                    <button mat-button class="btn-back ml-2 mr-2 mt-2" (click)="cancelar();"><span class="material-icons pr-4">arrow_back</span> Cancelar </button>
+                                    <button *ngIf="!mostrarBotonActualizar" mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="insertarActualizarDatosAdicionales()" [disabled]='!userFormGroup.valid'>Registrar <span class="material-icons pl-4">arrow_forward</span></button>
+                                    <button *ngIf="mostrarBotonActualizar" mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="insertarActualizarDatosAdicionales()" [disabled]='!userFormGroup.valid'>Actualizar <span class="material-icons pl-4">update</span></button>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,250 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="secAtrasHeader">
+                <a routerLink="/gnv/evaluacion-crediticia"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Regresar a evaluación crediticia</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-card class="cardTop">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="text-center">
+                            <a class="style-button-per mat-stl-1">
+                                <strong>Detalle</strong>
+                            </a>
+                            <div class="cn-camp-1">
+                                <hr class="line-101 style-hr-ln">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-center">
+                            <a (click)="verDetalleDocumentoCreditica();" class="style-button-per step-frm-1">
+                                <strong>Documentos adjuntos</strong></a>
+                            <div class="dv-stl-ln">
+                                <hr class="line-202 ln-202">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form [formGroup]="formDatosUsuario" autocomplete="off" class="formDisabled">
+                    <div class="form-row mb-4 mt-4">
+                        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12 pt-3">
+                            <span class="txt16w600 colBlue pl-2">Detalle de expediente Nº <b>{{numeroExpediente}}</b></span>
+                        </div>
+                        <div class="text-center col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12" >
+                            <mat-card class="colGreenContainer" *ngIf="numeroScoreActual>=735 && numeroScoreActual<=772 ==true">
+                                <!-- <mat-card-header> -->
+                                <span class="text25w600" style="color: white;">Aprobado</span>
+<!--                                     
+                                </mat-card-header> -->
+                            </mat-card>
+                            <mat-card class="colGreenContainer" *ngIf="numeroScoreActual>=773 && numeroScoreActual<=792 ==true">
+                                <span class="text25w600" style="color: white;">Aprobado</span>
+                            </mat-card>
+                            <mat-card class="colGreenContainer" *ngIf="numeroScoreActual>792==true">
+                                <span class="text25w600" style="color: white;">Aprobado</span>
+                            </mat-card>
+                            <mat-card class="colRedContainer" *ngIf="numeroScoreActual>0 && numeroScoreActual<=714==true">
+                                <span class="text25w600 " style="color: white;">Rechazado</span>
+                            </mat-card>
+                            <mat-card class="colRedContainer" *ngIf="numeroScoreActual>=715 && numeroScoreActual<=734 ==true">
+                                <span class="text25w600 " style="color: white;">Rechazado</span>
+                            </mat-card>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                           
+                            <!-- <mat-card class="colGreenContainer"> -->
+                                <!-- <mat-card-header> -->
+                                    <!-- <span class="text25w600 colRed float-md-right pr-4" *ngIf="numeroScoreActual<=0 ==true">Score: {{numeroScoreActual}}</span>
+                                    <span class="text25w600 colRed float-md-right pr-4" *ngIf="numeroScoreActual>0 && numeroScoreActual<=714==true">Riesgo Alto - Score: {{numeroScoreActual}} - Rechazado<input type="color" value="#ff0000"></span>
+                                    <span class="text25w600 colRed float-md-right pr-4" *ngIf="numeroScoreActual>=715 && numeroScoreActual<=734 ==true">Riesgo Medio Alto - Score: {{numeroScoreActual}} - Rechazado<input type="color" value="#ff0000"></span>
+                                    <span class="text25w600 colOrange float-md-right pr-4" *ngIf="numeroScoreActual>=735 && numeroScoreActual<=772 ==true">Riesgo Medio - Score: {{numeroScoreActual}} </span>
+                                    <span class="text25w600 colGreen float-md-right pr-4" *ngIf="numeroScoreActual>=773 && numeroScoreActual<=792 ==true">Riesgo Medio Bajo - Score: {{numeroScoreActual}}</span>
+                                    <span class="text25w600 colGreen float-md-right pr-4" *ngIf="numeroScoreActual>792==true">Riesgo Bajo - Score: {{numeroScoreActual}} </span> -->
+                                    <span class="text22w600 colGreen float-md-right pr-4 mt-3" *ngIf="numeroScoreActual<=0 ==true">Score: {{numeroScoreActual}}</span>
+                                    <span class="text22w600 colRed float-md-right pr-4 mt-3" *ngIf="numeroScoreActual>0 && numeroScoreActual<=714==true">Riesgo Alto - Score: {{numeroScoreActual}}</span>
+                                    <span class="text22w600 colRed float-md-right pr-4 mt-3" *ngIf="numeroScoreActual>=715 && numeroScoreActual<=734 ==true">Riesgo Medio Alto - Score: {{numeroScoreActual}} </span>
+                                    <span class="text22w600 colOrange float-md-right pr-4 mt-3" *ngIf="numeroScoreActual>=735 && numeroScoreActual<=772 ==true">Riesgo Medio - Score: {{numeroScoreActual}} </span>
+                                    <span class="text22w600 colGreen float-md-right pr-4 mt-3" *ngIf="numeroScoreActual>=773 && numeroScoreActual<=792 ==true">Riesgo Medio Bajo - Score: {{numeroScoreActual}}</span>
+                                    <span class="text22w600 colGreen float-md-right pr-4 mt-3" *ngIf="numeroScoreActual>792==true">Riesgo Bajo - Score: {{numeroScoreActual}} </span>
+
+
+                                   <!--  <mat-card class="colGreenContainer" *ngIf="numeroScoreActual<=0 ==true">
+                                        <mat-card-header>
+                                            <span class="text25w600 colGreenContainer float-md-right pr-4" >Score: {{numeroScoreActual}}</span>
+                                        </mat-card-header>
+                                    </mat-card> -->
+                                    
+                                    
+                                <!-- </mat-card-header>    -->                         
+                            <!-- </mat-card> -->
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
+                           
+                        </div>
+                    </div>
+                    <mat-card style="width: 100%;">
+                        <div class="form-row pt-2">
+                                <div class="lineaCredito col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 text-center">
+                                    <label class="txt14w500 col-12 pt-2">Linea de crédito Asignada</label>
+                                </div>
+                                <div class="lineaCredito col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 text-center">
+                                    <label class="txt14w500 col-12 pt-2">{{lineaCredito.riesgo}}</label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 text-center">
+                                    <label class="txt14w500 col-12 pt-2">{{lineaCredito.lineaCredito | currency:'S/ '}}</label>
+                                </div>
+                                <!-- <div class="lineaCredito col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 text-center">
+                                    <label class="txt14w500 col-12 pt-2">2920</label>
+                                </div> -->
+                        </div>
+                    </mat-card>
+                    <div class="form-row pt-4">
+
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Producto a Financiar</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly formControlName="productoFinanciado">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Precio</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly formControlName="productoFinanciadoPrecio" [value]="formDatosUsuario.get('productoFinanciadoPrecio').value | currency:'S/ '">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Proveedor</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly formControlName="productoFinanciadoProveedor">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Nombres</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly readonly formControlName="nombres">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Apellidos</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly readonly formControlName="apellidos">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">DNI / CE</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly readonly formControlName="dni">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Fecha de nacimiento</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly readonly formControlName="fechNacimiento">
+                            </mat-form-field>
+                        </div>
+                        <!-- <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Nacionalidad</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly readonly formControlName="nacionalidad">
+                            </mat-form-field>
+                        </div> -->
+
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Teléfono fijo</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly readonly formControlName="telefono">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Teléfono móvil</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly readonly formControlName="celular">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Correo electrónico</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input matInput readonly readonly formControlName="email">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12" >
+                            <label class="txt14w500 col-12">¿El cliente cuenta con información en CR?</label>
+                            <mat-radio-group  aria-label="Select an option" [disabled]="true">
+                                <mat-radio-button class="col-12" [value]="1"  [checked]="ocultarTresPreguntas" >Si </mat-radio-button>
+                                <mat-radio-button class="col-12" [value]="0" [checked]="ocultarTresPreguntasNo" >No </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12" *ngIf="!ocultarBotonGuardar && ocultarTresPreguntas">
+                            <label class="txt14w500 col-12">Deuda en más de  6 entidades</label>
+                            <mat-radio-group  aria-label="Select an option"  [disabled]="true">
+                                <mat-radio-button class="col-12" [checked]="numeroBancosSi"  [value]="-8" >Si </mat-radio-button>
+                                <mat-radio-button class="col-12"  [checked]="numeroBancosNo" [value]="0" >No </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12" *ngIf="!ocultarBotonGuardar && ocultarTresPreguntas">
+                            <label class="txt14w500 col-12">Deudas por más de 6 veces el ingreso</label>
+                            <mat-radio-group  aria-label="Select an option" [disabled]="true">
+                                <mat-radio-button class="col-12" [checked]="deudaSi" [value]="-10" >Si </mat-radio-button>
+                                <mat-radio-button class="col-12" [checked]="deudaNo" [value]="0" >No </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12" *ngIf="!ocultarBotonGuardar && ocultarTresPreguntas">
+                            <label class="txt14w500 col-12">Reporte deuda SBS</label>
+                            <mat-radio-group aria-label="Select an option" [disabled]="true">
+                                <mat-radio-button class="col-12" [checked]="sinCalificacion" [value]="-10" > Sin Calificación y Con Problemas Potenciales </mat-radio-button>
+                                <mat-radio-button class="col-12" [checked]="deficiente" [value]="-25" > Deficiente </mat-radio-button>
+                                <mat-radio-button class="col-12" [checked]="dudosoPerdidad" [value]="-40" > Dudoso y Pérdida </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+                    </div>
+                </form>
+
+                <form [formGroup]="formDatosRegistro" autocomplete="off">
+                    <div class="form-row mb-4 mt-4">
+                        <div class="col-12">
+                            <span class="txt16w600 colBlue pl-2">Evaluación</span>
+                        </div>
+
+                        <!-- <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Estado de evaluación</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <mat-select placeholder="Todas las evaluaciones" formControlName="estadoEvaluacion">
+                                    <mat-option *ngFor="let doc of listaEstados" [value]="doc.idEstado">{{doc.estado}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div> -->
+
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <label class="txt14w500 col-12">Observaciones</label>
+                            <mat-form-field appearance="outline" class="col-12">
+                                <input class="col-12" matInput  formControlName="observaciones" *ngIf="formDatosRegistro.get('observaciones').value=='Aprobado con regla de Knockout, por favor su atención'" style="color: #00a34b;font-weight: 900;">
+                                <input class="col-12" matInput  formControlName="observaciones" *ngIf="formDatosRegistro.get('observaciones').value!='Aprobado con regla de Knockout, por favor su atención'">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    
+                </form>
+                <div class="row mt-4 mb-3">
+                    <div class="col-12 text-center esp-btn">
+                        <button mat-button class="btn-back ml-2 mr-2 mt-2" routerLink="/gnv/evaluacion-crediticia"><span class="material-icons pr-4">arrow_back</span> Cancelar </button>
+                        <!-- <button mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="guardarEvaluacionCrediticia();" [disabled]="!formDatosUsuario.valid || !formDatosRegistro.valid">Guardar <span class="material-icons pl-4">save</span></button> -->
+                        <button mat-button class="btnBlue btn-next ml-2 mr-2 mt-2" (click)="guardarEvaluacionCrediticia();" *ngIf="!ocultarBotonGuardar">Guardar <span class="material-icons pl-4">save</span></button>
+                    </div>
+                </div>    
+
+            </mat-card>
+        </div>
+    </div>
+
+</div>

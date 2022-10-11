@@ -1,0 +1,379 @@
+<!-- <p>Try the scrollbar in div.</p>
+
+<div style="border: 1px solid black;
+width: 200px;
+height: 100px;
+overflow: scroll;" (scroll)="onScroll($event)">In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since.
+<br><br>
+'Whenever you feel like criticizing anyone,' he told me, just remember that all the people in this world haven't had the advantages that you've had.'</div>
+
+<p>Scrolled <span id="demo">0</span> times.</p> -->
+
+
+<div style="height: 100%;
+overflow: scroll;"  (scroll)="onScroll($event)">
+    <nav class="navbar-top">
+        <div class="container">
+            <div class="row align-items-center pt-2 pb-2">
+                <div class="col-sm-6 col-12 posicion">
+                    <img class="logoCalidda" src="assets/images/caliddaxtern1.png" alt="Calidda" width="100%">
+                </div>
+                <div class="col-sm-6 col-12 posicionRg">
+                    <button class="btn btn-link" mat-raised-button [routerLink]="['/login']">
+                        Ingreso al sistema
+                        <span class="material-icons pl-2">login</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="bg-slider">
+        <div class="container">
+            <div class="row pt-2 pb-5">
+                <div class="col 12 text-center">
+                    <!-- <img class="imgSlider" src="assets/images/imgSlider.png" alt="Calidda" width="100%"> -->
+
+                    <owl-carousel-o [options]="customOptions">
+
+                        <ng-container *ngFor="let slide of images">
+                          <ng-template class="slide" carouselSlide>
+                            <div align="center">
+                                <img class="imgSlider" src="assets/images/imgSlider.png" alt="Calidda" width="100%">
+                            </div>
+                          </ng-template>
+                        </ng-container>
+                    
+                    </owl-carousel-o>  
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <!-- <div class="col-12 divBanner" *ngIf="mostrarDivAbsolute==false"> -->
+                <div class="col-12 divBanner">
+                    <div class="row align-items-center text-center">
+                        <div class="col contBanner" (click)="redireccionarAyuda('SinRedireccion',0)" [ngStyle]="styleObject[0]" (mouseenter)="hover(0)" (mouseleave)="desactive(0)">
+                            <span class="material-icons-outlined fa-2x ">
+                                verified
+                            </span>
+                            <p class="textBanner">Financiamiento GNV</p>
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/beneficios-de-usar-gnv#seccion',1)" [ngStyle]="styleObject[1]" (mouseenter)="hover(1)" (mouseleave)="desactive(1)">
+                            <i class="far fa-thumbs-up fa-2x" style="width: 75px;
+                            height: 35px;"></i>
+                            <p class="textBanner">Beneficio de usar GNV</p>
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/simulador-de-ahorro#seccion',2)" [ngStyle]="styleObject[2]" (mouseenter)="hover(2)" (mouseleave)="desactive(2)">
+                            <i class="fas fa-piggy-bank fa-2x" style="width: 75px;
+                            height: 35px;"></i>
+                            <p class="textBanner">Simulador de ahorro</p>
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/convertir-mi-vehiculo-a-gnv#seccion',3)" [ngStyle]="styleObject[3]" (mouseenter)="hover(3)" (mouseleave)="desactive(3)">
+                            <i class="fas fa-car-alt fa-2x" style="width: 75px;
+                            height: 35px;"></i>
+                            <p class="textBanner" style="width: 160px;">Financiar mi conversión vehicular GNV</p>
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/comprar-mi-vehiculo-gnv#seccion',4)" [ngStyle]="styleObject[4]" (mouseenter)="hover(4)" (mouseleave)="desactive(4)">
+                            <i class="far fa-building fa-2x" style="width: 75px;
+                            height: 35px;"></i>
+                            <p class="textBanner">Comprar mi vehículo a GNV</p>
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/estaciones-que-venden-gnv#seccion',5)" [ngStyle]="styleObject[5]" (mouseenter)="hover(5)" (mouseleave)="desactive(5)">
+                            <i class="fas fa-gas-pump fa-2x" style="width: 75px;
+                            height: 35px;"></i>
+                            <p class="textBanner">Estaciones que venden GNV</p>
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/revisiones-periodicas#seccion',6)" [ngStyle]="styleObject[6]" (mouseenter)="hover(6)" (mouseleave)="desactive(6)">
+                            <i class="fas fa-clipboard-check fa-2x" style="width: 75px;
+                            height: 35px;"></i>
+                            <p class="textBanner">Revisiones periódicas</p>
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/atencion-al-cliente/canales-de-atencion#seccion',7)" [ngStyle]="styleObject[7]" (mouseenter)="hover(7)" (mouseleave)="desactive(7)">
+                            <i class="fas fa-user-tie fa-2x" style="width: 75px;
+                            height: 35px;"></i>
+                            <p class="textBanner">Atención al cliente</p>
+                        </div>
+                    </div>
+    
+                </div>
+
+                <div class="col-12 divBannerResponsivo">
+                    <div class="row align-items-center text-center" style="display: block;">
+                        <div class="col contBanner" (click)="redireccionarAyuda('SinRedireccion',0)">
+                            <!-- <img class="iconBanner" src="assets/images/home/tipoFinanciamiento.svg" alt="Calidda" width="100%" > -->
+                            
+                            <div class="row" style="text-align: left;height: 30px;">
+                                <div>
+                                    <span class="material-icons-outlined fa-2x">
+                                        &nbsp;verified
+                                    </span>
+                                </div>
+                                <div class="pt-2">
+                                    <p class="textBanner">&nbsp;Financiamiento GNV</p>
+                                </div>
+                            </div>
+                            <hr style="background: white;">
+                            
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/beneficios-de-usar-gnv#seccion',1)" >
+                            <!-- <img class="iconBanner {{this.colorBanner[1]}}" src="assets/images/home/beneficiosGnv.svg" alt="Calidda" width="100%"> -->
+                            
+                            <div class="row" style="text-align: left;height: 30px;">
+                                <div>
+                                    <i class="far fa-thumbs-up fa-2x " style="height: 35px;margin-left: 27px;"></i>
+                                </div>
+                                <div class="pt-2">
+                                    <p class="textBanner ">&nbsp;Beneficio de usar GNV</p>
+                                </div>
+                            </div>
+
+                            <hr style="background: white;">
+
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/simulador-de-ahorro#seccion',2)">
+                            <!-- <img class="iconBanner" src="assets/images/home/simuladorAhorro.svg" alt="Calidda" width="100%"> -->
+
+                            <div class="row" style="text-align: left;height: 30px;">
+                                <div>
+                                    <i class="fas fa-piggy-bank fa-2x " style="height: 35px;margin-left: 27px;"></i>
+                                </div>
+                                <div class="pt-2">
+                                    <p class="textBanner ">&nbsp;Simulador de ahorro</p>
+                                </div>
+                            </div>
+
+                            <hr style="background: white;">
+
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/convertir-mi-vehiculo-a-gnv#seccion',3)">
+                            <!-- <img class="iconBanner" src="assets/images/home/financiarGnv.svg" alt="Calidda" width="100%"> -->
+                            
+                            <div class="row" style="text-align: left;height: 30px;">
+                                <div>
+                                    <i class="fas fa-car-alt fa-2x " style="height: 35px;margin-left: 27px;"></i>
+                                </div>
+                                <div class="pt-2">
+                                    <p class="textBanner ">&nbsp;Financiar mi conversión vehicular GNV</p>
+                                </div>
+                            </div>
+
+                            <hr style="background: white;">
+
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/comprar-mi-vehiculo-gnv#seccion',4)">
+                            <!-- <img class="iconBanner" src="assets/images/home/comprarGnv.svg" alt="Calidda" width="100%"> -->
+                            
+                            <div class="row" style="text-align: left;height: 30px;">
+                                <div>
+                                    <i class="far fa-building fa-2x " style="height: 35px;margin-left: 27px;"></i>
+                                </div>
+                                <div class="pt-2">
+                                    <p class="textBanner">&nbsp;Comprar mi vehículo a GNV</p>
+                                </div>
+                            </div>
+
+                            <hr style="background: white;">
+                            
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/estaciones-que-venden-gnv#seccion',5)">
+                            <!-- <img class="iconBanner" src="assets/images/home/estaciones.svg" alt="Calidda" width="100%"> -->
+                            
+                            <div class="row" style="text-align: left;height: 30px;">
+                                <div>
+                                    <i class="fas fa-gas-pump fa-2x " style="height: 35px;margin-left: 27px;"></i>
+                                </div>
+                                <div class="pt-2">
+                                    <p class="textBanner">&nbsp;Estaciones que venden GNV</p>
+                                </div>
+                            </div>
+
+                            <hr style="background: white;">
+
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/revisiones-periodicas#seccion',6)">
+                            <!-- <img class="iconBanner" src="assets/images/home/revision.svg" alt="Calidda" width="100%"> -->
+                            
+                            <div class="row" style="text-align: left;height: 30px;">
+                                <div>
+                                    <i class="fas fa-clipboard-check fa-2x " style="height: 35px;margin-left: 27px;"></i>
+                                </div>
+                                <div class="pt-2">
+                                    <p class="textBanner ">&nbsp;Revisiones periódicas</p>
+                                </div>
+                            </div>
+
+                            <hr style="background: white;">
+
+                        </div>
+                        <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/atencion-al-cliente/canales-de-atencion#seccion',7)">
+                            <!-- <img class="iconBanner" src="assets/images/home/atencionCliente.svg" alt="Calidda" width="100%"> -->
+
+                            <div class="row" style="text-align: left;height: 30px;">
+                                <div>
+                                    <i class="fas fa-user-tie fa-2x " style="height: 35px;margin-left: 27px;"></i>
+                                </div>
+                                <div class="pt-2">
+                                    <p class="textBanner ">&nbsp;Atención al cliente</p>
+                                </div>
+                            </div>
+
+                            <hr style="background: white;">
+
+                        </div>
+                    </div>
+    
+                </div>
+            
+                <!-- <div class="barraBannerAbsolute" *ngIf="mostrarDivAbsolute">
+                    <div class="d-flex flex-row justify-content-center alig-items-center">
+                        <div class="divBannerAbsolute" *ngIf="mostrarDivAbsolute">
+                            <div class="row align-items-center text-center">
+                                <div class="col contBanner" (click)="redireccionarAyuda('SinRedireccion',0)">
+                                    
+                                    <span class="material-icons-outlined fa-2x {{this.colorBanner[0]}}">
+                                        verified
+                                    </span>
+                                    <p class="textBanner {{this.colorBanner[0]}}">Financiamiento GNV</p>
+                                </div>
+                                <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/beneficios-de-usar-gnv#seccion',1)">
+                                    <i class="far fa-thumbs-up fa-2x {{this.colorBanner[1]}}" style="width: 75px;
+                                    height: 35px;"></i>
+                                    <p class="textBanner {{this.colorBanner[1]}}">Beneficio de usar GNV</p>
+                                </div>
+                                <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/simulador-de-ahorro#seccion',2)">
+                                    <i class="fas fa-piggy-bank fa-2x {{this.colorBanner[2]}}" style="width: 75px;
+                                    height: 35px;"></i>
+                                    <p class="textBanner {{this.colorBanner[2]}}">Simulador de ahorro</p>
+                                </div>
+                                <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/convertir-mi-vehiculo-a-gnv#seccion',3)">
+                                    
+                                    <i class="fas fa-car-alt fa-2x {{this.colorBanner[3]}}" style="width: 75px;
+                                    height: 35px;"></i>
+                                    <p class="textBanner {{this.colorBanner[3]}}" style="width: 160px;">Financiar mi conversión vehicular GNV</p>
+                                </div>
+                                <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/comprar-mi-vehiculo-gnv#seccion',4)">
+                                    
+                                    <i class="far fa-building fa-2x {{this.colorBanner[4]}}" style="width: 75px;
+                                    height: 35px;"></i>
+                                    <p class="textBanner {{this.colorBanner[4]}}">Comprar mi vehículo a GNV</p>
+                                </div>
+                                <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/estaciones-que-venden-gnv#seccion',5)">
+                                    
+                                    <i class="fas fa-gas-pump fa-2x {{this.colorBanner[5]}}" style="width: 75px;
+                                    height: 35px;"></i>
+                                    <p class="textBanner {{this.colorBanner[5]}}">Estaciones que venden GNV</p>
+                                </div>
+                                <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/mi-vehiculo/revisiones-periodicas#seccion',6)">
+                                    
+                                    <i class="fas fa-clipboard-check fa-2x {{this.colorBanner[6]}}" style="width: 75px;
+                                    height: 35px;"></i>
+                                    <p class="textBanner {{this.colorBanner[6]}}">Revisiones periódicas</p>
+                                </div>
+                                <div class="col contBanner" (click)="redireccionarAyuda('https://www.calidda.com.pe/atencion-al-cliente/canales-de-atencion#seccion',7)">
+                                    
+                                    <i class="fas fa-user-tie fa-2x {{this.colorBanner[7]}}" style="width: 75px;
+                                    height: 35px;"></i>
+                                    <p class="textBanner {{this.colorBanner[7]}}">Atención al cliente</p>
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                    
+                </div> -->
+
+                
+            </div>
+    
+            <div class="row" id="scrollId">
+                <div class="col-12 mb-3">
+                    <h3 class="textTitle">Tipos de financiamiento según el producto</h3>
+                </div>
+    
+                <div class="col-12 mt-3">
+                    <mat-card class="cardTop">
+                        <form [formGroup]="formFiltro" autocomplete="off">
+                            <div class="row align-items-center">
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control pl-3" formControlName="inputFilter" placeholder="Ingrese nombre del producto, tipo de producto o marca" aria-describedby="btnFiltrar">
+                                        <div class="input-group-append">
+                                          <button class="btn btnBlue" type="button" id="btnFiltrar" (click)="filtrar()">Buscar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <ul class="pagination posDir">
+                                        <li class="page-item">
+                                            <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="back()">
+                                                <span class="fa fa-angle-left" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+                                                <span class="fa fa-angle-right" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+
+                    </mat-card>
+                </div>
+    
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6 mb-4 text-center"  *ngFor="let item of datos" >
+                    <div class="cardServ text-center" [routerLink]="['/solicitudPreevaluacion/',item.idProducto]">
+                        <!-- <span class="circleIcon mt-2"> -->
+                            <div style="width: 100%;">
+                                <img style="background: #00A1DE;" src="{{item.imagen}}" width="100%" height="200px;" >
+                            </div>
+                            
+                        <!-- </span> -->
+                        <p class="textProd pt-3" style="height: 50px;
+                        overflow: hidden;">{{item.descripcion}}</p>
+                        <p class="textProd pt-3">{{item.precio | currency:'S/ '}}</p>
+    
+                        <!-- <button mat-raised-button color="primary" [routerLink]="['/solicitudPreevaluacion/',item.idProducto]" class="btnFilter" >Realizar pre evaluación</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="mt-4 bg-fotter">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 pt-4 text-center">
+                    <h2 class="textFotter">Nuestros aliados garantizan un servicio de primer nivel</h2>
+                </div>
+            </div>
+            <div class="row mt-4 mb-4">
+                <div class="col">
+                    <img class="imgFooter" src="assets/images/home/sole.svg" alt="calidda" width="100%">
+                </div>
+                <div class="col">
+                    <img class="imgFooter" src="assets/images/home/sole.svg" alt="calidda" width="100%">
+                </div>
+                <div class="col">
+                    <img class="imgFooter" src="assets/images/home/sole.svg" alt="calidda" width="100%">
+                </div>
+                <div class="col">
+                    <img class="imgFooter" src="assets/images/home/sole.svg" alt="calidda" width="100%">
+                </div>
+                <div class="col">
+                    <img class="imgFooter" src="assets/images/home/sole.svg" alt="calidda" width="100%">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <!-- <img src="assets/images/home/footer.svg" alt="calidda" width="100%"> -->
+    </section>
+</div>

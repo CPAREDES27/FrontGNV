@@ -1,0 +1,35 @@
+[
+  {
+    "idProducto": 1,
+    "descripcion": "GNV CONVERSIÓN A GNV 55 LT",
+    "precio": 2980,
+    "imagen": "car.svg",
+    "numOrden": 1,
+    "activo": false,
+    "proveedor":"S.E.I.",
+    "totalRegistro": 0,
+    "numeroFila": 0
+  },
+  {
+    "idProducto": 2,
+    "descripcion": "GNV REVISIÓN ANUAL",
+    "precio": 60,
+    "imagen": "calendar.svg",
+    "numOrden": 2,
+    "activo": false,
+    "proveedor":"Aghaso",
+    "totalRegistro": 0,
+    "numeroFila": 0
+  },
+  {
+    "idProducto": 3,
+    "descripcion": "GNV REVISIÓN QUINQUENAL",
+    "precio": 2980,
+    "imagen": "calendar.svg",
+    "numOrden": 3,
+    "activo": false,
+    "proveedor":"Transperuana",
+    "totalRegistro": 0,
+    "numeroFila": 0
+  }
+  ]

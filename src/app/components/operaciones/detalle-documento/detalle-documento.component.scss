@@ -1,0 +1,67 @@
+.cardTop {
+    top: -42px;
+    position: relative;
+    z-index: 999;
+    box-shadow: 0px 3px 12px rgba(114, 124, 142, 0.196706);
+    border-radius: 10px;
+  }
+  .vw6 {
+    width: 100%;
+  }
+  
+  .textarea {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+  }
+  .cardForm {
+    width: 100%;
+    margin-left: 13px;
+    margin-right: 13px;
+    padding: 15px 15px;
+    background: #ffffff;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+  }
+  .textTitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #00a1de;
+  }
+  .textCard {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    color: #868685;
+  }
+  .select {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    color: #868685;
+  }
+  .upload {
+    float: right;
+  }
+  
+  .rotate-45 {
+    font-size: 16px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  
+  .textOpt {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #262626;
+  }
+  .btnSave {
+    height: 48px;
+    background: #00a1de;
+    border-radius: 6px;
+  }
+  
